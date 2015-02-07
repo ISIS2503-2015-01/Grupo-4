@@ -1,0 +1,15 @@
+Para iniciar el repositorio:
+
+git init
+git add .
+git commit -m 'First commit'
+git remote add origin https://github.com/ISIS2503-2015-01/Grupo-4
+git remote -v
+git push origin master
+
+Para traer el repositorio:
+
+git clone https://github.com/ISIS2503-2015-01/Grupo-4
+git commit -m "I'm comitting stuff"
+git add .
+git push origin master
