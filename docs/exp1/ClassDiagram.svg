@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="996" version="1.1" width="2266" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#ffffff" height="184" stroke="#ffffff" stroke-width="1" width="360" x="430" y="14"/>
+<rect fill="none" height="184" stroke="#000000" stroke-width="1" width="360" x="430" y="14"/>
+<text font-family="Lucida Grande" font-size="13" x="586" y="28">
+Usuario</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="360" x="430" y="38"/>
+<text font-family="Lucida Grande" font-size="13" x="434" y="53">
+id : Long</text>
+<text font-family="Lucida Grande" font-size="13" x="434" y="70">
+nombre : String</text>
+<text font-family="Lucida Grande" font-size="13" x="434" y="87">
+pcontraseña : String</text>
+<text font-family="Lucida Grande" font-size="13" x="434" y="104">
+fechaNacimiento : Date</text>
+<text font-family="Lucida Grande" font-size="13" x="434" y="121">
+email : String</text>
+<text font-family="Lucida Grande" font-size="13" x="434" y="138">
+foto : String</text>
+<text font-family="Lucida Grande" font-size="13" x="434" y="155">
+género : Integer</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="360" x="430" y="170"/>
+<rect fill="#ffffff" height="144" stroke="#ffffff" stroke-width="1" width="304" x="14" y="270"/>
+<rect fill="none" height="144" stroke="#000000" stroke-width="1" width="304" x="14" y="270"/>
+<text font-family="Lucida Grande" font-size="13" x="140" y="284">
+Paciente</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="304" x="14" y="294"/>
+<text font-family="Lucida Grande" font-size="13" x="18" y="309">
+eps : String</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="304" x="14" y="355"/>
+<polyline fill="none" points="158,270 158,78 430,78" stroke="#333399" stroke-width="1"/>
+<polygon fill="#ffffff" points="430,78 418,85 418,71" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="430,78 418,85 418,71" stroke="#333399" stroke-width="1"/>
+<rect fill="#ffffff" height="128" stroke="#ffffff" stroke-width="1" width="288" x="942" y="262"/>
+<rect fill="none" height="128" stroke="#000000" stroke-width="1" width="288" x="942" y="262"/>
+<text font-family="Lucida Grande" font-size="13" x="1064" y="276">
+Doctor</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="288" x="942" y="286"/>
+<text font-family="Lucida Grande" font-size="13" x="946" y="301">
+especialidad : Integer</text>
+<text font-family="Lucida Grande" font-size="13" x="946" y="318">
+hospital : Integer</text>
+<text font-family="Lucida Grande" font-size="13" x="946" y="335">
+fotoHospital : String</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="288" x="942" y="356"/>
+<polyline fill="none" points="1078,262 1078,78 789,78" stroke="#333399" stroke-width="1"/>
+<polygon fill="#ffffff" points="789,78 801,71 801,85" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="789,78 801,71 801,85" stroke="#333399" stroke-width="1"/>
+<polygon fill="#ffffff" points="430,206 806,206 816,216 816,264 430,264 430,206" stroke="#ffffff" stroke-width="1"/>
+<polyline fill="none" points="430,206 806,206 816,216 816,264 430,264 430,206" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="806,206 816,216 806,216 806,206" stroke="#ffffff" stroke-width="1"/>
+<polyline fill="none" points="806,206 816,216 806,216 806,206" stroke="#000000" stroke-width="1"/>
+<text font-family="Lucida Grande" font-size="13" x="433" y="222">
+Tanto la foto del usuario como el sonido de los episodios, </text>
+<text font-family="Lucida Grande" font-size="13" x="433" y="238">
+deben ser manejados a través de APIs externas que ayuden</text>
+<text font-family="Lucida Grande" font-size="13" x="433" y="254">
+con la optimización. Así, sólo almacenamos links.</text>
+<polygon fill="#ffffff" points="1238,270 1570,270 1580,280 1580,328 1238,328 1238,270" stroke="#ffffff" stroke-width="1"/>
+<polyline fill="none" points="1238,270 1570,270 1580,280 1580,328 1238,328 1238,270" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="1570,270 1580,280 1570,280 1570,270" stroke="#ffffff" stroke-width="1"/>
+<polyline fill="none" points="1570,270 1580,280 1570,280 1570,270" stroke="#000000" stroke-width="1"/>
+<text font-family="Lucida Grande" font-size="13" x="1241" y="286">
+Se puede tener una tabla de hospitales </text>
+<text font-family="Lucida Grande" font-size="13" x="1241" y="302">
+y asociar cada doctor a los hospitales donde trabaja</text>
+<polyline fill="none" points="942,350 317,350" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="329" x2="317" y1="343" y2="350"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="329" x2="317" y1="357" y2="350"/>
+<text font-family="Lucida Grande" font-size="13" x="592" y="337">
+pacientes</text>
+<text font-family="Lucida Grande" font-size="13" x="336" y="344">
+0..*</text>
+<rect fill="#ffffff" height="136" stroke="#ffffff" stroke-width="1" width="376" x="318" y="470"/>
+<rect fill="none" height="136" stroke="#000000" stroke-width="1" width="376" x="318" y="470"/>
+<text font-family="Lucida Grande" font-size="13" x="464" y="484">
+Medicamento</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="376" x="318" y="494"/>
+<text font-family="Lucida Grande" font-size="13" x="322" y="509">
+id : Long</text>
+<text font-family="Lucida Grande" font-size="13" x="322" y="526">
+nombre : String</text>
+<text font-family="Lucida Grande" font-size="13" x="322" y="543">
+dosis : String</text>
+<text font-family="Lucida Grande" font-size="13" x="322" y="560">
+horasTomadoAntesDeEpisodio : Integer</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="376" x="318" y="577"/>
+<polyline fill="none" points="102,413 102,518 318,518" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="306" x2="318" y1="525" y2="518"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="306" x2="318" y1="511" y2="518"/>
+<text font-family="Lucida Grande" font-size="13" x="104" y="507">
+medicamentosTomados</text>
+<text font-family="Lucida Grande" font-size="13" x="283" y="533">
+0..*</text>
+<rect fill="#ffffff" height="184" stroke="#ffffff" stroke-width="1" width="416" x="910" y="454"/>
+<rect fill="none" height="184" stroke="#000000" stroke-width="1" width="416" x="910" y="454"/>
+<text font-family="Lucida Grande" font-size="13" x="1091" y="468">
+Episodio</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="416" x="910" y="478"/>
+<text font-family="Lucida Grande" font-size="13" x="914" y="493">
+id : Long</text>
+<text font-family="Lucida Grande" font-size="13" x="914" y="510">
+fecha : Date</text>
+<text font-family="Lucida Grande" font-size="13" x="914" y="527">
+intensidad : Integer</text>
+<text font-family="Lucida Grande" font-size="13" x="914" y="544">
+horasSueño : Integer</text>
+<text font-family="Lucida Grande" font-size="13" x="914" y="561">
+sueñoRegular : Integer</text>
+<text font-family="Lucida Grande" font-size="13" x="914" y="578">
+lugar : Integer</text>
+<text font-family="Lucida Grande" font-size="13" x="914" y="595">
+sufrioEstresAntes : Boolean</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="416" x="910" y="610"/>
+<rect fill="#ffffff" height="80" stroke="#ffffff" stroke-width="1" width="216" x="646" y="702"/>
+<rect fill="none" height="80" stroke="#000000" stroke-width="1" width="216" x="646" y="702"/>
+<text font-family="Lucida Grande" font-size="13" x="728" y="716">
+Formato</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="216" x="646" y="726"/>
+<text font-family="Lucida Grande" font-size="13" x="650" y="741">
+localizacion : Integer</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="216" x="646" y="755"/>
+<polyline fill="none" points="742,702 742,534 910,534" stroke="#333399" stroke-width="1"/>
+<polygon fill="#ffffff" points="910,534 898,541 898,527" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="910,534 898,541 898,527" stroke="#333399" stroke-width="1"/>
+<rect fill="#ffffff" height="104" stroke="#ffffff" stroke-width="1" width="384" x="1110" y="814"/>
+<rect fill="none" height="104" stroke="#000000" stroke-width="1" width="384" x="1110" y="814"/>
+<text font-family="Lucida Grande" font-size="13" x="1267" y="828">
+NotaDeVoz</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="384" x="1110" y="838"/>
+<text font-family="Lucida Grande" font-size="13" x="1114" y="853">
+urlSonido : String</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="384" x="1110" y="879"/>
+<polyline fill="none" points="1254,814 1254,637" stroke="#333399" stroke-width="1"/>
+<polygon fill="#ffffff" points="1254,637 1261,649 1247,649" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="1254,637 1261,649 1247,649" stroke="#333399" stroke-width="1"/>
+<polyline fill="none" points="317,398 862,398 862,494 910,494" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="898" x2="910" y1="501" y2="494"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="898" x2="910" y1="487" y2="494"/>
+<text font-family="Lucida Grande" font-size="13" x="522" y="413">
+episodiosDeDolor</text>
+<text font-family="Lucida Grande" font-size="13" x="874" y="489">
+0..*</text>
+<polyline fill="none" points="910,510 693,510" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="705" x2="693" y1="503" y2="510"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="705" x2="693" y1="517" y2="510"/>
+<text font-family="Lucida Grande" font-size="13" x="737" y="525">
+medicamentosAsociados</text>
+<text font-family="Lucida Grande" font-size="13" x="699" y="525">
+0..*</text>
+<rect fill="#ffffff" height="152" stroke="#ffffff" stroke-width="1" width="312" x="1518" y="446"/>
+<rect fill="none" height="152" stroke="#000000" stroke-width="1" width="312" x="1518" y="446"/>
+<text font-family="Lucida Grande" font-size="13" x="1626" y="460">
+ActividadFisica</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="312" x="1518" y="470"/>
+<text font-family="Lucida Grande" font-size="13" x="1522" y="485">
+descripcion : Integer</text>
+<text font-family="Lucida Grande" font-size="13" x="1522" y="502">
+intensidad : Integer</text>
+<text font-family="Lucida Grande" font-size="13" x="1522" y="519">
+lugar : Integer</text>
+<text font-family="Lucida Grande" font-size="13" x="1522" y="536">
+clima : Integer</text>
+<text font-family="Lucida Grande" font-size="13" x="1522" y="553">
+hidratacion : Boolean</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="312" x="1518" y="567"/>
+<text font-family="Lucida Grande" font-size="13" x="1522" y="582">
+newOperation()</text>
+<rect fill="#ffffff" height="104" stroke="#ffffff" stroke-width="1" width="224" x="1518" y="622"/>
+<rect fill="none" height="104" stroke="#000000" stroke-width="1" width="224" x="1518" y="622"/>
+<text font-family="Lucida Grande" font-size="13" x="1576" y="636">
+AlimentoOBebida</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="224" x="1518" y="646"/>
+<text font-family="Lucida Grande" font-size="13" x="1522" y="661">
+nombre : String</text>
+<text font-family="Lucida Grande" font-size="13" x="1522" y="678">
+cantidad : Integer</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="224" x="1518" y="696"/>
+<polyline fill="none" points="1325,518 1518,518" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="1506" x2="1518" y1="525" y2="518"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="1506" x2="1518" y1="511" y2="518"/>
+<text font-family="Lucida Grande" font-size="13" x="1377" y="498">
+actividad</text>
+<text font-family="Lucida Grande" font-size="13" x="1492" y="513">
+0..*</text>
+<polyline fill="none" points="1325,566 1422,566 1422,670 1518,670" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="1506" x2="1518" y1="677" y2="670"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="1506" x2="1518" y1="663" y2="670"/>
+<text font-family="Lucida Grande" font-size="13" x="1424" y="609">
+consumo</text>
+<text font-family="Lucida Grande" font-size="13" x="1492" y="665">
+0..*</text>
+<rect fill="#ffffff" height="112" stroke="#ffffff" stroke-width="1" width="344" x="750" y="870"/>
+<rect fill="none" height="112" stroke="#000000" stroke-width="1" width="344" x="750" y="870"/>
+<text font-family="Lucida Grande" font-size="13" x="897" y="884">
+Analisis</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="344" x="750" y="894"/>
+<text font-family="Lucida Grande" font-size="13" x="754" y="909">
+recomendaciones : Integer</text>
+<text font-family="Lucida Grande" font-size="13" x="754" y="926">
+id : Long</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="344" x="750" y="948"/>
+<polyline fill="none" points="958,637 958,870" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="951" x2="958" y1="858" y2="870"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="965" x2="958" y1="858" y2="870"/>
+<rect fill="#ffffff" height="72" stroke="#ffffff" stroke-width="1" width="128" x="1534" y="758"/>
+<rect fill="none" height="72" stroke="#000000" stroke-width="1" width="128" x="1534" y="758"/>
+<text font-family="Lucida Grande" font-size="13" x="1572" y="772">
+Sintoma</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="128" x="1534" y="782"/>
+<text font-family="Lucida Grande" font-size="13" x="1538" y="797">
+nombre : String</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="128" x="1534" y="807"/>
+<polyline fill="none" points="1286,637 1286,774 1534,774" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="1522" x2="1534" y1="781" y2="774"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="1522" x2="1534" y1="767" y2="774"/>
+<text font-family="Lucida Grande" font-size="13" x="1359" y="758">
+sintomas</text>
+<text font-family="Lucida Grande" font-size="13" x="1508" y="769">
+0..*</text>
+<polygon fill="#ffffff" points="78,630 342,630 352,640 352,683 78,683 78,630" stroke="#ffffff" stroke-width="1"/>
+<polyline fill="none" points="78,630 342,630 352,640 352,683 78,683 78,630" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="342,630 352,640 342,640 342,630" stroke="#ffffff" stroke-width="1"/>
+<polyline fill="none" points="342,630 352,640 342,640 342,630" stroke="#000000" stroke-width="1"/>
+<text font-family="Lucida Grande" font-size="13" x="81" y="646">
+El usuario selecciona los medicamentos</text>
+<text font-family="Lucida Grande" font-size="13" x="81" y="662">
+que el previamente ha propuesto. Puede </text>
+<text font-family="Lucida Grande" font-size="13" x="81" y="678">
+agregar nuevos</text>
+<polygon fill="#ffffff" points="1846,445 2241,445 2251,455 2251,660 1846,660 1846,445" stroke="#ffffff" stroke-width="1"/>
+<polyline fill="none" points="1846,445 2241,445 2251,455 2251,660 1846,660 1846,445" stroke="#000000" stroke-width="1"/>
+<polygon fill="#b2b2b2" points="2241,445 2251,455 2241,455 2241,445" stroke="#b2b2b2" stroke-width="1"/>
+<polyline fill="none" points="2241,445 2251,455 2241,455 2241,445" stroke="#000000" stroke-width="1"/>
+<text font-family="Lucida Grande" font-size="13" x="1849" y="461">
+Con relación a la migraña y la actividad física:</text>
+<text font-family="Lucida Grande" font-size="13" x="1849" y="477">
+* El ejercicio moderado, reduce la frecuencia de los episodios </text>
+<text font-family="Lucida Grande" font-size="13" x="1849" y="493">
+ y ayuda a prevenir la migraña. (yoga, bibicleta, natación)</text>
+<text font-family="Lucida Grande" font-size="13" x="1849" y="509">
+* Cualquier acción que requiera esfuerzo brusco, favorece </text>
+<text font-family="Lucida Grande" font-size="13" x="1849" y="525">
+la aparición de episodios de migraña.</text>
+<text font-family="Lucida Grande" font-size="13" x="1849" y="541">
+* La exposición al sol, favorece las apariciones de episodios, </text>
+<text font-family="Lucida Grande" font-size="13" x="1849" y="557">
+sin embargo, ésta exposición, también ocasiona insolación y</text>
+<text font-family="Lucida Grande" font-size="13" x="1849" y="573">
+deshidratación (esto también puede desencadenar episodios).</text>
+<text font-family="Lucida Grande" font-size="13" x="1849" y="589">
+* </text>
+<polygon fill="#ffffff" points="822,94 1102,94 1112,104 1112,195 822,195 822,94" stroke="#ffffff" stroke-width="1"/>
+<polyline fill="none" points="822,94 1102,94 1112,104 1112,195 822,195 822,94" stroke="#000000" stroke-width="1"/>
+<polygon fill="#b2b2b2" points="1102,94 1112,104 1102,104 1102,94" stroke="#b2b2b2" stroke-width="1"/>
+<polyline fill="none" points="1102,94 1112,104 1102,104 1102,94" stroke="#000000" stroke-width="1"/>
+<text font-family="Lucida Grande" font-size="13" x="825" y="110">
+El género es importante, pues</text>
+<text font-family="Lucida Grande" font-size="13" x="825" y="126">
+en las mujeres, la migraña suele</text>
+<text font-family="Lucida Grande" font-size="13" x="825" y="142">
+empeorar con la ovulación, la</text>
+<text font-family="Lucida Grande" font-size="13" x="825" y="158">
+menstruación, y la toma de anticonceptivos</text>
+<text font-family="Lucida Grande" font-size="13" x="825" y="174">
+orales</text>
+<polygon fill="#ffffff" points="1758,718 2144,718 2154,728 2154,765 1758,765 1758,718" stroke="#ffffff" stroke-width="1"/>
+<polyline fill="none" points="1758,718 2144,718 2154,728 2154,765 1758,765 1758,718" stroke="#000000" stroke-width="1"/>
+<polygon fill="#b2b2b2" points="2144,718 2154,728 2144,728 2144,718" stroke="#b2b2b2" stroke-width="1"/>
+<polyline fill="none" points="2144,718 2154,728 2144,728 2144,718" stroke="#000000" stroke-width="1"/>
+<text font-family="Lucida Grande" font-size="13" x="1761" y="734">
+Es necesario incluir una lista grnde de alimentos que causan</text>
+<text font-family="Lucida Grande" font-size="13" x="1761" y="750">
+migraña (alcohol, café, bebidas negras, queso, frijol, etc)</text>
+<polygon fill="#ffffff" points="966,678 1239,678 1249,688 1249,709 966,709 966,678" stroke="#ffffff" stroke-width="1"/>
+<polyline fill="none" points="966,678 1239,678 1249,688 1249,709 966,709 966,678" stroke="#000000" stroke-width="1"/>
+<polygon fill="#b2b2b2" points="1239,678 1249,688 1239,688 1239,678" stroke="#b2b2b2" stroke-width="1"/>
+<polyline fill="none" points="1239,678 1249,688 1239,688 1239,678" stroke="#000000" stroke-width="1"/>
+<text font-family="Lucida Grande" font-size="13" x="969" y="694">
+La falta o exceso de sueño son detonantes</text>
+</svg>
