@@ -13,16 +13,23 @@ import java.util.Date;
 @Entity
 public class EpisodioVoz extends Model {
 
-    public Long docIdentidad;
-    public String nombre;
+    public static final int INTENSIDAD_NIVEL1 = 1;
+    public static final int INTENSIDAD_NIVEL2 = 2;
+    public static final int INTENSIDAD_NIVEL3 = 3;
+    public static final int INTENSIDAD_NIVEL4 = 4;
+    public static final int INTENSIDAD_NIVEL5 = 5;
+
+
+    public Long id;
+    public Date fechaPublicacion;
+    public int intensidad;
     public String password;
     public Date fechaNacimiento;
-    
+
 
     public EpisodioVoz(String email, String password, String fullname) {
-        this.email = email;
-        this.password = password;
-        this.fullname = fullname;
+
+       
     }
 
 }
