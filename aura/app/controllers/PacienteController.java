@@ -1,37 +1,38 @@
 package controllers;
 
 import javax.xml.transform.Result;
+import java.util.Date;
 
 /**
  * Created by Clau on 10/02/2015.
  */
 public class PacienteController
 {
-    public static Result crearPaciente(String nombre){
+    public static Result crearPaciente(String nombre, Long id, String contrasenia, Date fechaNacimiento,String email,String foto, Integer genero, String eps){
         return null;
     }
 
-    public static Result eliminarPaciente(String nombre){
+    public static Result eliminarPaciente(Long id){
         return null;
     }
 
-    public static Result actualizarPaciente(String nombre){
+    public static Result actualizarPaciente(String nombre, Long id, String contrasenia, Date fechaNacimiento,String email,String foto, Integer genero, String eps){
     return null;
     }
 
-    public static Result reportarEpisodioVoz(String nombre){
+    public static Result reportarEpisodioVoz(String urlSonido, Date fecha, Integer intensidad, Integer hora){
         return null;
     }
 
-    public static Result reportarEpisodioEscrito(String nombre){
+    public static Result reportarEpisodioEscrito(Date fecha, Integer intensidad, Integer hora,Integer horasSuenio,Integer suenioRegular, Boolean sufrioEstresAntes, Integer localizacion){
         return null;
     }
 
-    public static Result verEpisodiosEscritos(String nombre){
+    public static Result verEpisodiosEscritos(){
         return null;
     }
 
-    public static Result verEpisodiosVoz(String nombre){
+    public static Result verEpisodiosVoz(){
         return null;
     }
 }
