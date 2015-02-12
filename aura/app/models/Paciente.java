@@ -26,10 +26,9 @@ public class Paciente extends Model {
 
 
 
-    public Paciente(String email, String password, String fullname) {
+    public Paciente(String email, String password) {
         this.email = email;
         this.password = password;
-        this.fullname = fullname;
     }
 
 }
