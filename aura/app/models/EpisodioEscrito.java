@@ -9,6 +9,7 @@ import play.db.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.*;
 
 @Entity
 public class EpisodioEscrito extends Model {
@@ -34,7 +35,6 @@ public class EpisodioEscrito extends Model {
     @Constraints.Required
     public int intensidad;
 
-
     public Double horasSuenio;
 
     public boolean suenioRegular;
@@ -42,4 +42,20 @@ public class EpisodioEscrito extends Model {
     public int lugar;
 
     public boolean episodioEstreCercano;
+
+    public static Finder<Long, EpisodioEscrito> find = new Finder(
+            Long.class, EpisodioEscrito.class
+    );
+
+    public static List<EpisodioEscrito> all() {
+        return find.all();
+    }
+
+    public static void create(EpisodioEscrito task) {
+        task.save();
+    }
+
+    public static void delete(Long id) {
+        find.ref(id).delete();
+    }
 }
