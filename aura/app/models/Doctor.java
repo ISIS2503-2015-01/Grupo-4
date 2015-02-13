@@ -13,4 +13,5 @@ public class Doctor extends Model {
     @Id
     public long id;
 
+
 }
