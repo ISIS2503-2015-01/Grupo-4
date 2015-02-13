@@ -12,8 +12,18 @@ import javax.persistence.Id;
 public class ActividadFisica extends Model {
 
     @Id
-    public String id;
+    public Long id;
+    public Integer descripcion;
+    public Integer intensidad;
+    public Integer lugar;
+    public Integer clima;
+    public Boolean hidratacion;
 
-    public String contents;
-
+    public ActividadFisica(Integer descripcion, Integer intensidad,Integer lugar,Integer clima,Boolean hidratacion) {
+        this.descripcion = descripcion;
+        this.intensidad = intensidad;
+        this.lugar=lugar;
+        this.clima=clima;
+        this.hidratacion=hidratacion;
+    }
 }
