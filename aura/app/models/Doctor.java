@@ -10,4 +10,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Doctor extends Model {
+    @Id
+    public long id;
+
 }
