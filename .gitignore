@@ -8,7 +8,7 @@ dump
 .history
 /*.iml
 /out
-
+aura/.idea
 # Eclipse
 .settings
 .cache
