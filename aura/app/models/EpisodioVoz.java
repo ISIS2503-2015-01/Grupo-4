@@ -15,6 +15,6 @@ public class EpisodioVoz extends Model {
 
     public Long id;
     public Date fechaPublicacion;
-    public int intensidad;
+    public Long code;
 
 }

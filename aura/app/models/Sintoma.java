@@ -11,4 +11,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Sintoma extends Model {
+
+    private String nombre;
 }

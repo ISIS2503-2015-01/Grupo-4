@@ -23,6 +23,8 @@ public class Paciente extends Model {
     public Date fechaNacimiento;
     public String email;
     public int genero;
+    public int eps;
+    public Medicamento medicamentos;
 
 
 

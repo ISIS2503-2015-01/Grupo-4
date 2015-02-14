@@ -27,21 +27,34 @@ public class EpisodioEscrito extends Model {
 
 
     @Id
-    public Long id;
+    private Long id;
 
     @Constraints.Required
-    public Date fechaPublicacion;
+    private Date fechaPublicacion;
 
     @Constraints.Required
-    public int intensidad;
+    private int intensidad;
 
-    public Double horasSuenio;
+    private Double horasSuenio;
 
-    public boolean suenioRegular;
+    private boolean suenioRegular;
 
-    public int lugar;
+    private int localizacion;
 
-    public boolean episodioEstreCercano;
+    private boolean episodioEstresCercano;
+
+    public EpisodioEscrito() {
+
+    }
+
+    public EpisodioEscrito(int intensidad, double horasSuenio, boolean suenioRegular, int localizacion, boolean episodioEstres) {
+        this.fechaPublicacion = new Date();
+        this.intensidad = intensidad;
+        this.horasSuenio = horasSuenio;
+        this.suenioRegular = suenioRegular;
+        this.localizacion = localizacion;
+        this.episodioEstresCercano = episodioEstres;
+    }
 
     public static Finder<Long, EpisodioEscrito> find = new Finder(
             Long.class, EpisodioEscrito.class
@@ -51,11 +64,68 @@ public class EpisodioEscrito extends Model {
         return find.all();
     }
 
-    public static void create(EpisodioEscrito task) {
-        task.save();
+    public static void create(EpisodioEscrito e) {
+        e.save();
     }
 
     public static void delete(Long id) {
         find.ref(id).delete();
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setFechaPublicacion(Date fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
+    }
+
+    public void setIntensidad(int intensidad) {
+        this.intensidad = intensidad;
+    }
+
+    public void setHorasSuenio(Double horasSuenio) {
+        this.horasSuenio = horasSuenio;
+    }
+
+    public void setSuenioRegular(boolean suenioRegular) {
+        this.suenioRegular = suenioRegular;
+    }
+
+    public void setLocalizacion(int localizacion) {
+        this.localizacion = localizacion;
+    }
+
+    public void setEpisodioEstresCercano(boolean episodioEstresCercano) {
+        this.episodioEstresCercano = episodioEstresCercano;
+    }
+
+    public Date getFechaPublicacion() {
+
+        return fechaPublicacion;
+    }
+
+    public int getIntensidad() {
+        return intensidad;
+    }
+
+    public Double getHorasSuenio() {
+        return horasSuenio;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public boolean isSuenioRegular() {
+        return suenioRegular;
+    }
+
+    public int getLocalizacion() {
+        return localizacion;
+    }
+
+    public boolean isEpisodioEstresCercano() {
+        return episodioEstresCercano;
     }
 }
