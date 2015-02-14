@@ -1,1 +1,20 @@
+<<<<<<< HEAD
 # Created by .ignore support plugin (hsz.mobi)
+||||||| merged common ancestors
+=======
+logs
+project/project
+project/target
+target
+tmp
+.history
+dist
+/.idea
+/*.iml
+/out
+/.idea_modules
+/.classpath
+/.project
+/RUNNING_PID
+/.settings
+>>>>>>> fada05f8e980dda62f520710c4afdf0846646178
