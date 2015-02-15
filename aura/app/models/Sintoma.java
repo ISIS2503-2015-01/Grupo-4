@@ -5,12 +5,11 @@ package models;
  */
 
 
-import play.db.ebean.Model;
-
 import javax.persistence.*;
 
 @Entity
-public class Sintoma extends Model {
+public class Sintoma{
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Long id;
 }
