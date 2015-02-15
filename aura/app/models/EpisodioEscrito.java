@@ -47,6 +47,20 @@ public class EpisodioEscrito extends Model {
             Long.class, EpisodioEscrito.class
     );
 
+    public EpisodioEscrito() {
+
+    }
+
+    public EpisodioEscrito(Date fechaPublicacion, int intensidad, Double horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano) {
+        this.id = id;
+        this.fechaPublicacion = fechaPublicacion;
+        this.intensidad = intensidad;
+        this.horasSuenio = horasSuenio;
+        this.suenioRegular = suenioRegular;
+        this.lugar = lugar;
+        this.episodioEstreCercano = episodioEstreCercano;
+    }
+
     public static List<EpisodioEscrito> all() {
         return find.all();
     }

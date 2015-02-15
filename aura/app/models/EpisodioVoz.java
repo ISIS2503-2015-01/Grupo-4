@@ -17,6 +17,10 @@ public class EpisodioVoz extends Model {
     public Long id;
     public Long idUrl;
 
+    public EpisodioVoz(Long idUrl) {
+        this.idUrl = idUrl;
+    }
+
     public Long getId() {
         return id;
     }
