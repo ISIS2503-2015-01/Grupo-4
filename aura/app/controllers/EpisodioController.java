@@ -1,12 +1,20 @@
 package controllers;
 
-import javax.xml.transform.Result;
+import com.fasterxml.jackson.databind.JsonNode;
+import models.EpisodioEscrito;
+import models.EpisodioVoz;
+import play.mvc.BodyParser;
+import play.mvc.Controller;
+import play.mvc.Result;
+import play.mvc.Results;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  * Created by Clau on 10/02/2015.
  */
-public class EpisodioController
+public class EpisodioController extends Controller
 {
     public static Result reportarAlarma(Long idPaciente){
         return null;
@@ -14,15 +22,59 @@ public class EpisodioController
     public static Result reportarAnalisis(Long idPaciente){
         return null;
     }
-    public static Result crearEpisodioVoz(String urlSonido, Date fecha, Integer intensidad, Integer hora){
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result crearEpisodioVoz( ){
+        JsonNode j = Controller.request().body().asJson();
+        System.out.print(j);
+        String urlSonido = j.findPath("urlSonido").asText();
+        String fechaP = j.findPath("fechaPublicacion").asText();
+        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date fecha = null;
+
+
+        try {
+            fecha = formatoDelTexto.parse(fechaP);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result crearEpisodioEscrito( ) {
+        JsonNode j = Controller.request().body().asJson();
+        System.out.print(j);
+        String fechaP = j.findPath("fechaPublicacion").asText();
+        Integer intensidad = Integer.parseInt(j.findPath("intensidad").asText());
+        Double horasSuenio = Double.parseDouble(j.findPath("horasSuenio").asText());
+        Boolean suenioRegular = Integer.parseInt(j.findPath("suenioRegular").asText()) == 1;
+        Boolean sufrioEstresAntes = Integer.parseInt(j.findPath("sufrioEstresAntes").asText()) == 1;
+        Integer lugar = Integer.parseInt(j.findPath("lugar").asText());
+
+
+        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date fecha = null;
+
+
+        try {
+            fecha = formatoDelTexto.parse(fechaP);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
-    public static Result crearEpisodioEscrito(Date fecha, Integer intensidad, Integer hora,Integer horasSuenio,Integer suenioRegular, Boolean sufrioEstresAntes, Integer localizacion){
-    return null;
+
+    public static Result eliminarEpisodioVoz(Long id){
+        EpisodioVoz.delete(id);
+        return Results.ok();
+
     }
-    public static Result eliminarEpisodioVoz(Long id){return null;}
-    public static Result eliminarEpisodioEscrito(Long id){return null;}
+
+    public static Result eliminarEpisodioEscrito(Long id){
+        EpisodioEscrito.delete(id);
+        return Results.ok();}
     public static Result actualizarEpisodioVoz(String urlSonido, Date fecha, Integer intensidad, Integer hora){
         return null;
     }

@@ -5,8 +5,10 @@ package models;
  */
 
 
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class EpisodioVoz {
@@ -15,10 +17,18 @@ public class EpisodioVoz {
     public Long id;
     public Date fechaPublicacion;
     public Long idUrl;
-
     public EpisodioVoz(Long idUrl, Date f) {
         this.idUrl = idUrl;
         this.fechaPublicacion = f;
+    }
+
+    public EpisodioVoz() {
+    }
+
+    public EpisodioVoz(Long id, Date fechaPublicacion, Long idUrl) {
+        this.id = id;
+        this.fechaPublicacion = fechaPublicacion;
+        this.idUrl = idUrl;
     }
 
     public Long getId() {
@@ -35,5 +45,22 @@ public class EpisodioVoz {
 
     public void setIdUrl(Long idUrl) {
         this.idUrl = idUrl;
+    }
+
+    public static List<EpisodioVoz> all() {
+        //TODO
+        return null;
+    }
+
+    public static void create(EpisodioVoz ev) {
+        //TODO
+    }
+
+    public static void delete(Long id) {
+        // TODO
+    }
+    public static EpisodioVoz buscarUnoId(Long id){
+        // TODO
+        return null;
     }
 }
