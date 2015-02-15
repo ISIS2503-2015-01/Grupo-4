@@ -5,12 +5,13 @@ package models;
  */
 
 
-import play.db.ebean.Model;
 
 import javax.persistence.*;
 
 @Entity
-public class Medicamento extends Model {
+public class Medicamento {
+
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Long id;
 }
