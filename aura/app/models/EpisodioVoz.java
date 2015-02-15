@@ -15,7 +15,21 @@ public class EpisodioVoz extends Model {
 
     @Id
     public Long id;
-    public Date fechaPublicacion;
-    public int intensidad;
+    public Long idUrl;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getIdUrl() {
+        return idUrl;
+    }
+
+    public void setIdUrl(Long idUrl) {
+        this.idUrl = idUrl;
+    }
 }

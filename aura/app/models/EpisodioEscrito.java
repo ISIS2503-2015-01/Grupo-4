@@ -58,4 +58,60 @@ public class EpisodioEscrito extends Model {
     public static void delete(Long id) {
         find.ref(id).delete();
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getFechaPublicacion() {
+        return fechaPublicacion;
+    }
+
+    public void setFechaPublicacion(Date fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
+    }
+
+    public int getIntensidad() {
+        return intensidad;
+    }
+
+    public void setIntensidad(int intensidad) {
+        this.intensidad = intensidad;
+    }
+
+    public Double getHorasSuenio() {
+        return horasSuenio;
+    }
+
+    public void setHorasSuenio(Double horasSuenio) {
+        this.horasSuenio = horasSuenio;
+    }
+
+    public boolean isSuenioRegular() {
+        return suenioRegular;
+    }
+
+    public void setSuenioRegular(boolean suenioRegular) {
+        this.suenioRegular = suenioRegular;
+    }
+
+    public int getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(int lugar) {
+        this.lugar = lugar;
+    }
+
+    public boolean isEpisodioEstreCercano() {
+        return episodioEstreCercano;
+    }
+
+    public void setEpisodioEstreCercano(boolean episodioEstreCercano) {
+        this.episodioEstreCercano = episodioEstreCercano;
+    }
 }
