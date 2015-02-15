@@ -1,0 +1,13 @@
+Carolina:
+	* Mockup de la página, esto incluye navegación, estructura y vista DONE
+
+Claudia:
+	* Crear cuenta Heroku TODO
+	* Terminar de planear y modelar el sistema DONE
+
+Daniel:
+
+Sebastián:
+	* Configurar Heroku, y subir la app a tal plataforma TODO
+	* INcluir consideraciones de bibliografía en el modelo DONE
+	* Buscar APIs para el maejo de sonido y fotos DONE
