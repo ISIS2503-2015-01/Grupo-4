@@ -15,10 +15,12 @@ public class EpisodioVoz extends Model {
 
     @Id
     public Long id;
+    public Date fechaPublicacion;
     public Long idUrl;
 
-    public EpisodioVoz(Long idUrl) {
+    public EpisodioVoz(Long idUrl, Date f) {
         this.idUrl = idUrl;
+        this.fechaPublicacion = f;
     }
 
     public Long getId() {
