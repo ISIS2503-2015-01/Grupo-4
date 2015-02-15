@@ -10,5 +10,7 @@ libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,
   cache,
-  javaWs
+  javaWs,
+  javaJpa,
+  "org.hibernate" % "hibernate-entitymanager" % "4.3.6.Final"
 )
