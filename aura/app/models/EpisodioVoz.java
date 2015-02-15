@@ -5,13 +5,11 @@ package models;
  */
 
 
-import play.db.ebean.Model;
-
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class EpisodioVoz extends Model {
+public class EpisodioVoz {
 
     @Id
     public Long id;
