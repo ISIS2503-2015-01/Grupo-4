@@ -8,9 +8,9 @@ scalaVersion := "2.11.1"
 
 libraryDependencies ++= Seq(
   javaJdbc,
-  javaEbean,
   cache,
   javaWs,
   javaJpa,
-  "org.hibernate" % "hibernate-entitymanager" % "4.3.6.Final"
+  "org.hibernate" % "hibernate-entitymanager" % "4.3.6.Final",
+  "org.mindrot" % "jbcrypt" % "0.3m"
 )
