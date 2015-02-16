@@ -14,15 +14,17 @@ import java.util.List;
 public class EpisodioVoz {
 
     @Id
-    public Long id;
-    public Date fechaPublicacion;
-    public Long idUrl;
-    public EpisodioVoz(Long idUrl, Date f) {
-        this.idUrl = idUrl;
-        this.fechaPublicacion = f;
-    }
+    private Long id;
+
+    private Date fechaPublicacion;
+
+    private Long idUrl;
+
+    private int pacienteID;
+
 
     public EpisodioVoz() {
+
     }
 
     public EpisodioVoz(Long id, Date fechaPublicacion, Long idUrl) {
@@ -35,8 +37,12 @@ public class EpisodioVoz {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Date getFechaPublicacion() {
+        return fechaPublicacion;
+    }
+
+    public void setFechaPublicacion(Date fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
     }
 
     public Long getIdUrl() {
@@ -47,20 +53,11 @@ public class EpisodioVoz {
         this.idUrl = idUrl;
     }
 
-    public static List<EpisodioVoz> all() {
-        //TODO
-        return null;
+    public int getPacienteID() {
+        return pacienteID;
     }
 
-    public static void create(EpisodioVoz ev) {
-        //TODO
-    }
-
-    public static void delete(Long id) {
-        // TODO
-    }
-    public static EpisodioVoz buscarUnoId(Long id){
-        // TODO
-        return null;
+    public void setPacienteID(int pacienteID) {
+        this.pacienteID = pacienteID;
     }
 }
