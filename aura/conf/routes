@@ -16,7 +16,7 @@ DELETE        /api/paciente/:id                         controllers.PacienteCont
 # Ver todos los pacientes
 GET           /api/paciente                             controllers.PacienteController.getAll()
 # Actualizar información de un sólo paciente
-PUT           /api/paciente/id                          controllers.PacienteController.update(id : Long)
+PUT           /api/paciente/:id                          controllers.PacienteController.update(id : Long)
 
 # Episodio
 
