@@ -11,3 +11,23 @@ Sebastián:
 	* Configurar Heroku, y subir la app a tal plataforma TODO
 	* INcluir consideraciones de bibliografía en el modelo DONE
 	* Buscar APIs para el maejo de sonido y fotos DONE
+
+
+Dar Análisis
+	Dar análisis de paciente
+		GET: paciente/{idP}/analisis
+
+ALARMA
+	Se realiza en tiempo real
+
+CRUD Doctor
+	Agregar doctor:
+		POST: doctor
+	Eliminar doctor:
+		DELETE: doctor/{idD}
+	Modificar doctor:
+		PUT: doctor/{idD}
+	Dar doctor:
+		GET: doctor/{idD}
+
+
