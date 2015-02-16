@@ -4,70 +4,66 @@ package models;
  * Created by Clau on 10/02/2015.
  */
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 public class EpisodioEscrito {
 
-    public static final int INTENSIDAD_NIVEL1 = 1;
-    public static final int INTENSIDAD_NIVEL2 = 2;
-    public static final int INTENSIDAD_NIVEL3 = 3;
-    public static final int INTENSIDAD_NIVEL4 = 4;
-    public static final int INTENSIDAD_NIVEL5 = 5;
+    private static final int INTENSIDAD_NIVEL1 = 1;
 
-    public static final int LUGAR_OSCURO = 1;
-    public static final int LUGAR_ABIERTO_SOLEADO = 2;
-    public static final int LUGAR_RUIDOSO = 3;
-    public static final int LUGAR_CON_OLORES_FUERTES= 4;
+    private static final int INTENSIDAD_NIVEL2 = 2;
+
+    private static final int INTENSIDAD_NIVEL3 = 3;
+
+    private static final int INTENSIDAD_NIVEL4 = 4;
+
+    private static final int INTENSIDAD_NIVEL5 = 5;
+
+    private static final int LUGAR_OSCURO = 1;
+
+    private static final int LUGAR_ABIERTO_SOLEADO = 2;
+
+    private static final int LUGAR_RUIDOSO = 3;
+
+    private static final int LUGAR_CON_OLORES_FUERTES= 4;
 
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
+    private Date fechaPublicacion;
 
-    public Date fechaPublicacion;
+    private int intensidad;
 
+    private Double horasSuenio;
 
-    public int intensidad;
+    private boolean suenioRegular;
 
-    public Double horasSuenio;
+    private int lugar;
 
-    public boolean suenioRegular;
+    private boolean episodioEstreCercano;
 
-    public int lugar;
+    private int pacienteID;
 
-    public boolean episodioEstreCercano;
+    //@ManyToOne
+    //@JoinColumn(name="idPerson", referencedColumnName="id")
+    //public Paciente paciente;
 
     public EpisodioEscrito() {
 
     }
 
-    public EpisodioEscrito(Date fechaPublicacion, int intensidad, Double horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano) {
-        this.id = id;
+    public EpisodioEscrito(Date fechaPublicacion, int intensidad, Double horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano, int pacienteID) {
         this.fechaPublicacion = fechaPublicacion;
         this.intensidad = intensidad;
         this.horasSuenio = horasSuenio;
         this.suenioRegular = suenioRegular;
         this.lugar = lugar;
         this.episodioEstreCercano = episodioEstreCercano;
-    }
-
-    public static List<EpisodioEscrito> all() {
-        return null;
-    }
-
-    public static void create(EpisodioEscrito task) {
-        //TODO
-    }
-
-    public static void delete(Long id) {
-        //TODO
+        this.pacienteID = pacienteID;
     }
 
     public Long getId() {
@@ -124,5 +120,13 @@ public class EpisodioEscrito {
 
     public void setEpisodioEstreCercano(boolean episodioEstreCercano) {
         this.episodioEstreCercano = episodioEstreCercano;
+    }
+
+    public int getPacienteID() {
+        return pacienteID;
+    }
+
+    public void setPacienteID(int pacienteID) {
+        this.pacienteID = pacienteID;
     }
 }
