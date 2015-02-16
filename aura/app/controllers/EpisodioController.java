@@ -1,8 +1,8 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import models.EpisodioEscrito;
-import models.EpisodioVoz;
+import models.Paciente;
+import play.db.jpa.JPA;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -41,7 +41,7 @@ public class EpisodioController extends Controller
         return null;
     }
     @BodyParser.Of(BodyParser.Json.class)
-    public static Result crearEpisodioEscrito( ) {
+    public static Result crearEpisodioEscrito(Long idPaciente) {
         JsonNode j = Controller.request().body().asJson();
         System.out.print(j);
         String fechaP = j.findPath("fechaPublicacion").asText();
@@ -62,18 +62,18 @@ public class EpisodioController extends Controller
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        Paciente p = JPA.em().getReference(Paciente.class, idPaciente);
         return null;
     }
 
 
     public static Result eliminarEpisodioVoz(Long id){
-        EpisodioVoz.delete(id);
         return Results.ok();
 
     }
 
     public static Result eliminarEpisodioEscrito(Long id){
-        EpisodioEscrito.delete(id);
         return Results.ok();}
     public static Result actualizarEpisodioVoz(String urlSonido, Date fecha, Integer intensidad, Integer hora){
         return null;
