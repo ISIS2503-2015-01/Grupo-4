@@ -16,15 +16,37 @@ import java.util.List;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Paciente {
 
-    public static final int MASCULINO = 1;
-    public static final int FEMENINO = 1;
+    private static final int MASCULINO = 1;
+
+    private static final int FEMENINO = 1;
 
     @Id
     private Long docIdentidad;
+
     private String nombre;
+
     private String password;
+
     private Date fechaNacimiento;
+
     private String email;
+
+    private int genero;
+
+    public Paciente() {
+
+    }
+
+    public static Paciente create(String email, String password, Long docIdentidad,String nombre,Date fechaNacimiento, int genero) {
+        // http://stackoverflow.com/questions/15657062/play-framework-2-best-way-to-store-password-hash-of-user
+        Paciente p = new Paciente();
+        p.docIdentidad = docIdentidad;
+        p.nombre = nombre;
+        p.password = BCrypt.hashpw(password, BCrypt.gensalt());
+        p.fechaNacimiento = fechaNacimiento;
+        p.email = email;
+        return p;
+    }
 
     public int getGenero() {
 
@@ -73,23 +95,6 @@ public class Paciente {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    private int genero;
-
-    public Paciente() {
-
-    }
-
-    public static Paciente create(String email, String password, Long docIdentidad,String nombre,Date fechaNacimiento, int genero) {
-        // http://stackoverflow.com/questions/15657062/play-framework-2-best-way-to-store-password-hash-of-user
-        Paciente p = new Paciente();
-        p.docIdentidad = docIdentidad;
-        p.nombre = nombre;
-        p.password = BCrypt.hashpw(password, BCrypt.gensalt());
-        p.fechaNacimiento = fechaNacimiento;
-        p.email = email;
-        return p;
     }
 
 }
