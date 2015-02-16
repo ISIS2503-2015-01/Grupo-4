@@ -117,5 +117,9 @@ public class PacienteController extends Controller {
         return Results.ok(Json.toJson(pacientes));
     }
 
+    public void registrarEpisodioEscrito(int intensidad, Double horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano, int myId) {
+
+    }
+
 
 }
