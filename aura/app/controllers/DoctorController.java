@@ -16,7 +16,7 @@ import javax.persistence.Query;
 import java.util.*;
 
 public class DoctorController extends Controller {
-
+/*
 
     @BodyParser.Of(BodyParser.Json.class)
     public static Result crearDoctor()
@@ -136,6 +136,7 @@ public class DoctorController extends Controller {
         Collection<EpisodioVoz> episodiosVoz = query.getResultList();
         return Results.ok(Json.toJson(episodiosVoz));
     }
+    */
 
 
 }

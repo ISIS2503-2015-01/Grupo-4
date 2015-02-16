@@ -70,12 +70,11 @@ public class PacienteController extends Controller {
 
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
-    public static Result update() {
+    public static Result update(Long id) {
         JsonNode j = Controller.request().body().asJson();
 
         String email=j.findPath("email").asText();
         String password = j.findPath("password").asText();
-        Long docIdentidad = Long.parseLong(j.findPath("docIdentidad").asText());
         String name = j.findPath("nombre").asText();
         String fechaN = j.findPath("fechaN").asText();
         Integer genero = Integer.parseInt(j.findPath("genero").asText());
@@ -92,9 +91,8 @@ public class PacienteController extends Controller {
             e.printStackTrace();
         }
 
-        Paciente p = JPA.em().getReference(Paciente.class, docIdentidad);
+        Paciente p = JPA.em().getReference(Paciente.class, id);
         p.setEmail(email);
-        p.setDocIdentidad(docIdentidad);
         p.setNombre(name);
         p.setPassword(password);
         p.setGenero(genero);

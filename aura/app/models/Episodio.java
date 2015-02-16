@@ -1,13 +1,15 @@
 package models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by scvalencia on 2/16/15.
  */
+@Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Episodio {
 
     @Id
@@ -20,7 +22,7 @@ public class Episodio {
 
     private int intensidad;
 
-    private Double horasSuenio;
+    private int horasSuenio;
 
     private boolean suenioRegular;
 
@@ -28,7 +30,7 @@ public class Episodio {
 
     private boolean episodioEstreCercano;
 
-    private int pacienteID;
+    private Long pacienteID;
 
     //@ManyToOne
     //@JoinColumn(name="idPerson", referencedColumnName="id")
@@ -38,7 +40,7 @@ public class Episodio {
 
     }
 
-    public static Episodio create(Long idUrl, Date fechaPublicacion, int intensidad, Double horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano, int pacienteID) {
+    public static Episodio create(Long idUrl, Date fechaPublicacion, int intensidad, int horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano, Long pacienteID) {
         Episodio e = new Episodio();
         e.idUrl = idUrl;
         e.fechaPublicacion = fechaPublicacion;
@@ -79,11 +81,11 @@ public class Episodio {
         this.intensidad = intensidad;
     }
 
-    public Double getHorasSuenio() {
+    public int getHorasSuenio() {
         return horasSuenio;
     }
 
-    public void setHorasSuenio(Double horasSuenio) {
+    public void setHorasSuenio(int horasSuenio) {
         this.horasSuenio = horasSuenio;
     }
 
@@ -111,11 +113,11 @@ public class Episodio {
         this.episodioEstreCercano = episodioEstreCercano;
     }
 
-    public int getPacienteID() {
+    public Long getPacienteID() {
         return pacienteID;
     }
 
-    public void setPacienteID(int pacienteID) {
+    public void setPacienteID(Long pacienteID) {
         this.pacienteID = pacienteID;
     }
 }

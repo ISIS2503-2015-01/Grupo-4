@@ -3,28 +3,48 @@
 # ~~~~
 
 # Home page
-GET           /                                 controllers.Application.index()
+GET           /                                         controllers.Application.index()
 
 # Paciente
 
 # Crea un nuevo paciente
-POST          /api/paciente                     controllers.PacienteController.create()
+POST          /api/paciente                             controllers.PacienteController.create()
 # Ver información de un paciente
-GET           /api/paciente/:id                 controllers.PacienteController.getOne(id : Long)
+GET           /api/paciente/:id                         controllers.PacienteController.getOne(id : Long)
 # Eliminar un paciente dado el id
-DELETE        /api/paciente/:id                 controllers.PacienteController.delete(id : Long)
+DELETE        /api/paciente/:id                         controllers.PacienteController.delete(id : Long)
 # Ver todos los pacientes
-GET           /api/paciente                     controllers.PacienteController.getAll()
+GET           /api/paciente                             controllers.PacienteController.getAll()
 # Actualizar información de un sólo paciente
-PUT           /api/paciente                     controllers.PacienteController.update()
+PUT           /api/paciente/id                          controllers.PacienteController.update(id : Long)
 
 # Episodio
 
 # Crear un nuevo episodio para ése paciente
-POST          /api/paciente/:id/episodio        controllers.EpisodioController.crearEpisodioEscrito(id : Long)
+POST          /api/paciente/:id/episodio                controllers.EpisodioController.create(id : Long)
+# Ver un episodio de un paciente
+GET           /api/paciente/:id1/episodio/:id2          controllers.EpisodioController.getOne(id1 : Long, id2 : Long)
+# Ver un episodio específico
+GET           /api/episodio/:id                         controllers.EpisodioController.get(id : Long)
+# Eliminar episodio
+DELETE        /api/paciente/:id1/episodio/:id2          controllers.EpisodioController.delete(id1 : Long, id2 : Long)
+# Ver episodios de un paciente
+GET           /api/paciente/:id/episodio                controllers.EpisodioController.getAll(id : Long)
+# Actualizar un episodio
+PUT           /api/paciente/:id1/episodio/:id2          controllers.EpisodioController.update(id1 : Long, id2 : Long)
+# Dar episodios de un paciente entre dos fechas, el formato de las fechas es YYYY-MM-dd
+GET           /api/paciente/:id/episodio/:f1/:f2        controllers.EpisodioController.getPerDates(id : Long, f1 : String, f2 : String)
+
+
+# Doctor
+
+
+
+
+
 
 
 
 
 # Map static resources from the /public folder to the /assets URL path
-GET           /assets/*file                     controllers.Assets.at(path="/public", file)
+GET           /assets/*file                             controllers.Assets.at(path="/public", file)
