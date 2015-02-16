@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import de.voidplus.soundcloud.*;
 // https://github.com/nok/soundcloud-java-library
 
-public class SoundCloudTes {
+public class SoundCloudTest {
 
     public static SoundCloud soundcloud;
     public static  ArrayList archivos;
