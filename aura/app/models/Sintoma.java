@@ -11,5 +11,31 @@ import javax.persistence.*;
 public class Sintoma{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
+
+    private int sintoma;
+
+    private int episodioId;
+
+    public Sintoma() { }
+
+    public Long getId() {
+        return id;
+    }
+
+    public int getSintoma() {
+        return sintoma;
+    }
+
+    public void setSintoma(int sintoma) {
+        this.sintoma = sintoma;
+    }
+
+    public int getEpisodioId() {
+        return episodioId;
+    }
+
+    public void setEpisodioId(int episodioId) {
+        this.episodioId = episodioId;
+    }
 }
