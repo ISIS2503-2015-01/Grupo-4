@@ -1,0 +1,6 @@
+curl -v -H "Content-type: application/json" -X POST -d '{"url": "-1", "localizacion": "2", "estres": "true", "horasSuenio": "1", "intensidad": "2", "regularidad": "false"}' http://localhost:9000/api/paciente/41680704418/episodio
+curl -v -H "Content-type: application/json" -X POST -d '{"url": "-1", "localizacion": "4", "estres": "true", "horasSuenio": "5", "intensidad": "2", "regularidad": "true"}' http://localhost:9000/api/paciente/22541946655/episodio
+curl -v -H "Content-type: application/json" -X POST -d '{"url": "-1", "localizacion": "3", "estres": "true", "horasSuenio": "0", "intensidad": "5", "regularidad": "true"}' http://localhost:9000/api/paciente/65700095456/episodio
+curl -v -H "Content-type: application/json" -X POST -d '{"url": "-1", "localizacion": "3", "estres": "false", "horasSuenio": "2", "intensidad": "4", "regularidad": "true"}' http://localhost:9000/api/paciente/65700095456/episodio
+curl -v -H "Content-type: application/json" -X POST -d '{"url": "-1", "localizacion": "3", "estres": "false", "horasSuenio": "0", "intensidad": "5", "regularidad": "false"}' http://localhost:9000/api/paciente/76255909078/episodio
+curl -v -H "Content-type: application/json" -X POST -d '{"url": "-1", "localizacion": "2", "estres": "false", "horasSuenio": "1", "intensidad": "4", "regularidad": "false"}' http://localhost:9000/api/paciente/21778119638/episodio
