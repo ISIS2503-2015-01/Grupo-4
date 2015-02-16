@@ -19,6 +19,13 @@ public class Sintoma{
 
     public Sintoma() { }
 
+    public static Sintoma create(int sintoma, int episodioId) {
+        Sintoma s = new Sintoma();
+        s.sintoma = sintoma;
+        s.episodioId = episodioId;
+        return s;
+    }
+
     public Long getId() {
         return id;
     }

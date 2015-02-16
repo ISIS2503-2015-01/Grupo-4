@@ -24,10 +24,12 @@ public class Alimento {
 
     public Alimento() { }
 
-    public Alimento(String nombre, Integer cantidad, int episodioId) {
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-        this.episodioId = episodioId;
+    public static Alimento create(String nombre, Integer cantidad, int episodioId) {
+        Alimento a = new Alimento();
+        a.nombre = nombre;
+        a.cantidad = cantidad;
+        a.episodioId = episodioId;
+        return a;
     }
 
     public Long getId() {

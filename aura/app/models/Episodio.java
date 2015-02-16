@@ -38,6 +38,19 @@ public class Episodio {
 
     }
 
+    public static Episodio create(Long idUrl, Date fechaPublicacion, int intensidad, Double horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano, int pacienteID) {
+        Episodio e = new Episodio();
+        e.idUrl = idUrl;
+        e.fechaPublicacion = fechaPublicacion;
+        e.intensidad = intensidad;
+        e.horasSuenio = horasSuenio;
+        e.suenioRegular = suenioRegular;
+        e.lugar = lugar;
+        e.episodioEstreCercano = episodioEstreCercano;
+        e.pacienteID = pacienteID;
+        return e;
+    }
+
     public Long getId() {
         return id;
     }

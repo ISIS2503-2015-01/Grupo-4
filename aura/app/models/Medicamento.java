@@ -25,11 +25,13 @@ public class Medicamento {
 
     public Medicamento() { }
 
-    public Medicamento(String nombre, String dosis, int horasTomadoAntes, int episodioId) {
-        this.nombre = nombre;
-        this.dosis = dosis;
-        this.horasTomadoAntes = horasTomadoAntes;
-        this.episodioId = episodioId;
+    public static Medicamento create(String nombre, String dosis, int horasTomadoAntes, int episodioId) {
+        Medicamento m = new Medicamento();
+        m.nombre = nombre;
+        m.dosis = dosis;
+        m.horasTomadoAntes = horasTomadoAntes;
+        m.episodioId = episodioId;
+        return m;
     }
 
     public Long getId() {

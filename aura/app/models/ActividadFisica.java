@@ -29,13 +29,15 @@ public class ActividadFisica {
 
     public ActividadFisica() { }
 
-    public ActividadFisica(Integer descripcion, Integer intensidad, Integer lugar, Integer clima, Boolean hidratacion, int episodioId) {
-        this.descripcion = descripcion;
-        this.intensidad = intensidad;
-        this.lugar = lugar;
-        this.clima = clima;
-        this.hidratacion = hidratacion;
-        this.episodioId = episodioId;
+    public static ActividadFisica create(Integer descripcion, Integer intensidad, Integer lugar, Integer clima, Boolean hidratacion, int episodioId) {
+        ActividadFisica a = new ActividadFisica();
+        a.descripcion = descripcion;
+        a.intensidad = intensidad;
+        a.lugar = lugar;
+        a.clima = clima;
+        a.hidratacion = hidratacion;
+        a.episodioId = episodioId;
+        return a;
     }
 
     public Long getId() {
