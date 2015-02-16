@@ -2,25 +2,18 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.Doctor;
-import models.EpisodioEscrito;
-import models.EpisodioVoz;
-import models.Paciente;
 import play.db.jpa.JPA;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
-import org.hibernate.Hibernate;
-import play.db.jpa.Transactional;
 import play.libs.Json;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.*;
-import static models.Doctor.*;
 
 public class DoctorController extends Controller {
 
