@@ -65,7 +65,7 @@ public class PacienteController extends Controller {
     public static Result delete(Long id){
         Paciente p = JPA.em().find(Paciente.class, id);
         JPA.em().remove(p);
-        return redirect(routes.PacienteController.getAll());
+        return Results.ok();
     }
 
     @Transactional
