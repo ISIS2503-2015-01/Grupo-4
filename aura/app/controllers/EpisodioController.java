@@ -33,10 +33,9 @@ public class EpisodioController extends Controller {
 
         if(p != null) {
             JsonNode j = Controller.request().body().asJson();
-            System.out.println(j);
 
-            String idUrl = j.findPath("URL").asText();
-            Long url = idUrl.equals("") ? -1 : Long.parseLong(idUrl);
+            String idUrl = j.findPath("url").asText();
+            Long url = idUrl.equals("-1") ? -1 : Long.parseLong(idUrl);
             int intensidad = j.findPath("intensidad").asInt();
             int horasSuenio = j.findPath("horasSuenio").asInt();
             boolean regularidad = j.findPath("regular").asBoolean();
@@ -88,7 +87,7 @@ public class EpisodioController extends Controller {
     @Transactional
     public static Result delete(Long id1, Long id2){
         Episodio p = JPA.em().find(Episodio.class, id2);
-        if(p.getPacienteID() == id1) {
+        if(p.getPacienteID().equals(id1)) {
             JPA.em().remove(p);
             return Results.ok();
         }
@@ -105,7 +104,7 @@ public class EpisodioController extends Controller {
             JsonNode j = Controller.request().body().asJson();
             System.out.println(j);
 
-            String idUrl = j.findPath("URL").asText();
+            String idUrl = j.findPath("url").asText();
             Long url = idUrl.equals("") ? -1 : Long.parseLong(idUrl);
             int intensidad = j.findPath("intensidad").asInt();
             int horasSuenio = j.findPath("horasSuenio").asInt();
@@ -135,6 +134,7 @@ public class EpisodioController extends Controller {
 
         return Results.ok("El paciente no existe");
     }
+
     @Transactional
     public static Result getPerDates(Long idP, String f1, String f2) {
         Date d1 = parseDate(f1);

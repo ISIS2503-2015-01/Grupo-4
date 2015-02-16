@@ -35,6 +35,7 @@ def pick_date():
 
 def populate_patients(bound):
 	file_object = open(sys.argv[0][:-2] + 'sh', 'w')
+	documents = open('ids.txt', 'w')
 	#seed = curl -v -H "Content-type: application/json" -X POST -d "fechaN" : "2000-09-09", "genero" : "1", "password" : "zadvczzvz"}' http://localhost:9000/api/paciente
 	i = 0
 	while i < bound:
@@ -52,6 +53,7 @@ def populate_patients(bound):
 		line += 'http://localhost:9000/api/paciente'
 		line += '\n'
 		file_object.write(line)
+		documents.write(dct["docIdentidad"] + '\n')
 
 		i += 1
 
