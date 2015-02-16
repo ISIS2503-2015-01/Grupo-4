@@ -3,23 +3,28 @@
 # ~~~~
 
 # Home page
-GET           /                        controllers.Application.index()
+GET           /                                 controllers.Application.index()
 
 # Paciente
 
 # Crea un nuevo paciente
-POST          /api/paciente            controllers.PacienteController.create()
+POST          /api/paciente                     controllers.PacienteController.create()
 # Ver información de un paciente
-GET           /api/paciente/:id        controllers.PacienteController.getOne(id : Long)
+GET           /api/paciente/:id                 controllers.PacienteController.getOne(id : Long)
 # Eliminar un paciente dado el id
-DELETE        /api/paciente/:id        controllers.PacienteController.delete(id : Long)
+DELETE        /api/paciente/:id                 controllers.PacienteController.delete(id : Long)
 # Ver todos los pacientes
-GET           /api/paciente            controllers.PacienteController.getAll()
+GET           /api/paciente                     controllers.PacienteController.getAll()
 # Actualizar información de un sólo paciente
-PUT           /api/paciente            controllers.PacienteController.update()
+PUT           /api/paciente                     controllers.PacienteController.update()
+
+# Episodio
+
+# Crear un nuevo episodio para ése paciente
+POST          /api/paciente/:id/episodio        controllers.EpisodioController.crearEpisodioEscrito(id : Long)
 
 
 
 
 # Map static resources from the /public folder to the /assets URL path
-GET           /assets/*file            controllers.Assets.at(path="/public", file)
+GET           /assets/*file                     controllers.Assets.at(path="/public", file)
