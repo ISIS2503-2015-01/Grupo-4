@@ -1,38 +1,20 @@
 package models;
 
-/**
- * Created by Clau on 10/02/2015.
- */
-
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
 
-@Entity
-public class EpisodioEscrito {
-
-    private static final int INTENSIDAD_NIVEL1 = 1;
-
-    private static final int INTENSIDAD_NIVEL2 = 2;
-
-    private static final int INTENSIDAD_NIVEL3 = 3;
-
-    private static final int INTENSIDAD_NIVEL4 = 4;
-
-    private static final int INTENSIDAD_NIVEL5 = 5;
-
-    private static final int LUGAR_OSCURO = 1;
-
-    private static final int LUGAR_ABIERTO_SOLEADO = 2;
-
-    private static final int LUGAR_RUIDOSO = 3;
-
-    private static final int LUGAR_CON_OLORES_FUERTES= 4;
-
+/**
+ * Created by scvalencia on 2/16/15.
+ */
+public class Episodio {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
+    private Long idUrl;
 
     private Date fechaPublicacion;
 
@@ -52,26 +34,20 @@ public class EpisodioEscrito {
     //@JoinColumn(name="idPerson", referencedColumnName="id")
     //public Paciente paciente;
 
-    public EpisodioEscrito() {
+    public Episodio() {
 
-    }
-
-    public EpisodioEscrito(Date fechaPublicacion, int intensidad, Double horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano, int pacienteID) {
-        this.fechaPublicacion = fechaPublicacion;
-        this.intensidad = intensidad;
-        this.horasSuenio = horasSuenio;
-        this.suenioRegular = suenioRegular;
-        this.lugar = lugar;
-        this.episodioEstreCercano = episodioEstreCercano;
-        this.pacienteID = pacienteID;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getIdUrl() {
+        return idUrl;
+    }
+
+    public void setIdUrl(Long idUrl) {
+        this.idUrl = idUrl;
     }
 
     public Date getFechaPublicacion() {
