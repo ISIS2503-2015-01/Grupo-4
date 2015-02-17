@@ -40,7 +40,7 @@ public class Episodio {
 
     }
 
-    public static Episodio create(Long idUrl, Date fechaPublicacion, int intensidad, int horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano, Long pacienteID) {
+    public static Episodio create(Long idUrl, Date fechaPublicacion,  int intensidad, int horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano, Long pacienteID) {
         Episodio e = new Episodio();
 
         e.idUrl = idUrl;
