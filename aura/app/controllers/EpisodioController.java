@@ -335,16 +335,6 @@ public class EpisodioController extends Controller {
         return Results.ok("El Episodio no existe");
     }
 
-    @Transactional
-    public static Result getNotification(Long idP) {
-        return Results.TODO;
-    }
-
-    @Transactional
-    public static Result getAnalisis(Long idP) {
-        return Results.TODO;
-    }
-
     public static Result addActivity(long idp, long id1) {
         return Results.TODO;
     }
@@ -362,6 +352,16 @@ public class EpisodioController extends Controller {
     }
 
     public static Result updateActivity(long idp, long id1, long id2) {
+        return Results.TODO;
+    }
+    
+    @Transactional
+    public static Result getNotification(Long idP) {
+        return Results.TODO;
+    }
+
+    @Transactional
+    public static Result getAnalisis(Long idP) {
         return Results.TODO;
     }
 }
