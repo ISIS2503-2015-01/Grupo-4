@@ -28,7 +28,7 @@ public class EpisodioController extends Controller {
     // CRUD
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
-    public static Json create(Long idPaciente) {
+    public static Result create(Long idPaciente) {
 
         Paciente p = JPA.em().getReference(Paciente.class, idPaciente);
 
@@ -54,11 +54,11 @@ public class EpisodioController extends Controller {
                 return null;
             }
 
-            Json js= getNotification(idPaciente,intensidad, horasSuenio, regularidad, localizacion, estres);
-            return js;
+            getNotification(idPaciente,intensidad, horasSuenio, regularidad, localizacion, estres);
+            return Results.created(Json.toJson(getNotification(idPaciente,intensidad, horasSuenio, regularidad, localizacion, estres)));
         }
 
-        return null;
+        return Results.badRequest("No existe el paciente");
 
     }
 
@@ -439,9 +439,42 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Json getNotification(Long idP,int intensidad, int horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano) {
+    public static Result getNotification(Long idP,int intensidad, int horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano) {
+        JSONArray not = new JSONArray();
+            String inten="",suenio="",est="";
+            String mensaje = "Debe tener en cuenta las siguientes consideraciones:";
+            if(intensidad>7){
+             inten="La intensidad de su dolor es muy fuerte. Considere acudir al médico";
+            }
+            else if(intensidad>4&&intensidad<=7){
+                 inten="La intensidad de su dolor es estandar. Procure reposar para evitar que empeore.";
+            }
+            else{
+                 inten="La intensidad de su dolor es suave.";
+            }
+            if(horasSuenio>8){
+                 suenio="Sus horas de sueño son adecuadas y probablemente no sean la causa da sus migrañas";
+            }
+        else if(horasSuenio>5&&horasSuenio<=8){
+                 suenio="Sus horas de sueño son suficientes, pero debería considerar dormir un poco más.";
+            }
+        else{
+                 suenio="Sus horas de sueño son muy bajas y causan que tenga migraña.";
+            }
+        if(episodioEstreCercano){
+             est="El estres produce dolores de cabeza muy fuertes, y es posible que esto le cause migrañas";
+        }
+        else{
+             est="";
+        }
 
-    return null;
+        JSONObject simple = new JSONObject();
+        simple.put("mensaje",mensaje);
+        simple.put("inten",inten);
+        simple.put("suenio",suenio);
+        simple.put("est",est);
+            not.put(simple);
+        return Results.ok(Json.toJson(simple));
     }
 
     @Transactional
