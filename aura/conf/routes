@@ -18,13 +18,13 @@ DELETE        /api/paciente/:id                                      controllers
 GET           /api/paciente                                          controllers.PacienteController.getAll()
 # Actualizar información de un sólo paciente
 PUT           /api/paciente/:id                                      controllers.PacienteController.update(id : Long)
-
-POST           /api/paciente/episodio                                controllers.PacienteController.registrarEpisodio()
+# Ver info completa de un episodio
+POST          /api/paciente/episodio                                 controllers.PacienteController.createEpisode()
 ########################################################################################################################
 # Episodio
 
 # Ver información de un episodio en fomra completa dado el id
-GET           /api/paciente/:idp/episodios/:id                        controllers.EpisodioController.fetch(idp : Long, id : Long)
+GET           /api/paciente/:idp/episodios/:id                       controllers.EpisodioController.fetch(idp : Long, id : Long)
 # Crear un nuevo episodio para ése paciente
 POST          /api/paciente/:id/episodio                             controllers.EpisodioController.create(id : Long)
 # Ver un episodio de un paciente
