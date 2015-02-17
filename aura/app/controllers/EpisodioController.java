@@ -45,7 +45,7 @@ public class EpisodioController extends Controller {
             boolean estres = j.findPath("estres").asBoolean();
 
             try {
-
+            //crea la fecha apenas llega
                 Episodio e = Episodio.create(url, new Date(), intensidad, horasSuenio, regularidad, localizacion, estres, idPaciente);
                 JPA.em().persist(e);
 
