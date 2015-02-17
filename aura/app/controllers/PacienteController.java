@@ -143,9 +143,9 @@ public class PacienteController extends Controller {
             e.printStackTrace();
         }
 
-        Episodio.create(idUrl, fecha, intensidad,  horasSuenio, suenioRegular, lugar,  episodioEstreCercano,  pacienteID);
+        Json p=EpisodioController.create( pacienteID);
 
-        return Results.created();
+        return Results.ok(Json.toJson(p));
     }
 
 

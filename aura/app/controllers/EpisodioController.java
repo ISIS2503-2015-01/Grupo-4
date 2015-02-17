@@ -28,7 +28,7 @@ public class EpisodioController extends Controller {
     // CRUD
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
-    public static Result create(Long idPaciente) {
+    public static Json create(Long idPaciente) {
 
         Paciente p = JPA.em().getReference(Paciente.class, idPaciente);
 
@@ -51,14 +51,14 @@ public class EpisodioController extends Controller {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                return Results.ok("Error al crear el episodio");
+                return null;
             }
 
-            return Results.created();
-
+            Json js= getNotification(idPaciente);
+            return js;
         }
 
-        return Results.ok("El paciente no existe");
+        return null;
 
     }
 
@@ -439,9 +439,9 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result getNotification(Long idP) {
+    public static Json getNotification(Long idP) {
 
-        return Results.TODO;
+    return null;
     }
 
     @Transactional
