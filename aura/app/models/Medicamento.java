@@ -19,11 +19,11 @@ public class Medicamento {
 
     private int horasTomadoAntes;
 
-    private int episodioId;
+    private Long episodioId;
 
     public Medicamento() { }
 
-    public static Medicamento create(String nombre, String dosis, int horasTomadoAntes, int episodioId) {
+    public static Medicamento create(String nombre, int horasTomadoAntes, Long episodioId) {
         Medicamento m = new Medicamento();
         m.nombre = nombre;
         m.horasTomadoAntes = horasTomadoAntes;
@@ -51,11 +51,11 @@ public class Medicamento {
         this.horasTomadoAntes = horasTomadoAntes;
     }
 
-    public int getEpisodioId() {
+    public Long getEpisodioId() {
         return episodioId;
     }
 
-    public void setEpisodioId(int episodioId) {
+    public void setEpisodioId(Long episodioId) {
         this.episodioId = episodioId;
     }
 }

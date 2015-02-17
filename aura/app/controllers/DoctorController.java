@@ -29,8 +29,7 @@ public class DoctorController extends Controller {
     {
 
         JsonNode j = Controller.request().body().asJson();
-        //Para realizar pruebas de escalabilidad y desempeño, des comentar las siguientes dos líneas y comentar la tercera
-        //JSON: [{"nombre":"Doctor","contrasenia":"clave","fechaNacimiento":"1992-04-04","Email":"doctor@gmail.com","genero":"0","especialidad":"0"}]
+
         //Random random = new Random();
         //long docIdentidad = Math.abs(random.nextLong()*1000000000);
         Long docIdentidad = Long.parseLong(j.findPath("docIdentidad").asText());
@@ -131,12 +130,9 @@ public class DoctorController extends Controller {
 
     @Transactional
     public static Result getOne(Long id) {
-        //Para realizar pruebas de escalabilidad y desempeño, des comentar las siguientes dos líneas y comentar la tercera
-        //long idTest = 1;
-        //Doctor p = JPA.em().getReference(Doctor.class, idTest);
+
         Doctor p = JPA.em().getReference(Doctor.class, id);
         Hibernate.initialize(Doctor.class);
-        //return Results.ok(Json.toJson(p));
         return Results.ok(Json.toJson(p));
     }
     
@@ -144,8 +140,8 @@ public class DoctorController extends Controller {
 
     public static Result getAll() {
         Query query = JPA.em().createQuery("SELECT d FROM Doctor d");
-        Collection<Doctor> doctor = query.getResultList();
-        return Results.ok(Json.toJson(doctor));
+        Collection<Doctor> doctores = query.getResultList();
+        return Results.ok(Json.toJson(doctores));
     }
 
     private static Date parseDate(String representation) {

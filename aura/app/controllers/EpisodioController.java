@@ -54,7 +54,7 @@ public class EpisodioController extends Controller {
                 return null;
             }
 
-            getNotification(idPaciente,intensidad, horasSuenio, regularidad, localizacion, estres);
+           //getNotification(idPaciente, intensidad, horasSuenio, regularidad, localizacion, estres);
             return Results.created(Json.toJson(getNotification(idPaciente,intensidad, horasSuenio, regularidad, localizacion, estres)));
         }
 
@@ -92,6 +92,7 @@ public class EpisodioController extends Controller {
         if(p.getPacienteID().equals(id1)) {
             JPA.em().remove(p);
             return Results.ok();
+
         }
         return Results.ok("Error de argumentos");
     }
@@ -438,8 +439,9 @@ public class EpisodioController extends Controller {
         return Results.ok("El Episodio no existe");
     }
 
-    @Transactional
-    public static Result getNotification(Long idP,int intensidad, int horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano) {
+
+
+    public static JSONObject getNotification(Long idP,int intensidad, int horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano) {
         JSONArray not = new JSONArray();
             String inten="",suenio="",est="";
             String mensaje = "Debe tener en cuenta las siguientes consideraciones:";
@@ -474,7 +476,7 @@ public class EpisodioController extends Controller {
         simple.put("suenio",suenio);
         simple.put("est",est);
             not.put(simple);
-        return Results.ok(Json.toJson(simple));
+        return simple;
     }
 
     @Transactional

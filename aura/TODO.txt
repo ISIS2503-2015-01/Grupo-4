@@ -1,3 +1,8 @@
+Falta análisis!!!
+Falta JMetter!!!
+Falta probar!!!
+
+
 Carolina:
 	* Mockup de la página, esto incluye navegación, estructura y vista DONE
 
