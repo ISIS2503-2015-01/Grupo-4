@@ -1,8 +1,10 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.*;
 import org.hibernate.Hibernate;
+import play.api.libs.json.JsPath;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.Json;
@@ -449,7 +451,27 @@ public class EpisodioController extends Controller {
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result addMedicine(long idp, long id1) {
-        return Results.TODO;
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            JsonNode j = Controller.request().body().asJson();
+
+            String nombre = j.findPath("nombre").asText();
+            int horasTomadoAntes = j.findPath("horas").asInt();
+
+            try {
+                Medicamento m = new Medicamento();
+                m.setNombre(nombre);
+                m.setHorasTomadoAntes(horasTomadoAntes);
+
+
+            } catch (Exception x) {
+                x.printStackTrace();
+                return Results.ok("Error al crear la actividad");
+            }
+            return Results.created();
+        }
+        return Results.ok("El Episodio no existe");
     }
 
     @Transactional
@@ -471,5 +493,10 @@ public class EpisodioController extends Controller {
     @BodyParser.Of(BodyParser.Json.class)
     public static Result updateMedicine(long idp, long id1, long id2) {
         return Results.TODO;
+    }
+
+    public static Result fetch(long id) {
+        ObjectNode result = Json.newObject();
+        return null;
     }
 }
