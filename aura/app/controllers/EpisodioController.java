@@ -1,6 +1,7 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import models.Alimento;
 import models.Episodio;
 import models.Paciente;
 import models.Sintoma;
@@ -243,6 +244,54 @@ public class EpisodioController extends Controller {
             return Results.created();
         }
         return Results.ok("El Episodio no existe");
+    }
+
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result addFood(Long idp, Long id1) {
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            JsonNode j = Controller.request().body().asJson();
+
+            String nombre = j.findPath("nombre").asText();
+            int cantidad = j.findPath("cantidad").asInt();
+
+            try {
+                Alimento a = new Alimento();
+                a.setNombre(nombre);
+                a.setCantidad(cantidad);
+                a.setEpisodioId(id1);
+                JPA.em().persist(a);
+
+            } catch (Exception x) {
+                x.printStackTrace();
+                return Results.ok("Error al crear el sintoma");
+            }
+            return Results.created();
+        }
+        return Results.ok("El Episodio no existe");
+    }
+
+    @Transactional
+    public static Result deleteFood(long idp, long id1, long id2) {
+        return Results.TODO;
+    }
+
+    @Transactional
+    public static Result getOneFood(long idp, long id1, long id2) {
+        return Results.TODO;
+    }
+
+    @Transactional
+    public static Result getAllFood(long idp, long id) {
+        return Results.TODO;
+    }
+
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result updateFood(long idp, long id1, long id2) {
+        return Results.TODO;
     }
 
     @Transactional

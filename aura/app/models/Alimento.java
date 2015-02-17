@@ -20,11 +20,11 @@ public class Alimento {
 
     private Integer cantidad;
 
-    private int episodioId;
+    private Long episodioId;
 
     public Alimento() { }
 
-    public static Alimento create(String nombre, Integer cantidad, int episodioId) {
+    public static Alimento create(String nombre, Integer cantidad, Long episodioId) {
         Alimento a = new Alimento();
         a.nombre = nombre;
         a.cantidad = cantidad;
@@ -50,11 +50,11 @@ public class Alimento {
         this.cantidad = cantidad;
     }
 
-    public int getEpisodioId() {
+    public Long getEpisodioId() {
         return episodioId;
     }
 
-    public void setEpisodioId(int episodioId) {
+    public void setEpisodioId(Long episodioId) {
         this.episodioId = episodioId;
     }
 }
