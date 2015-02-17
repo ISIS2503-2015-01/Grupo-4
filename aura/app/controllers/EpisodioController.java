@@ -1,10 +1,7 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import models.Alimento;
-import models.Episodio;
-import models.Paciente;
-import models.Sintoma;
+import models.*;
 import org.hibernate.Hibernate;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
@@ -336,6 +333,68 @@ public class EpisodioController extends Controller {
         }
         return Results.ok("El Episodio no existe");
     }
+
+    public static Result addActivity(long idp, long id1) {
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            JsonNode j = Controller.request().body().asJson();
+
+            int descripcion = j.findPath("descripcion").asInt();
+            int intensidad = j.findPath("intensidad").asInt();
+            int lugar = j.findPath("lugar").asInt();
+            int clima = j.findPath("clima").asInt();
+            boolean hidratacion = j.findPath("hidratacion").asBoolean();
+
+            try {
+
+                ActividadFisica a = new ActividadFisica();
+                a.setClima(clima);
+                a.setDescripcion(descripcion);
+                a.setIntensidad(intensidad);
+                a.setLugar(lugar);
+                a.setHidratacion(hidratacion);
+                a.setEpisodioId(id1);
+
+
+            } catch (Exception x) {
+                x.printStackTrace();
+                return Results.ok("Error al crear la actividad");
+            }
+            return Results.created();
+        }
+        return Results.ok("El Episodio no existe");
+    }
+
+    public static Result deleteActivity(long idp, long id1, long id2) {
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            ActividadFisica a = JPA.em().getReference(ActividadFisica.class, id2);
+            JPA.em().remove(a);
+            Results.ok();
+        }
+
+        return Results.ok("El Episodio no existe");
+    }
+
+    public static Result getOneActivity(long idp, long id1, long id2) {
+        return Results.TODO;
+    }
+
+    public static Result getAllActivity(long idp, long id) {
+        return Results.TODO;
+    }
+
+    public static Result updateActivity(long idp, long id1, long id2) {
+        return Results.TODO;
+    }
+
+    /*
+    public static getFullEpisode(long idp, long idE) {
+        return Results.TODO;
+    }
+    */
 
     @Transactional
     public static Result getNotification(Long idP) {

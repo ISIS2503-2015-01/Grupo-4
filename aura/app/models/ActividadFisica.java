@@ -25,11 +25,11 @@ public class ActividadFisica {
 
     private Boolean hidratacion;
 
-    private int episodioId;
+    private Long episodioId;
 
     public ActividadFisica() { }
 
-    public static ActividadFisica create(Integer descripcion, Integer intensidad, Integer lugar, Integer clima, Boolean hidratacion, int episodioId) {
+    public static ActividadFisica create(Integer descripcion, Integer intensidad, Integer lugar, Integer clima, Boolean hidratacion, Long episodioId) {
         ActividadFisica a = new ActividadFisica();
         a.descripcion = descripcion;
         a.intensidad = intensidad;
@@ -45,11 +45,11 @@ public class ActividadFisica {
         return id;
     }
 
-    public int getEpisodioId() {
+    public Long getEpisodioId() {
         return episodioId;
     }
 
-    public void setEpisodioId(int episodioId) {
+    public void setEpisodioId(Long episodioId) {
         this.episodioId = episodioId;
     }
 
