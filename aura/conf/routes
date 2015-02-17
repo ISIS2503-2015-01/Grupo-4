@@ -86,15 +86,15 @@ PUT           /api/paciente/:idp/episodio/:id1/actividad/:id2         controller
 # Medicamento
 
 # Crear una medicina asociada a un episodio
-#POST          /api/paciente/:idp/episodio/:id1/medicina                controllers.EpisodioController.addMedicine(id1 : Long)
+POST          /api/paciente/:idp/episodio/:id1/medicina                controllers.EpisodioController.addMedicine(idp : Long, id1 : Long)
 # Borrar una medicina asociado a un episodio
-#DELETE        /api/paciente/:idp/episodio/:id1/medicina/:id2           controllers.EpisodioController.deleteMedicine(id1 : Long, id2 : Long)
+DELETE        /api/paciente/:idp/episodio/:id1/medicina/:id2           controllers.EpisodioController.deleteMedicine(idp : Long, id1 : Long, id2 : Long)
 # Ver una medicina de un episodio
-#GET           /api/paciente/:idp/episodio/:id1/medicina/:id2           controllers.EpisodioController.getOneMedicine(id1 : Long, id2 : Long)
+GET           /api/paciente/:idp/episodio/:id1/medicina/:id2           controllers.EpisodioController.getOneMedicine(idp : Long, id1 : Long, id2 : Long)
 # Ver todos las medicinas asociadas a un episodio
-#GET           /api/paciente/:idp/episodio/:id/medicina                 controllers.EpisodioController.getAllMedicine(id : long)
+GET           /api/paciente/:idp/episodio/:id/medicina                 controllers.EpisodioController.getAllMedicine(idp : Long, id : long)
 # Actualizar la información de una medicina asociada a un episodio
-#PUT           /api/paciente/:idp/episodio/:id1/medicina/:id2           controllers.EpisodioController.updateMedicine(id1 : Long, id2 : Long)
+PUT           /api/paciente/:idp/episodio/:id1/medicina/:id2           controllers.EpisodioController.updateMedicine(idp : Long, id1 : Long, id2 : Long)
 
 ########################################################################################################################
 # Doctor

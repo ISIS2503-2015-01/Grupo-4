@@ -301,12 +301,12 @@ public class EpisodioController extends Controller {
     public static Result getAllFood(long idp, long id) {
         Query query = JPA.em().createQuery("SELECT a FROM Alimento a WHERE a.episodioId = :id");
         query.setParameter("id", id);
-        Collection<Sintoma> sintomas = query.getResultList();
-        for(Sintoma s : sintomas) {
-            if(!s.getEpisodioId().equals(idp))
+        Collection<Alimento> alimentos = query.getResultList();
+        for(Alimento a : alimentos) {
+            if(!a.getEpisodioId().equals(idp))
                 return Results.ok("Error en los parametros");
         }
-        return Results.ok(Json.toJson(sintomas));
+        return Results.ok(Json.toJson(alimentos));
     }
 
     @Transactional
@@ -334,6 +334,8 @@ public class EpisodioController extends Controller {
         return Results.ok("El Episodio no existe");
     }
 
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
     public static Result addActivity(long idp, long id1) {
         Episodio e = JPA.em().getReference(Episodio.class, id1);
 
@@ -366,6 +368,7 @@ public class EpisodioController extends Controller {
         return Results.ok("El Episodio no existe");
     }
 
+    @Transactional
     public static Result deleteActivity(long idp, long id1, long id2) {
         Episodio e = JPA.em().getReference(Episodio.class, id1);
 
@@ -378,23 +381,60 @@ public class EpisodioController extends Controller {
         return Results.ok("El Episodio no existe");
     }
 
+    @Transactional
     public static Result getOneActivity(long idp, long id1, long id2) {
-        return Results.TODO;
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            ActividadFisica a = JPA.em().getReference(ActividadFisica.class, id2);
+            return Results.ok(Json.toJson(a));
+        }
+
+        return Results.ok("El Episodio no existe");
     }
 
+    @Transactional
     public static Result getAllActivity(long idp, long id) {
-        return Results.TODO;
+        Query query = JPA.em().createQuery("SELECT a FROM ActividadFisica a WHERE a.episodioId = :id");
+        query.setParameter("id", id);
+        Collection<ActividadFisica> actividades = query.getResultList();
+        for(ActividadFisica a : actividades) {
+            if(!a.getEpisodioId().equals(idp))
+                return Results.ok("Error en los parametros");
+        }
+        return Results.ok(Json.toJson(actividades));
     }
 
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
     public static Result updateActivity(long idp, long id1, long id2) {
-        return Results.TODO;
-    }
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
 
-    /*
-    public static getFullEpisode(long idp, long idE) {
-        return Results.TODO;
+        if(e != null && e.getPacienteID().equals(idp)) {
+            JsonNode j = Controller.request().body().asJson();
+
+            int descripcion = j.findPath("descripcion").asInt();
+            int intensidad = j.findPath("intensidad").asInt();
+            int lugar = j.findPath("lugar").asInt();
+            int clima = j.findPath("clima").asInt();
+            boolean hidratacion = j.findPath("hidratacion").asBoolean();
+
+            try {
+                ActividadFisica a = JPA.em().getReference(ActividadFisica.class, id2);
+                a.setDescripcion(descripcion);
+                a.setIntensidad(intensidad);
+                a.setLugar(lugar);
+                a.setClima(clima);
+                a.setHidratacion(hidratacion);
+
+            } catch (Exception x) {
+                x.printStackTrace();
+                return Results.ok("Error al actualizar la actividad");
+            }
+            return Results.created();
+        }
+        return Results.ok("El Episodio no existe");
     }
-    */
 
     @Transactional
     public static Result getNotification(Long idP) {
@@ -403,6 +443,33 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result getAnalisis(Long idP) {
+        return Results.TODO;
+    }
+
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result addMedicine(long idp, long id1) {
+        return Results.TODO;
+    }
+
+    @Transactional
+    public static Result deleteMedicine(long idp, long id1, long id2) {
+        return Results.TODO;
+    }
+
+    @Transactional
+    public static Result getOneMedicine(long idp, long id1, long id2) {
+        return Results.TODO;
+    }
+
+    @Transactional
+    public static Result getAllMedicine(long idp, long id) {
+        return Results.TODO;
+    }
+
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result updateMedicine(long idp, long id1, long id2) {
         return Results.TODO;
     }
 }
