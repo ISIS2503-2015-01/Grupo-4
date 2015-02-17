@@ -1,0 +1,1 @@
+{id:long,docidentidad:Long, nombre:string,contrasenia:string,fechaNacimiento:date,Email:string,genero:int,eps:string,Medicamentos{id:long,nombre:string,dosis:string,horasTomadoAntesDeEpisodio:NULL,ListaIds:[1,2,3,4,5]}}

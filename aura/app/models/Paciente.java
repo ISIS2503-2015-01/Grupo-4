@@ -4,13 +4,12 @@ package models;
  * Created by Clau on 10/02/2015.
  */
 
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.mindrot.jbcrypt.BCrypt;
-import play.db.jpa.*;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -49,7 +48,6 @@ public class Paciente {
     }
 
     public int getGenero() {
-
         return genero;
     }
 

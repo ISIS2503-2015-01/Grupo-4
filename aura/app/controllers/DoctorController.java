@@ -25,6 +25,10 @@ public class DoctorController extends Controller {
     public static Result create()
     {
         JsonNode j = Controller.request().body().asJson();
+        
+        //Para realizar pruebas de escalabilidad y desempeño, des comentar las siguientes dos líneas y comentar la tercera
+        //Random random = new Random();
+        //long docIdentidad = Math.abs(random.nextLong()*1000000000);
         Long docIdentidad = Long.parseLong(j.findPath("docIdentidad").asText());
         String nombre = j.findPath("nombre").asText();
         String email=j.findPath("Email").asText();
@@ -124,16 +128,19 @@ public class DoctorController extends Controller {
 
     @Transactional
     public static Result getOne(Long id) {
-        Paciente p = JPA.em().getReference(Paciente.class, id);
-        Hibernate.initialize(Paciente.class);
+        //Para realizar pruebas de escalabilidad y desempeño, des comentar las siguientes dos líneas y comentar la tercera
+        //int idTest = 1;
+        //Doctor p = JPA.em().getReference(Doctor.class, idTest);
+        Doctor p = JPA.em().getReference(Doctor.class, id);
+        Hibernate.initialize(Doctor.class);
         return Results.ok(Json.toJson(p));
     }
     
     @Transactional
     public static Result getAll() {
         Query query = JPA.em().createQuery("SELECT d FROM Doctor d");
-        Collection<Paciente> pacientes = query.getResultList();
-        return Results.ok(Json.toJson(pacientes));
+        Collection<Doctor> doctores = query.getResultList();
+        return Results.ok(Json.toJson(doctores));
     }
 
 
