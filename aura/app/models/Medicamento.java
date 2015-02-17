@@ -17,8 +17,6 @@ public class Medicamento {
 
     private String nombre;
 
-    private String dosis;
-
     private int horasTomadoAntes;
 
     private int episodioId;
@@ -28,7 +26,6 @@ public class Medicamento {
     public static Medicamento create(String nombre, String dosis, int horasTomadoAntes, int episodioId) {
         Medicamento m = new Medicamento();
         m.nombre = nombre;
-        m.dosis = dosis;
         m.horasTomadoAntes = horasTomadoAntes;
         m.episodioId = episodioId;
         return m;
@@ -44,14 +41,6 @@ public class Medicamento {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getDosis() {
-        return dosis;
-    }
-
-    public void setDosis(String dosis) {
-        this.dosis = dosis;
     }
 
     public int getHorasTomadoAntes() {
