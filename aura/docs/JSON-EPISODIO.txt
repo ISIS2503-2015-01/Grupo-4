@@ -1,0 +1,4 @@
+
+{id:long,esVoz:Boolean,fecha:Date,intensidad:integer(1-5),horasSueño:integer,sueñoRegular:boolean,lugar:integer,sugrioEstres:boolean
+ActividadFisica{descripcion:integer, intensidad:integer,lugar:integer, clima:integer,hidratacion:boolean},Medicamento{nombre:String dosis:string horasTomadoAntesDeEpisodio:integer},Sintoma{nombre:String},AlimentoOBebida{nombre:String, cantidad:integer}idVoz:integer}
+
