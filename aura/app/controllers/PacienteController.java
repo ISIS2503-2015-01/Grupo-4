@@ -2,7 +2,6 @@ package controllers;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
-import models.Episodio;
 import models.Paciente;
 import org.hibernate.Hibernate;
 import play.db.jpa.JPA;
@@ -143,9 +142,9 @@ public class PacienteController extends Controller {
             e.printStackTrace();
         }
 
-        Json p=EpisodioController.create( pacienteID);
 
-        return Results.ok(Json.toJson(p));
+
+        return Results.ok(Json.toJson(EpisodioController.create( pacienteID)));
     }
 
 
