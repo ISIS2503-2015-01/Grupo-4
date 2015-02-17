@@ -2,7 +2,8 @@ package controllers;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
-import models.*;
+import models.Episodio;
+import models.Paciente;
 import org.hibernate.Hibernate;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
@@ -15,10 +16,8 @@ import play.mvc.Results;
 import javax.persistence.Query;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 
 public class PacienteController extends Controller {
@@ -118,10 +117,10 @@ public class PacienteController extends Controller {
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result registrarEpisodio() {
-
+        System.out.println("----------------------------");
         JsonNode j = Controller.request().body().asJson();
 
-
+        System.out.println("++++++++++++----++++++++");
         Long idUrl=Long.parseLong(j.findPath("idUrl").asText());
 
         String fechaPublicacion=j.findPath("fechaPublicacion").asText();
@@ -131,17 +130,8 @@ public class PacienteController extends Controller {
         int lugar =Integer.parseInt(j.findPath("lugar").asText());
         boolean episodioEstreCercano =j.findPath("episodioEstreCercano").asText().equals("1");
         Long pacienteID=Long.parseLong(j.findPath("pacienteID").asText());
-        List<JsonNode> medicamentos=j.findValues("medicamentos");
-        List<String>medic=new ArrayList<String>();
-        for(int i=0;i<medicamentos.size();i++)
-        {
-            medic.add(medicamentos.get(i).asText());
-        }
-        List<JsonNode>actividades=j.findValues("actividades");
-        List<JsonNode>sintomas=j.findValues("sintomas");
-        List<JsonNode> alimento=j.findValues("alimento");
-        System.out.println(medic.get(0));
-        System.out.println(medic.get(0));
+
+
         SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
 
         Date fecha = null;
