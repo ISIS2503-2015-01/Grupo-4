@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import models.*;
 import org.hibernate.Hibernate;
 import org.json.JSONException;
+import org.json.simple.JSONObject;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.Json;
@@ -116,45 +117,88 @@ public class PacienteController extends Controller {
         return Results.ok(Json.toJson(pacientes));
     }
 
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result registrarEpisodio() {
+        System.out.println("----------------------------");
+        JsonNode j = Controller.request().body().asJson();
+
+        System.out.println("++++++++++++----++++++++");
+        Long idUrl=Long.parseLong(j.findPath("idUrl").asText());
+
+        String fechaPublicacion=j.findPath("fechaPublicacion").asText();
+        int intensidad=Integer.parseInt(j.findPath("intensidad").asText());
+        int horasSuenio =Integer.parseInt(j.findPath("horasSuenio").asText());
+        boolean suenioRegular =j.findPath("suenioRegular").asText().equals("1");
+        int lugar =Integer.parseInt(j.findPath("lugar").asText());
+        boolean episodioEstreCercano =j.findPath("episodioEstreCercano").asText().equals("1");
+        Long pacienteID=Long.parseLong(j.findPath("pacienteID").asText());
+
+
+        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date fecha = null;
+
+
+        try {
+            fecha = formatoDelTexto.parse(fechaPublicacion);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+        return Results.ok(Json.toJson(EpisodioController.create(pacienteID)));
+    }
 
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result createEpisode() throws JSONException {
+
         JsonNode j = Controller.request().body().asJson();
+        System.out.println(j);
+
 
         Long idUrl = j.findPath("idUrl").asLong();
         int intensidad = j.findPath("intensidad").asInt();
         int horasSuenio = j.findPath("horasSuenio").asInt();
         boolean regular = j.findPath("regular").asBoolean();
-        int localizacion = j.findPath("localizacion").asInt();
+        int localizacion = j.findPath("lugar").asInt();
         boolean estres = j.findPath("estres").asBoolean();
-        Long paciente = j.findPath("paciente").asLong();
+        Long paciente = j.findPath("pacienteID").asLong();
+
 
         Episodio e = Episodio.create(idUrl, new Date(), intensidad, horasSuenio, regular, localizacion, estres, paciente);
-        Long episodioID = e.getId();
         JPA.em().persist(e);
 
 
         List<JsonNode> g = j.findValues("sintomas");
+
         if(g.size() > 0) {
             JsonNode values = g.get(0);
             for(JsonNode js : values) {
-                int sintomAux = js.findPath("sintoma").asInt();
-                Sintoma s = Sintoma.create(sintomAux, episodioID);
+                int sintomaAux = js.findPath("sintoma").asInt();
+                Sintoma s = new Sintoma();
+                s.setEpisodioId(e.getId());
+                s.setSintoma(sintomaAux);
                 JPA.em().persist(s);
             }
         }
 
+
+
         List<JsonNode> m = j.findValues("medicamentos");
+
         if(m.size() > 0) {
             JsonNode values = m.get(0);
             for(JsonNode js : values) {
                 String nombre = js.findPath("nombre").asText();
                 int horas = js.findPath("horas").asInt();
-                Medicamento mAxux = Medicamento.create(nombre, horas, episodioID);
+                Medicamento mAxux = Medicamento.create(nombre, horas, e.getId());
                 JPA.em().persist(mAxux);
             }
         }
+
 
         List<JsonNode> med = j.findValues("actividades");
         if(med.size() > 0) {
@@ -165,7 +209,7 @@ public class PacienteController extends Controller {
                 int lugar = js.findPath("lugar").asInt();
                 int clima = js.findPath("clima").asInt();
                 boolean hidratacion = js.findPath("hidratacion").asBoolean();
-                ActividadFisica af = ActividadFisica.create(descripcion, inte, lugar, clima, hidratacion, episodioID);
+                ActividadFisica af = ActividadFisica.create(descripcion, inte, lugar, clima, hidratacion, e.getId());
                 JPA.em().persist(af);
             }
         }
@@ -177,12 +221,17 @@ public class PacienteController extends Controller {
                 String nombre = js.findPath("nombre").asText();
                 int cant = js.findPath("cantidad").asInt();
 
-                Alimento all = Alimento.create(nombre, cant, episodioID);
+                Alimento all = Alimento.create(nombre, cant, e.getId());
                 JPA.em().persist(all);
 
             }
         }
-        return Results.ok(Json.toJson(EpisodioController.create( j)));
+
+        JSONObject result = new org.json.simple.JSONObject();
+        result.put("nombre", "Carlos");
+        result.put("apellido", "Bedoya");
+
+        return Results.ok(Json.toJson(result));
     }
 
 }

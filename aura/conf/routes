@@ -21,7 +21,7 @@ GET           /api/paciente                                          controllers
 PUT           /api/paciente/:id                                      controllers.PacienteController.update(id : Long)
 # Ver info completa de un episodio
 POST          /api/paciente/episodio                                 controllers.PacienteController.createEpisode()
-
+POST          /api/claudia                                           controllers.PacienteController.registrarEpisodio()
 ########################################################################################################################
 
 # Episodio
