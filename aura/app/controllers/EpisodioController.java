@@ -54,7 +54,7 @@ public class EpisodioController extends Controller {
                 return null;
             }
 
-            Json js= getNotification(idPaciente);
+            Json js= getNotification(idPaciente,intensidad, horasSuenio, regularidad, localizacion, estres);
             return js;
         }
 
@@ -439,7 +439,7 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Json getNotification(Long idP) {
+    public static Json getNotification(Long idP,int intensidad, int horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano) {
 
     return null;
     }
