@@ -16,7 +16,7 @@ import javax.persistence.Query;
 import java.util.*;
 
 public class DoctorController extends Controller {
-/*
+
 
     @BodyParser.Of(BodyParser.Json.class)
     public static Result crearDoctor()
@@ -112,7 +112,7 @@ public class DoctorController extends Controller {
     public static Result verEpisodiosFecha(Long idPaciente,Date fechaInicial, Date fechaFinal)
     {
         //TODO-mirar diferencias entre episodios escritos y voz en DB
-        Query query = JPA.em().createQuery("SELECT * FROM Episodios WHERE idPaciente = '"+idPaciente+" AND fecha >= "+fechaInicial+" AND fecha <= " + fechaFinal);
+        Query query = JPA.em().createQuery("SELECT e FROM Episodios WHERE idPaciente = '"+idPaciente+" AND fecha >= "+fechaInicial+" AND fecha <= " + fechaFinal);
         Collection<EpisodioVoz> episodiosVoz = query.getResultList();
         return Results.ok(Json.toJson(episodiosVoz));
         ///Collection<EpisodioEscrito> episodiosEscritos = query.getResultList();
@@ -136,7 +136,6 @@ public class DoctorController extends Controller {
         Collection<EpisodioVoz> episodiosVoz = query.getResultList();
         return Results.ok(Json.toJson(episodiosVoz));
     }
-    */
 
 
 }
