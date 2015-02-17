@@ -533,4 +533,12 @@ public class EpisodioController extends Controller {
 
         return Results.ok(Json.toJson(result));
     }
+
+    // LEER JSON
+
+    // ESCRIBIR JSON
+
+    // Análisis
+
+    // Alerta
 }
