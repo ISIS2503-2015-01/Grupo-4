@@ -1,11 +1,13 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Doctor {
 
     private static final int MASCULINO = 0;
