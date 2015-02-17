@@ -64,7 +64,7 @@ public class PacienteController extends Controller {
 
     @Transactional
     public static Result delete(Long id){
-        Paciente p = JPA.em().find(Paciente.class, id);
+        Paciente p = JPA.em().getReference(Paciente.class, id);
         JPA.em().remove(p);
         return Results.ok();
     }
