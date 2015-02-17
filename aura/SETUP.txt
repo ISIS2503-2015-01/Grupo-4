@@ -30,3 +30,13 @@ Seleccionar view > tool buttons en el menú del IDE
 Seleccionar en la parte de abajo a la izquierda la opción terminal
 Asegurarse de esár en la carpeta del proyecto (aura)
 correr el comando activator con el flag run
+
+Para subir cambios al repo:
+
+uno:
+git add .
+git commit -m “Hola”
+git pull // BAJAR la versión actual
+Si no hay conflictos
+git push
+De otra manera arreglarlos e ir a uno.

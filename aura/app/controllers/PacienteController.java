@@ -116,7 +116,6 @@ public class PacienteController extends Controller {
         return Results.ok(Json.toJson(pacientes));
     }
 
-
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result createEpisode() throws JSONException {

@@ -440,6 +440,7 @@ public class EpisodioController extends Controller {
     }
 
 
+
     public static JSONObject getNotification(Long idP,int intensidad, int horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano) {
         JSONArray not = new JSONArray();
             String inten="",suenio="",est="";
