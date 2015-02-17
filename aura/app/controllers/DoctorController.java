@@ -2,7 +2,10 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.Doctor;
+import models.Paciente;
+import org.hibernate.Hibernate;
 import play.db.jpa.JPA;
+import play.db.jpa.Transactional;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -56,7 +59,7 @@ public class DoctorController extends Controller {
     @Transactional
     public static Result delete(Long id){
         Doctor d = JPA.em().find(Doctor.class, id);
-        JPA.em().remove(p);
+        JPA.em().remove(d);
         return Results.ok();
     }
     
