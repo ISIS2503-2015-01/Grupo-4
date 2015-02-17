@@ -25,6 +25,9 @@ public class DoctorController extends Controller {
     public static Result create()
     {
         JsonNode j = Controller.request().body().asJson();
+        //Random random = new Random();
+        //long docIdentidad = Math.abs(random.nextLong()*1000000000);
+        
         Long docIdentidad = Long.parseLong(j.findPath("docIdentidad").asText());
         String nombre = j.findPath("nombre").asText();
         String email=j.findPath("Email").asText();
