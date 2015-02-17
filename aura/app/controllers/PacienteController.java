@@ -148,7 +148,7 @@ public class PacienteController extends Controller {
 
 
 
-        return Results.ok(Json.toJson(EpisodioController.create(pacienteID)));
+        return Results.ok(EpisodioController.create(pacienteID)));
     }
 
     @Transactional

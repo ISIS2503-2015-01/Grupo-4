@@ -440,7 +440,7 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result getNotification(Long idP,int intensidad, int horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano) {
+    public static JSONArray getNotification(Long idP,int intensidad, int horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano) {
         JSONArray not = new JSONArray();
             String inten="",suenio="",est="";
             String mensaje = "Debe tener en cuenta las siguientes consideraciones:";
