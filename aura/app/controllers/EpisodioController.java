@@ -1,9 +1,12 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.*;
 import org.hibernate.Hibernate;
+import org.json.JSONArray;
+import org.json.simple.JSONObject;
 import play.api.libs.json.JsPath;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
@@ -500,8 +503,34 @@ public class EpisodioController extends Controller {
         Episodio e = JPA.em().getReference(Episodio.class, id);
         if(!e.getPacienteID().equals(idP))
             return null;
-        ObjectNode result = Json.newObject();
+        JSONObject result = new JSONObject();
         result.put("id", id);
-        return Results.ok(result);
+
+        result.put("idUrl", e.getIdUrl());
+        result.put("fechaPublicacion", e.getFechaPublicacion().toString());
+        result.put("intensidad", e.getIntensidad());
+        result.put("horasSuenio", e.getHorasSuenio());
+        result.put("regular", e.isSuenioRegular());
+        result.put("localizacion", e.getLugar());
+        result.put("estres", e.isEpisodioEstreCercano());
+        result.put("paciente", e.getPacienteID());
+
+        Query query = JPA.em().createQuery("SELECT s FROM Sintoma s WHERE s.episodioId = :id");
+        query.setParameter("id", id);
+        Collection<Sintoma> sintomas = query.getResultList();
+        JSONArray sintomasJson = new JSONArray();
+        for(Sintoma s : sintomas) {
+            Long sId = s.getId();
+            int ss = s.getSintoma();
+            Long ep = s.getEpisodioId();
+            JSONObject simple = new JSONObject();
+            simple.put("id", sId);
+            simple.put("sintoma", ss);
+            simple.put("episodioId", ep);
+            sintomasJson.put(simple);
+        }
+
+
+        return Results.ok(Json.toJson(result));
     }
 }
