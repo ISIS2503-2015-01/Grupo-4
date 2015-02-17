@@ -1,13 +1,10 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.*;
 import org.hibernate.Hibernate;
 import org.json.JSONArray;
 import org.json.simple.JSONObject;
-import play.api.libs.json.JsPath;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.Json;
@@ -443,11 +440,13 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result getNotification(Long idP) {
+
         return Results.TODO;
     }
 
     @Transactional
     public static Result getAnalisis(Long idP) {
+
         return Results.TODO;
     }
 

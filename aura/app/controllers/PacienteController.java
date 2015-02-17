@@ -144,6 +144,7 @@ public class PacienteController extends Controller {
         }
 
         Episodio.create(idUrl, fecha, intensidad,  horasSuenio, suenioRegular, lugar,  episodioEstreCercano,  pacienteID);
+
         return Results.created();
     }
 
