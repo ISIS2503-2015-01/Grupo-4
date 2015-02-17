@@ -354,7 +354,7 @@ public class EpisodioController extends Controller {
     public static Result updateActivity(long idp, long id1, long id2) {
         return Results.TODO;
     }
-    
+
     @Transactional
     public static Result getNotification(Long idP) {
         return Results.TODO;
