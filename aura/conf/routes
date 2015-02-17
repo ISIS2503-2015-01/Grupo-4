@@ -110,5 +110,7 @@ GET           /api/doctor                                          controllers.D
 # Actualizar información de un sólo doctor
 PUT           /api/doctor/:id                                      controllers.DoctorController.update(id : Long)
 
+########################################################################################################################
+# Aux routes
 # Map static resources from the /public folder to the /assets URL path
 GET           /assets/*file                                        controllers.Assets.at(path="/public", file)
