@@ -3,13 +3,8 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.*;
-import org.codehaus.jackson.map.ObjectMapper;
-import models.Episodio;
-import models.Paciente;
 import org.hibernate.Hibernate;
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.Json;
@@ -220,7 +215,7 @@ public class PacienteController extends Controller {
 
             }
         }
-        return Results.ok();
+        return Results.ok(Json.toJson(EpisodioController.create( paciente)));
     }
 
 }
