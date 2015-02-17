@@ -58,15 +58,15 @@ PUT           /api/paciente/:idp/episodio/:id1/sintoma/:id2        controllers.E
 # Alimento
 
 # Crear un alimento asociado a un episodio
-#POST          /api/episodio/:id1/alimento               controllers.EpisodioController.addFood(id1 : Long)
+POST          /api/episodio/:id1/alimento               controllers.EpisodioController.addFood(id1 : Long)
 # Borrar un alimento asociado a un episodio
-#DELETE        /api/episodio/:id1/alimento/:id2          controllers.EpisodioController.deleteFood(id1 : Long, id2 : Long)
+DELETE        /api/episodio/:id1/alimento/:id2          controllers.EpisodioController.deleteFood(id1 : Long, id2 : Long)
 # Ver un alimento de un episodio
-#GET           /api/episodio/:id1/alimento/:id2          controllers.EpisodioController.getOneFood(id1 : Long, id2 : Long)
+GET           /api/episodio/:id1/alimento/:id2          controllers.EpisodioController.getOneFood(id1 : Long, id2 : Long)
 # Ver todos los alimento asociados a un episodio
-#GET           /api/episodio/:id/alimento                controllers.EpisodioController.getAllFood(id : long)
+GET           /api/episodio/:id/alimento                controllers.EpisodioController.getAllFood(id : long)
 # Actualizar la información de un alimento asociado a un episodio
-#PUT           /api/episodio/:id1/alimento/:id2          controllers.EpisodioController.updateFood(id1 : Long, id2 : Long)
+PUT           /api/episodio/:id1/alimento/:id2          controllers.EpisodioController.updateFood(id1 : Long, id2 : Long)
 
 ########################################################################################################################
 # Actividad
