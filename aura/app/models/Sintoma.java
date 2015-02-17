@@ -5,9 +5,12 @@ package models;
  */
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Sintoma{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -15,11 +18,11 @@ public class Sintoma{
 
     private int sintoma;
 
-    private int episodioId;
+    private Long episodioId;
 
     public Sintoma() { }
 
-    public static Sintoma create(int sintoma, int episodioId) {
+    public static Sintoma create(int sintoma, Long episodioId) {
         Sintoma s = new Sintoma();
         s.sintoma = sintoma;
         s.episodioId = episodioId;
@@ -38,11 +41,11 @@ public class Sintoma{
         this.sintoma = sintoma;
     }
 
-    public int getEpisodioId() {
+    public Long getEpisodioId() {
         return episodioId;
     }
 
-    public void setEpisodioId(int episodioId) {
+    public void setEpisodioId(Long episodioId) {
         this.episodioId = episodioId;
     }
 }

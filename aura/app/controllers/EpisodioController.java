@@ -3,6 +3,7 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import models.Episodio;
 import models.Paciente;
+import models.Sintoma;
 import org.hibernate.Hibernate;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
@@ -159,12 +160,98 @@ public class EpisodioController extends Controller {
         return fecha;
     }
 
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result addSymptom(Long idp, Long id1) {
+
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            JsonNode j = Controller.request().body().asJson();
+
+            int sintoma = j.findPath("sintoma").asInt();
+
+            try {
+                Sintoma s = new Sintoma();
+                s.setEpisodioId(id1);
+                s.setSintoma(sintoma);
+                JPA.em().persist(s);
+
+            } catch (Exception x) {
+                x.printStackTrace();
+                return Results.ok("Error al crear el sintoma");
+            }
+            return Results.created();
+        }
+        return Results.ok("El Episodio no existe");
+    }
+
+    @Transactional
+    public static Result deleteSymptom(Long idp, Long id1, Long id2) {
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            Sintoma s = JPA.em().getReference(Sintoma.class, id2);
+            JPA.em().remove(s);
+            Results.ok();
+        }
+
+        return Results.ok("El Episodio no existe");
+    }
+
+    @Transactional
+    public static Result getOneSymptom(Long idp, Long id1, Long id2) {
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            Sintoma s = JPA.em().getReference(Sintoma.class, id2);
+            return Results.ok(Json.toJson(s));
+        }
+
+        return Results.ok("El Episodio no existe");
+    }
+
+    @Transactional
+    public static Result getAllSymptom(Long idp, Long id) {
+        Query query = JPA.em().createQuery("SELECT s FROM Sintoma s WHERE s.episodioId = :id");
+        query.setParameter("id", id);
+        Collection<Sintoma> sintomas = query.getResultList();
+        for(Sintoma s : sintomas) {
+            if(!s.getEpisodioId().equals(idp))
+                return Results.ok("Error en los parametros");
+        }
+        return Results.ok(Json.toJson(sintomas));
+    }
+
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result updateSymptom(Long idp, Long id1, Long id2) {
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            JsonNode j = Controller.request().body().asJson();
+
+            int sintoma = j.findPath("sintoma").asInt();
+
+            try {
+                Sintoma s = JPA.em().getReference(Sintoma.class, id2);
+                s.setSintoma(sintoma);
+            } catch (Exception x) {
+                x.printStackTrace();
+                return Results.ok("Error al actualizar el sintoma");
+            }
+            return Results.created();
+        }
+        return Results.ok("El Episodio no existe");
+    }
+
+    @Transactional
     public static Result getNotification(Long idP) {
-        return null;
+        return Results.TODO;
     }
 
+    @Transactional
     public static Result getAnalisis(Long idP) {
-        return null;
+        return Results.TODO;
     }
-
 }
