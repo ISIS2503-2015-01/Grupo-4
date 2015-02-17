@@ -4,6 +4,8 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import models.*;
 import org.codehaus.jackson.map.ObjectMapper;
+import models.Episodio;
+import models.Paciente;
 import org.hibernate.Hibernate;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -148,8 +150,9 @@ public class PacienteController extends Controller {
             e.printStackTrace();
         }
 
-        Episodio.create(idUrl, fecha, intensidad,  horasSuenio, suenioRegular, lugar,  episodioEstreCercano,  pacienteID);
-        return Results.created();
+
+
+        return Results.ok(Json.toJson(EpisodioController.create( pacienteID)));
     }
 
     @Transactional

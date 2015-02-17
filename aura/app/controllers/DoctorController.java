@@ -6,17 +6,17 @@ import models.Paciente;
 import org.hibernate.Hibernate;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
+import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
-import play.libs.Json;
 
+import javax.persistence.Query;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
-import javax.persistence.Query;
-import java.util.*;
 
 public class DoctorController extends Controller {
 
@@ -35,6 +35,7 @@ public class DoctorController extends Controller {
     
         String fechaNacimientoString = j.findPath("fechaNacimiento").asText();
         Date fechaNacimiento =  null;
+
         try
         {
             fechaNacimiento = formatoDelTexto.parse(fechaNacimientoString);

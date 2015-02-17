@@ -1,13 +1,10 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.*;
 import org.hibernate.Hibernate;
 import org.json.JSONArray;
 import org.json.simple.JSONObject;
-import play.api.libs.json.JsPath;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.Json;
@@ -54,14 +51,14 @@ public class EpisodioController extends Controller {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                return Results.ok("Error al crear el episodio");
+                return null;
             }
 
-            return Results.created();
-
+            getNotification(idPaciente,intensidad, horasSuenio, regularidad, localizacion, estres);
+            return Results.created(Json.toJson(getNotification(idPaciente,intensidad, horasSuenio, regularidad, localizacion, estres)));
         }
 
-        return Results.ok("El paciente no existe");
+        return Results.badRequest("No existe el paciente");
 
     }
 
@@ -442,12 +439,47 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result getNotification(Long idP) {
-        return Results.TODO;
+    public static Result getNotification(Long idP,int intensidad, int horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano) {
+        JSONArray not = new JSONArray();
+            String inten="",suenio="",est="";
+            String mensaje = "Debe tener en cuenta las siguientes consideraciones:";
+            if(intensidad>7){
+             inten="La intensidad de su dolor es muy fuerte. Considere acudir al médico";
+            }
+            else if(intensidad>4&&intensidad<=7){
+                 inten="La intensidad de su dolor es estandar. Procure reposar para evitar que empeore.";
+            }
+            else{
+                 inten="La intensidad de su dolor es suave.";
+            }
+            if(horasSuenio>8){
+                 suenio="Sus horas de sueño son adecuadas y probablemente no sean la causa da sus migrañas";
+            }
+        else if(horasSuenio>5&&horasSuenio<=8){
+                 suenio="Sus horas de sueño son suficientes, pero debería considerar dormir un poco más.";
+            }
+        else{
+                 suenio="Sus horas de sueño son muy bajas y causan que tenga migraña.";
+            }
+        if(episodioEstreCercano){
+             est="El estres produce dolores de cabeza muy fuertes, y es posible que esto le cause migrañas";
+        }
+        else{
+             est="";
+        }
+
+        JSONObject simple = new JSONObject();
+        simple.put("mensaje",mensaje);
+        simple.put("inten",inten);
+        simple.put("suenio",suenio);
+        simple.put("est",est);
+            not.put(simple);
+        return Results.ok(Json.toJson(simple));
     }
 
     @Transactional
     public static Result getAnalisis(Long idP) {
+
         return Results.TODO;
     }
 
