@@ -97,8 +97,9 @@ public class DoctorController extends Controller {
         return Results.created();
     }
 
+    /*
     @Transactional
-    public static Result getAll(Long id) {
+    public static Result getAllEpisodes(Long id) {
         Query query = JPA.em().createQuery("SELECT e FROM Episodio e WHERE e.pacienteID = :id");
         query.setParameter("id", id);
         List episodios = query.getResultList();
@@ -115,15 +116,13 @@ public class DoctorController extends Controller {
         query.setParameter("idP", idP);
         Collection<Episodio> episodios = query.getResultList();
         return Results.ok(Json.toJson(episodios));
-    }
+    }*/
 
     @Transactional
-    public static Result getOne(long id1, long id2) {
-        Query query = JPA.em().createQuery("SELECT e FROM Episodio e WHERE e.pacienteID = :id1 and e.id = :id2");
-        query.setParameter("id1", id1);
-        query.setParameter("id2", id2);
-        Collection<Episodio> episodios = query.getResultList();
-        return Results.ok(Json.toJson(episodios));
+    public static Result getOne(Long id) {
+        Paciente p = JPA.em().getReference(Paciente.class, id);
+        Hibernate.initialize(Paciente.class);
+        return Results.ok(Json.toJson(p));
     }
     
     @Transactional
