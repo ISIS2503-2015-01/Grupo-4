@@ -340,20 +340,6 @@ public class EpisodioController extends Controller {
         if(e != null && e.getPacienteID().equals(idp)) {
             JsonNode j = Controller.request().body().asJson();
 
-            /*
-            private Integer descripcion;
-
-            private Integer intensidad;
-
-            private Integer lugar;
-
-            private Integer clima;
-
-            private Boolean hidratacion;
-
-            private int episodioId;
-             */
-
             int descripcion = j.findPath("descripcion").asInt();
             int intensidad = j.findPath("intensidad").asInt();
             int lugar = j.findPath("lugar").asInt();
@@ -361,15 +347,19 @@ public class EpisodioController extends Controller {
             boolean hidratacion = j.findPath("hidratacion").asBoolean();
 
             try {
+
                 ActividadFisica a = new ActividadFisica();
                 a.setClima(clima);
                 a.setDescripcion(descripcion);
+                a.setIntensidad(intensidad);
+                a.setLugar(lugar);
+                a.setHidratacion(hidratacion);
                 a.setEpisodioId(id1);
 
 
             } catch (Exception x) {
                 x.printStackTrace();
-                return Results.ok("Error al crear el alimento");
+                return Results.ok("Error al crear la actividad");
             }
             return Results.created();
         }
@@ -377,7 +367,15 @@ public class EpisodioController extends Controller {
     }
 
     public static Result deleteActivity(long idp, long id1, long id2) {
-        return Results.TODO;
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            ActividadFisica a = JPA.em().getReference(ActividadFisica.class, id2);
+            JPA.em().remove(a);
+            Results.ok();
+        }
+
+        return Results.ok("El Episodio no existe");
     }
 
     public static Result getOneActivity(long idp, long id1, long id2) {
