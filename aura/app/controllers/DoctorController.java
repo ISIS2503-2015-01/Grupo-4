@@ -136,8 +136,8 @@ public class DoctorController extends Controller {
     @Transactional
     public static Result getAll() {
         Query query = JPA.em().createQuery("SELECT d FROM Doctor d");
-        Collection<Paciente> pacientes = query.getResultList();
-        return Results.ok(Json.toJson(pacientes));
+        Collection<Doctor> doctores = query.getResultList();
+        return Results.ok(Json.toJson(doctores));
     }
 
 
