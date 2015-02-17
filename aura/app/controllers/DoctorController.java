@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.Doctor;
+import models.Episodio;
 import models.Paciente;
 import org.hibernate.Hibernate;
 import play.db.jpa.JPA;
@@ -17,6 +18,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 public class DoctorController extends Controller {
 
@@ -24,8 +27,14 @@ public class DoctorController extends Controller {
     @BodyParser.Of(BodyParser.Json.class)
     public static Result create()
     {
+
         JsonNode j = Controller.request().body().asJson();
+        //Para realizar pruebas de escalabilidad y desempeño, des comentar las siguientes dos líneas y comentar la tercera
+        //JSON: [{"nombre":"Doctor","contrasenia":"clave","fechaNacimiento":"1992-04-04","Email":"doctor@gmail.com","genero":"0","especialidad":"0"}]
+        //Random random = new Random();
+        //long docIdentidad = Math.abs(random.nextLong()*1000000000);
         Long docIdentidad = Long.parseLong(j.findPath("docIdentidad").asText());
+
         String nombre = j.findPath("nombre").asText();
         String email=j.findPath("Email").asText();
         String password = j.findPath("contrasenia").asText();
@@ -88,7 +97,6 @@ public class DoctorController extends Controller {
             e.printStackTrace();
         }
 
-        Paciente p = JPA.em().getReference(Paciente.class, id);
         Doctor d = JPA.em().getReference(Doctor.class, docIdentidad);
         d.setdocIdentidad(docIdentidad);
         d.setNombre(nombre);
@@ -101,12 +109,11 @@ public class DoctorController extends Controller {
         return Results.created();
     }
 
-    /*
     @Transactional
     public static Result getAllEpisodes(Long id) {
         Query query = JPA.em().createQuery("SELECT e FROM Episodio e WHERE e.pacienteID = :id");
         query.setParameter("id", id);
-        List episodios = query.getResultList();
+        List<Episodio> episodios = query.getResultList();
         return Results.ok(Json.toJson(episodios));
     }
 
@@ -120,21 +127,38 @@ public class DoctorController extends Controller {
         query.setParameter("idP", idP);
         Collection<Episodio> episodios = query.getResultList();
         return Results.ok(Json.toJson(episodios));
-    }*/
+    }
 
     @Transactional
     public static Result getOne(Long id) {
-        Paciente p = JPA.em().getReference(Paciente.class, id);
-        Hibernate.initialize(Paciente.class);
+        //Para realizar pruebas de escalabilidad y desempeño, des comentar las siguientes dos líneas y comentar la tercera
+        //long idTest = 1;
+        //Doctor p = JPA.em().getReference(Doctor.class, idTest);
+        Doctor p = JPA.em().getReference(Doctor.class, id);
+        Hibernate.initialize(Doctor.class);
+        //return Results.ok(Json.toJson(p));
         return Results.ok(Json.toJson(p));
     }
     
     @Transactional
+
     public static Result getAll() {
         Query query = JPA.em().createQuery("SELECT d FROM Doctor d");
-        Collection<Paciente> pacientes = query.getResultList();
-        return Results.ok(Json.toJson(pacientes));
+        Collection<Doctor> doctor = query.getResultList();
+        return Results.ok(Json.toJson(doctor));
     }
 
+    private static Date parseDate(String representation) {
+        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date fecha = null;
+
+        try {
+            fecha = formatoDelTexto.parse(representation);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return fecha;
+    }
 
 }
