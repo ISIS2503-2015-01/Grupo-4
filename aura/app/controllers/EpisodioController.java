@@ -1,10 +1,7 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import models.Alimento;
-import models.Episodio;
-import models.Paciente;
-import models.Sintoma;
+import models.*;
 import org.hibernate.Hibernate;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
@@ -338,7 +335,45 @@ public class EpisodioController extends Controller {
     }
 
     public static Result addActivity(long idp, long id1) {
-        return Results.TODO;
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            JsonNode j = Controller.request().body().asJson();
+
+            /*
+            private Integer descripcion;
+
+            private Integer intensidad;
+
+            private Integer lugar;
+
+            private Integer clima;
+
+            private Boolean hidratacion;
+
+            private int episodioId;
+             */
+
+            int descripcion = j.findPath("descripcion").asInt();
+            int intensidad = j.findPath("intensidad").asInt();
+            int lugar = j.findPath("lugar").asInt();
+            int clima = j.findPath("clima").asInt();
+            boolean hidratacion = j.findPath("hidratacion").asBoolean();
+
+            try {
+                ActividadFisica a = new ActividadFisica();
+                a.setClima(clima);
+                a.setDescripcion(descripcion);
+                a.setEpisodioId(id1);
+
+
+            } catch (Exception x) {
+                x.printStackTrace();
+                return Results.ok("Error al crear el alimento");
+            }
+            return Results.created();
+        }
+        return Results.ok("El Episodio no existe");
     }
 
     public static Result deleteActivity(long idp, long id1, long id2) {
