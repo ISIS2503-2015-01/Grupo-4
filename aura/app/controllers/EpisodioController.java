@@ -390,6 +390,12 @@ public class EpisodioController extends Controller {
         return Results.TODO;
     }
 
+    /*
+    public static getFullEpisode(long idp, long idE) {
+        return Results.TODO;
+    }
+    */
+
     @Transactional
     public static Result getNotification(Long idP) {
         return Results.TODO;
