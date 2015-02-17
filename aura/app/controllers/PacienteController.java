@@ -2,6 +2,7 @@ package controllers;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
+import models.Episodio;
 import models.Paciente;
 import org.hibernate.Hibernate;
 import play.db.jpa.JPA;
@@ -12,12 +13,11 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
 
-import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
-import static models.Paciente.*;
+import java.util.Collection;
+import java.util.Date;
 
 
 public class PacienteController extends Controller {
@@ -115,8 +115,9 @@ public class PacienteController extends Controller {
         return Results.ok(Json.toJson(pacientes));
     }
 
-    public void registrarEpisodioEscrito(int intensidad, Double horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano, int myId) {
-
+    public static Result registrarEpisodioEscrito(Long idUrl, Date fechaPublicacion, int intensidad, int horasSuenio, boolean suenioRegular, int lugar, boolean episodioEstreCercano, Long pacienteID) {
+        Episodio.create(idUrl, fechaPublicacion, intensidad,  horasSuenio, suenioRegular, lugar,  episodioEstreCercano,  pacienteID);
+        return Results.created();
     }
 
 
