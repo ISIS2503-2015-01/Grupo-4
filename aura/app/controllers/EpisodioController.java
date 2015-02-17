@@ -55,7 +55,7 @@ public class EpisodioController extends Controller {
             }
 
            //getNotification(idPaciente, intensidad, horasSuenio, regularidad, localizacion, estres);
-            return Results.created(Json.toJson(getNotification(idPaciente,intensidad, horasSuenio, regularidad, localizacion, estres)));
+            return Results.created(Json.toJson(getNotification(idPaciente, intensidad, horasSuenio, regularidad, localizacion, estres)));
         }
 
         return Results.badRequest("No existe el paciente");
@@ -136,6 +136,18 @@ public class EpisodioController extends Controller {
         }
 
         return Results.ok("El paciente no existe");
+    }
+
+    @Transactional
+    public static Collection<Episodio> getPerDatesAnalisis()
+    {
+        Date d1 = parseDate(f1);
+        Date d2 = parseDate(f2);
+        Query query = JPA.em().createQuery("SELECT e FROM Episodio e WHERE e.fechaPublicacion >= :d1 AND e.fechaPublicacion <= :d2");
+        query.setParameter("d1", d1);
+        query.setParameter("d2", d2);
+        Collection<Episodio> episodios = query.getResultList();
+        return episodios;
     }
 
     @Transactional
