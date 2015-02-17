@@ -34,6 +34,7 @@ public class EpisodioController extends Controller {
         Paciente p = JPA.em().getReference(Paciente.class, idPaciente);
 
         if(p != null) {
+
             JsonNode j = Controller.request().body().asJson();
 
             String idUrl = j.findPath("url").asText();
@@ -45,7 +46,7 @@ public class EpisodioController extends Controller {
             boolean estres = j.findPath("estres").asBoolean();
 
             try {
-            //crea la fecha apenas llega
+
                 Episodio e = Episodio.create(url, new Date(), intensidad, horasSuenio, regularidad, localizacion, estres, idPaciente);
                 JPA.em().persist(e);
 
@@ -139,6 +140,7 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result getPerDates(Long idP, String f1, String f2) {
+
         Date d1 = parseDate(f1);
         Date d2 = parseDate(f2);
         Query query = JPA.em().createQuery("SELECT e FROM Episodio e WHERE e.fechaPublicacion >= :d1 AND e.fechaPublicacion <= :d2");
