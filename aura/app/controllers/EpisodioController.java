@@ -344,4 +344,24 @@ public class EpisodioController extends Controller {
     public static Result getAnalisis(Long idP) {
         return Results.TODO;
     }
+
+    public static Result addActivity(long idp, long id1) {
+        return Results.TODO;
+    }
+
+    public static Result deleteActivity(long idp, long id1, long id2) {
+        return Results.TODO;
+    }
+
+    public static Result getOneActivity(long idp, long id1, long id2) {
+        return Results.TODO;
+    }
+
+    public static Result getAllActivity(long idp, long id) {
+        return Results.TODO;
+    }
+
+    public static Result updateActivity(long idp, long id1, long id2) {
+        return Results.TODO;
+    }
 }
