@@ -6,6 +6,7 @@
 GET           /                                                      controllers.Application.index()
 
 ########################################################################################################################
+
 # Paciente
 
 # Crea un nuevo paciente
@@ -20,7 +21,9 @@ GET           /api/paciente                                          controllers
 PUT           /api/paciente/:id                                      controllers.PacienteController.update(id : Long)
 # Ver info completa de un episodio
 POST          /api/paciente/episodio                                 controllers.PacienteController.createEpisode()
+
 ########################################################################################################################
+
 # Episodio
 
 # Ver información de un episodio en fomra completa dado el id
