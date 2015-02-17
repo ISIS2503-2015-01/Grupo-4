@@ -92,6 +92,7 @@ public class EpisodioController extends Controller {
         if(p.getPacienteID().equals(id1)) {
             JPA.em().remove(p);
             return Results.ok();
+
         }
         return Results.ok("Error de argumentos");
     }
