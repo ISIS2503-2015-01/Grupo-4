@@ -3,39 +3,39 @@
 # ~~~~
 
 # Home page
-GET           /                                                    controllers.Application.index()
+GET           /                                                     controllers.Application.index()
 
 ########################################################################################################################
 # Paciente
 
 # Crea un nuevo paciente
-POST          /api/paciente                                        controllers.PacienteController.create()
+POST          /api/paciente                                         controllers.PacienteController.create()
 # Ver información de un paciente
-GET           /api/paciente/:id                                    controllers.PacienteController.getOne(id : Long)
+GET           /api/paciente/:id                                     controllers.PacienteController.getOne(id : Long)
 # Eliminar un paciente dado el id
-DELETE        /api/paciente/:id                                    controllers.PacienteController.delete(id : Long)
+DELETE        /api/paciente/:id                                     controllers.PacienteController.delete(id : Long)
 # Ver todos los pacientes
-GET           /api/paciente                                        controllers.PacienteController.getAll()
+GET           /api/paciente                                         controllers.PacienteController.getAll()
 # Actualizar información de un sólo paciente
-PUT           /api/paciente/:id                                    controllers.PacienteController.update(id : Long)
+PUT           /api/paciente/:id                                     controllers.PacienteController.update(id : Long)
 
 ########################################################################################################################
 # Episodio
 
 # Crear un nuevo episodio para ése paciente
-POST          /api/paciente/:id/episodio                           controllers.EpisodioController.create(id : Long)
+POST          /api/paciente/:id/episodio                            controllers.EpisodioController.create(id : Long)
 # Ver un episodio de un paciente
-GET           /api/paciente/:id1/episodio/:id2                     controllers.EpisodioController.getOne(id1 : Long, id2 : Long)
+GET           /api/paciente/:id1/episodio/:id2                      controllers.EpisodioController.getOne(id1 : Long, id2 : Long)
 # Ver un episodio específico
-GET           /api/episodio/:id                                    controllers.EpisodioController.get(id : Long)
+GET           /api/episodio/:id                                     controllers.EpisodioController.get(id : Long)
 # Eliminar episodio
-DELETE        /api/paciente/:id1/episodio/:id2                     controllers.EpisodioController.delete(id1 : Long, id2 : Long)
+DELETE        /api/paciente/:id1/episodio/:id2                      controllers.EpisodioController.delete(id1 : Long, id2 : Long)
 # Ver episodios de un paciente
-GET           /api/paciente/:id/episodio                           controllers.EpisodioController.getAll(id : Long)
+GET           /api/paciente/:id/episodio                            controllers.EpisodioController.getAll(id : Long)
 # Actualizar un episodio
-PUT           /api/paciente/:id1/episodio/:id2                     controllers.EpisodioController.update(id1 : Long, id2 : Long)
+PUT           /api/paciente/:id1/episodio/:id2                      controllers.EpisodioController.update(id1 : Long, id2 : Long)
 # Dar episodios de un paciente entre dos fechas, el formato de las fechas es YYYY-MM-dd
-GET           /api/paciente/:id/episodio/:f1/:f2                   controllers.EpisodioController.getPerDates(id : Long, f1 : String, f2 : String)
+GET           /api/paciente/:id/episodio/:f1/:f2                    controllers.EpisodioController.getPerDates(id : Long, f1 : String, f2 : String)
 
 ########################################################################################################################
 # Aux episodio (Sintoma, Alimento, Actividad, Medicamento)
@@ -44,73 +44,73 @@ GET           /api/paciente/:id/episodio/:f1/:f2                   controllers.E
 # Sintoma
 
 # Crear un sintoma asociado a un episodio
-POST          /api/paciente/:idp/episodio/:id1/sintoma             controllers.EpisodioController.addSymptom(idp : Long, id1 : Long)
+POST          /api/paciente/:idp/episodio/:id1/sintoma              controllers.EpisodioController.addSymptom(idp : Long, id1 : Long)
 # Borrar un sintoma asociado a un episodio
-DELETE        /api/paciente/:idp/episodio/:id1/sintoma/:id2        controllers.EpisodioController.deleteSymptom(idp : Long, id1 : Long, id2 : Long)
+DELETE        /api/paciente/:idp/episodio/:id1/sintoma/:id2         controllers.EpisodioController.deleteSymptom(idp : Long, id1 : Long, id2 : Long)
 # Ver un sintoma de un episodio
-GET           /api/paciente/:idp/episodio/:id1/sintoma/:id2        controllers.EpisodioController.getOneSymptom(idp : Long, id1 : Long, id2 : Long)
+GET           /api/paciente/:idp/episodio/:id1/sintoma/:id2         controllers.EpisodioController.getOneSymptom(idp : Long, id1 : Long, id2 : Long)
 # Ver todos los sintomas asociados a un episodio
-GET           /api/paciente/:idp/episodio/:id/sintoma              controllers.EpisodioController.getAllSymptom(idp : Long, id : Long)
+GET           /api/paciente/:idp/episodio/:id/sintoma               controllers.EpisodioController.getAllSymptom(idp : Long, id : Long)
 # Actualizar la información de un sintoma asociado a un episodio
-PUT           /api/paciente/:idp/episodio/:id1/sintoma/:id2        controllers.EpisodioController.updateSymptom(idp : Long, id1 : Long, id2 : Long)
+PUT           /api/paciente/:idp/episodio/:id1/sintoma/:id2         controllers.EpisodioController.updateSymptom(idp : Long, id1 : Long, id2 : Long)
 
 ########################################################################################################################
 # Alimento
 
 # Crear un alimento asociado a un episodio
-POST          /api/episodio/:id1/alimento               controllers.EpisodioController.addFood(id1 : Long)
+POST          /api/paciente/:idp/episodio/:id1/alimento             controllers.EpisodioController.addFood(idp : Long, id1 : Long)
 # Borrar un alimento asociado a un episodio
-DELETE        /api/episodio/:id1/alimento/:id2          controllers.EpisodioController.deleteFood(id1 : Long, id2 : Long)
+DELETE        /api/paciente/:idp/episodio/:id1/alimento/:id2        controllers.EpisodioController.deleteFood(idp : Long, id1 : Long, id2 : Long)
 # Ver un alimento de un episodio
-GET           /api/episodio/:id1/alimento/:id2          controllers.EpisodioController.getOneFood(id1 : Long, id2 : Long)
+GET           /api/paciente/:idp/episodio/:id1/alimento/:id2        controllers.EpisodioController.getOneFood(idp : Long, id1 : Long, id2 : Long)
 # Ver todos los alimento asociados a un episodio
-GET           /api/episodio/:id/alimento                controllers.EpisodioController.getAllFood(id : long)
+GET           /api/paciente/:idp/episodio/:id/alimento              controllers.EpisodioController.getAllFood(idp : Long, id : long)
 # Actualizar la información de un alimento asociado a un episodio
-PUT           /api/episodio/:id1/alimento/:id2          controllers.EpisodioController.updateFood(id1 : Long, id2 : Long)
+PUT           /api/paciente/:idp/episodio/:id1/alimento/:id2        controllers.EpisodioController.updateFood(idp : Long, id1 : Long, id2 : Long)
 
 ########################################################################################################################
 # Actividad
 
 # Crear una actividad asociada a un episodio
-#POST          /api/episodio/:id1/actividad              controllers.EpisodioController.addActivity(id1 : Long)
+#POST          /api/paciente/:idp/episodio/:id1/actividad              controllers.EpisodioController.addActivity(id1 : Long)
 # Borrar una actividad asociada a un episodio
-#DELETE        /api/episodio/:id1/actividad/:id2         controllers.EpisodioController.deleteActivity(id1 : Long, id2 : Long)
+#DELETE        /api/paciente/:idp/episodio/:id1/actividad/:id2         controllers.EpisodioController.deleteActivity(id1 : Long, id2 : Long)
 # Ver una actividad de un episodio
-#GET           /api/episodio/:id1/actividad/:id2         controllers.EpisodioController.getOneActivity(id1 : Long, id2 : Long)
+#GET           /api/paciente/:idp/episodio/:id1/actividad/:id2         controllers.EpisodioController.getOneActivity(id1 : Long, id2 : Long)
 # Ver todos las actividades asociadas a un episodio
-#GET           /api/episodio/:id/actividad               controllers.EpisodioController.getAllActivity(id : long)
+#GET           /api/paciente/:idp/episodio/:id/actividad               controllers.EpisodioController.getAllActivity(id : long)
 # Actualizar la información de una actividad asociada a un episodio
-#PUT           /api/episodio/:id1/actividad/:id2         controllers.EpisodioController.updateActivity(id1 : Long, id2 : Long)
+#PUT           /api/paciente/:idp/episodio/:id1/actividad/:id2         controllers.EpisodioController.updateActivity(id1 : Long, id2 : Long)
 
 ########################################################################################################################
 # Medicamento
 
 # Crear una medicina asociada a un episodio
-#POST          /api/episodio/:id1/medicina                controllers.EpisodioController.addMedicine(id1 : Long)
+#POST          /api/paciente/:idp/episodio/:id1/medicina                controllers.EpisodioController.addMedicine(id1 : Long)
 # Borrar una medicina asociado a un episodio
-#DELETE        /api/episodio/:id1/medicina/:id2           controllers.EpisodioController.deleteMedicine(id1 : Long, id2 : Long)
+#DELETE        /api/paciente/:idp/episodio/:id1/medicina/:id2           controllers.EpisodioController.deleteMedicine(id1 : Long, id2 : Long)
 # Ver una medicina de un episodio
-#GET           /api/episodio/:id1/medicina/:id2           controllers.EpisodioController.getOneMedicine(id1 : Long, id2 : Long)
+#GET           /api/paciente/:idp/episodio/:id1/medicina/:id2           controllers.EpisodioController.getOneMedicine(id1 : Long, id2 : Long)
 # Ver todos las medicinas asociadas a un episodio
-#GET           /api/episodio/:id/medicina                 controllers.EpisodioController.getAllMedicine(id : long)
+#GET           /api/paciente/:idp/episodio/:id/medicina                 controllers.EpisodioController.getAllMedicine(id : long)
 # Actualizar la información de una medicina asociada a un episodio
-#PUT           /api/episodio/:id1/medicina/:id2           controllers.EpisodioController.updateMedicine(id1 : Long, id2 : Long)
+#PUT           /api/paciente/:idp/episodio/:id1/medicina/:id2           controllers.EpisodioController.updateMedicine(id1 : Long, id2 : Long)
 
 ########################################################################################################################
 # Doctor
 
 # Crea un nuevo doctor
-POST          /api/doctor                                          controllers.DoctorController.create()
+POST          /api/doctor                                           controllers.DoctorController.create()
 # Ver información de un doctor
-GET           /api/doctor/:id                                      controllers.DoctorController.getOne(id : Long)
+GET           /api/doctor/:id                                       controllers.DoctorController.getOne(id : Long)
 # Eliminar un doctor dado el id
-DELETE        /api/doctor/:id                                      controllers.DoctorController.delete(id : Long)
+DELETE        /api/doctor/:id                                       controllers.DoctorController.delete(id : Long)
 # Ver todos los doctores
-GET           /api/doctor                                          controllers.DoctorController.getAll()
+GET           /api/doctor                                           controllers.DoctorController.getAll()
 # Actualizar información de un sólo doctor
-PUT           /api/doctor/:id                                      controllers.DoctorController.update(id : Long)
+PUT           /api/doctor/:id                                       controllers.DoctorController.update(id : Long)
 
 ########################################################################################################################
 # Aux routes
 # Map static resources from the /public folder to the /assets URL path
-GET           /assets/*file                                        controllers.Assets.at(path="/public", file)
+GET           /assets/*file                                         controllers.Assets.at(path="/public", file)

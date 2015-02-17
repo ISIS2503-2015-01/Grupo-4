@@ -266,7 +266,7 @@ public class EpisodioController extends Controller {
 
             } catch (Exception x) {
                 x.printStackTrace();
-                return Results.ok("Error al crear el sintoma");
+                return Results.ok("Error al crear el alimento");
             }
             return Results.created();
         }
