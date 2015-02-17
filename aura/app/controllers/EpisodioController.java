@@ -446,22 +446,29 @@ public class EpisodioController extends Controller {
         return Results.TODO;
     }
 
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
     public static Result addMedicine(long idp, long id1) {
         return Results.TODO;
     }
 
+    @Transactional
     public static Result deleteMedicine(long idp, long id1, long id2) {
         return Results.TODO;
     }
 
+    @Transactional
     public static Result getOneMedicine(long idp, long id1, long id2) {
         return Results.TODO;
     }
 
+    @Transactional
     public static Result getAllMedicine(long idp, long id) {
         return Results.TODO;
     }
 
+    @Transactional
+    @BodyParser.Of(BodyParser.Json.class)
     public static Result updateMedicine(long idp, long id1, long id2) {
         return Results.TODO;
     }
