@@ -72,15 +72,15 @@ PUT           /api/paciente/:idp/episodio/:id1/alimento/:id2        controllers.
 # Actividad
 
 # Crear una actividad asociada a un episodio
-#POST          /api/paciente/:idp/episodio/:id1/actividad              controllers.EpisodioController.addActivity(id1 : Long)
+POST          /api/paciente/:idp/episodio/:id1/actividad              controllers.EpisodioController.addActivity(idp : Long, id1 : Long)
 # Borrar una actividad asociada a un episodio
-#DELETE        /api/paciente/:idp/episodio/:id1/actividad/:id2         controllers.EpisodioController.deleteActivity(id1 : Long, id2 : Long)
+DELETE        /api/paciente/:idp/episodio/:id1/actividad/:id2         controllers.EpisodioController.deleteActivity(idp : Long, id1 : Long, id2 : Long)
 # Ver una actividad de un episodio
-#GET           /api/paciente/:idp/episodio/:id1/actividad/:id2         controllers.EpisodioController.getOneActivity(id1 : Long, id2 : Long)
+GET           /api/paciente/:idp/episodio/:id1/actividad/:id2         controllers.EpisodioController.getOneActivity(idp : Long, id1 : Long, id2 : Long)
 # Ver todos las actividades asociadas a un episodio
-#GET           /api/paciente/:idp/episodio/:id/actividad               controllers.EpisodioController.getAllActivity(id : long)
+GET           /api/paciente/:idp/episodio/:id/actividad               controllers.EpisodioController.getAllActivity(idp : Long, id : Long)
 # Actualizar la información de una actividad asociada a un episodio
-#PUT           /api/paciente/:idp/episodio/:id1/actividad/:id2         controllers.EpisodioController.updateActivity(id1 : Long, id2 : Long)
+PUT           /api/paciente/:idp/episodio/:id1/actividad/:id2         controllers.EpisodioController.updateActivity(idp : Long, id1 : Long, id2 : Long)
 
 ########################################################################################################################
 # Medicamento

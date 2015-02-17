@@ -275,23 +275,64 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result deleteFood(long idp, long id1, long id2) {
-        return Results.TODO;
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            Alimento a = JPA.em().getReference(Alimento.class, id2);
+            JPA.em().remove(a);
+            Results.ok();
+        }
+
+        return Results.ok("El Episodio no existe");
     }
 
     @Transactional
     public static Result getOneFood(long idp, long id1, long id2) {
-        return Results.TODO;
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            Alimento a = JPA.em().getReference(Alimento.class, id2);
+            return Results.ok(Json.toJson(a));
+        }
+
+        return Results.ok("El Episodio no existe");
     }
 
     @Transactional
     public static Result getAllFood(long idp, long id) {
-        return Results.TODO;
+        Query query = JPA.em().createQuery("SELECT a FROM Alimento a WHERE a.episodioId = :id");
+        query.setParameter("id", id);
+        Collection<Sintoma> sintomas = query.getResultList();
+        for(Sintoma s : sintomas) {
+            if(!s.getEpisodioId().equals(idp))
+                return Results.ok("Error en los parametros");
+        }
+        return Results.ok(Json.toJson(sintomas));
     }
 
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result updateFood(long idp, long id1, long id2) {
-        return Results.TODO;
+        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        if(e != null && e.getPacienteID().equals(idp)) {
+            JsonNode j = Controller.request().body().asJson();
+
+            String nombre = j.findPath("nombre").asText();
+            int cantidad = j.findPath("cantidad").asInt();
+
+            try {
+                Alimento a = JPA.em().getReference(Alimento.class, id2);
+                a.setCantidad(cantidad);
+                a.setNombre(nombre);
+
+            } catch (Exception x) {
+                x.printStackTrace();
+                return Results.ok("Error al actualizar el alimento");
+            }
+            return Results.created();
+        }
+        return Results.ok("El Episodio no existe");
     }
 
     @Transactional
