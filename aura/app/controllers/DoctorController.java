@@ -128,7 +128,10 @@ public class DoctorController extends Controller {
 
     @Transactional
     public static Result getOne(Long id) {
-        Paciente p = JPA.em().getReference(Paciente.class, id);
+        //Para realizar pruebas de escalabilidad y desempeño, des comentar las siguientes dos líneas y comentar la tercera
+        //int idTest = 1;
+        //Doctor p = JPA.em().getReference(Doctor.class, idTest);
+        Doctor p = JPA.em().getReference(Doctor.class, id);
         Hibernate.initialize(Doctor.class);
         return Results.ok(Json.toJson(p));
     }
