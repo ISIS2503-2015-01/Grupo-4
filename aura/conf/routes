@@ -99,12 +99,16 @@ PUT           /api/episodio/:id1/sintoma/:id2           controllers.EpisodioCont
 ########################################################################################################################
 # Doctor
 
-
-
-
-
-
-
+# Crea un nuevo doctor
+POST          /api/doctor                               controllers.DoctorController.create()
+# Ver información de un doctor
+GET           /api/doctor/:id                           controllers.DoctorController.getOne(id : Long)
+# Eliminar un doctor dado el id
+DELETE        /api/doctor/:id                           controllers.DoctorController.delete(id : Long)
+# Ver todos los doctores
+GET           /api/doctor                               controllers.DoctorController.getAll()
+# Actualizar información de un sólo doctor
+PUT           /api/doctor/:id                           controllers.DoctorController.update(id : Long)
 
 
 # Map static resources from the /public folder to the /assets URL path
