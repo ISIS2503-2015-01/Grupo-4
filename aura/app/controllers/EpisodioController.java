@@ -500,6 +500,7 @@ public class EpisodioController extends Controller {
         if(!e.getPacienteID().equals(idP))
             return null;
         ObjectNode result = Json.newObject();
-        result.put()
+        result.put("id", id);
+        return Results.ok(result);
     }
 }
