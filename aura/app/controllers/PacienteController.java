@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import models.*;
 import org.hibernate.Hibernate;
 import org.json.JSONException;
-import org.json.simple.JSONObject;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.Json;
@@ -117,39 +116,6 @@ public class PacienteController extends Controller {
         return Results.ok(Json.toJson(pacientes));
     }
 
-    @Transactional
-    @BodyParser.Of(BodyParser.Json.class)
-    public static Result registrarEpisodio() {
-        System.out.println("----------------------------");
-        JsonNode j = Controller.request().body().asJson();
-
-        System.out.println("++++++++++++----++++++++");
-        Long idUrl=Long.parseLong(j.findPath("idUrl").asText());
-
-        String fechaPublicacion=j.findPath("fechaPublicacion").asText();
-        int intensidad=Integer.parseInt(j.findPath("intensidad").asText());
-        int horasSuenio =Integer.parseInt(j.findPath("horasSuenio").asText());
-        boolean suenioRegular =j.findPath("suenioRegular").asText().equals("1");
-        int lugar =Integer.parseInt(j.findPath("lugar").asText());
-        boolean episodioEstreCercano =j.findPath("episodioEstreCercano").asText().equals("1");
-        Long pacienteID=Long.parseLong(j.findPath("pacienteID").asText());
-
-
-        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-
-        Date fecha = null;
-
-
-        try {
-            fecha = formatoDelTexto.parse(fechaPublicacion);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
-
-        return Results.ok(Json.toJson(EpisodioController.create(pacienteID)));
-    }
 
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
@@ -226,12 +192,7 @@ public class PacienteController extends Controller {
 
             }
         }
-
-        JSONObject result = new org.json.simple.JSONObject();
-        result.put("nombre", "Carlos");
-        result.put("apellido", "Bedoya");
-
-        return Results.ok(Json.toJson(result));
+        return Results.ok(Json.toJson(EpisodioController.getNotification(paciente, intensidad, horasSuenio, regular, localizacion, estres)));
     }
 
 }
