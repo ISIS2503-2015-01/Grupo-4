@@ -23,7 +23,7 @@ PUT           /api/paciente/:id                                      controllers
 # Episodio
 
 # Ver información de un episodio dado el id
-GET           /api/episodio(:id                                      controllers.EpisodioController.fetch(id : Long)
+GET           /api/paciente/:idp/episodio(:id                        controllers.EpisodioController.fetch(idP : Long, id : Long)
 # Crear un nuevo episodio para ése paciente
 POST          /api/paciente/:id/episodio                             controllers.EpisodioController.create(id : Long)
 # Ver un episodio de un paciente
