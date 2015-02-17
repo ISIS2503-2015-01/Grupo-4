@@ -19,6 +19,7 @@ GET           /api/paciente                                         controllers.
 # Actualizar información de un sólo paciente
 PUT           /api/paciente/:id                                     controllers.PacienteController.update(id : Long)
 
+
 ########################################################################################################################
 # Episodio
 
