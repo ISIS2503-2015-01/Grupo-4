@@ -1,9 +1,12 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.*;
 import org.hibernate.Hibernate;
+import org.json.JSONArray;
+import org.json.simple.JSONObject;
 import play.api.libs.json.JsPath;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
@@ -71,7 +74,7 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result getOne(long id1, long id2) {
+    public static Result getOne(Long id1, Long id2) {
         Query query = JPA.em().createQuery("SELECT e FROM Episodio e WHERE e.pacienteID = :id1 and e.id = :id2");
         query.setParameter("id1", id1);
         query.setParameter("id2", id2);
@@ -80,7 +83,7 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result get(long id) {
+    public static Result get(Long id) {
         Episodio p = JPA.em().getReference(Episodio.class, id);
         Hibernate.initialize(Episodio.class);
         return Results.ok(Json.toJson(p));
@@ -275,7 +278,7 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result deleteFood(long idp, long id1, long id2) {
+    public static Result deleteFood(Long idp, Long id1, Long id2) {
         Episodio e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
@@ -288,7 +291,7 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result getOneFood(long idp, long id1, long id2) {
+    public static Result getOneFood(Long idp, Long id1, Long id2) {
         Episodio e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
@@ -300,7 +303,7 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result getAllFood(long idp, long id) {
+    public static Result getAllFood(Long idp, Long id) {
         Query query = JPA.em().createQuery("SELECT a FROM Alimento a WHERE a.episodioId = :id");
         query.setParameter("id", id);
         Collection<Alimento> alimentos = query.getResultList();
@@ -313,7 +316,7 @@ public class EpisodioController extends Controller {
 
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
-    public static Result updateFood(long idp, long id1, long id2) {
+    public static Result updateFood(Long idp, Long id1, Long id2) {
         Episodio e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
@@ -338,7 +341,7 @@ public class EpisodioController extends Controller {
 
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
-    public static Result addActivity(long idp, long id1) {
+    public static Result addActivity(Long idp, Long id1) {
         Episodio e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
@@ -371,7 +374,7 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result deleteActivity(long idp, long id1, long id2) {
+    public static Result deleteActivity(Long idp, Long id1, Long id2) {
         Episodio e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
@@ -384,7 +387,7 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result getOneActivity(long idp, long id1, long id2) {
+    public static Result getOneActivity(Long idp, Long id1, Long id2) {
         Episodio e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
@@ -396,7 +399,7 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result getAllActivity(long idp, long id) {
+    public static Result getAllActivity(Long idp, Long id) {
         Query query = JPA.em().createQuery("SELECT a FROM ActividadFisica a WHERE a.episodioId = :id");
         query.setParameter("id", id);
         Collection<ActividadFisica> actividades = query.getResultList();
@@ -409,7 +412,7 @@ public class EpisodioController extends Controller {
 
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
-    public static Result updateActivity(long idp, long id1, long id2) {
+    public static Result updateActivity(Long idp, Long id1, Long id2) {
         Episodio e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
@@ -450,7 +453,7 @@ public class EpisodioController extends Controller {
 
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
-    public static Result addMedicine(long idp, long id1) {
+    public static Result addMedicine(Long idp, Long id1) {
         Episodio e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
@@ -475,28 +478,59 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result deleteMedicine(long idp, long id1, long id2) {
+    public static Result deleteMedicine(Long idp, Long id1, Long id2) {
         return Results.TODO;
     }
 
     @Transactional
-    public static Result getOneMedicine(long idp, long id1, long id2) {
+    public static Result getOneMedicine(Long idp, Long id1, Long id2) {
         return Results.TODO;
     }
 
     @Transactional
-    public static Result getAllMedicine(long idp, long id) {
+    public static Result getAllMedicine(Long idp, Long id) {
         return Results.TODO;
     }
 
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
-    public static Result updateMedicine(long idp, long id1, long id2) {
+    public static Result updateMedicine(Long idp, Long id1, Long id2) {
         return Results.TODO;
     }
 
-    public static Result fetch(long id) {
-        ObjectNode result = Json.newObject();
-        return null;
+    @Transactional
+    public static Result fetch(Long idP, Long id) {
+        Episodio e = JPA.em().getReference(Episodio.class, id);
+        if(!e.getPacienteID().equals(idP))
+            return null;
+        JSONObject result = new JSONObject();
+        result.put("id", id);
+
+        result.put("idUrl", e.getIdUrl());
+        result.put("fechaPublicacion", e.getFechaPublicacion().toString());
+        result.put("intensidad", e.getIntensidad());
+        result.put("horasSuenio", e.getHorasSuenio());
+        result.put("regular", e.isSuenioRegular());
+        result.put("localizacion", e.getLugar());
+        result.put("estres", e.isEpisodioEstreCercano());
+        result.put("paciente", e.getPacienteID());
+
+        Query query = JPA.em().createQuery("SELECT s FROM Sintoma s WHERE s.episodioId = :id");
+        query.setParameter("id", id);
+        Collection<Sintoma> sintomas = query.getResultList();
+        JSONArray sintomasJson = new JSONArray();
+        for(Sintoma s : sintomas) {
+            Long sId = s.getId();
+            int ss = s.getSintoma();
+            Long ep = s.getEpisodioId();
+            JSONObject simple = new JSONObject();
+            simple.put("id", sId);
+            simple.put("sintoma", ss);
+            simple.put("episodioId", ep);
+            sintomasJson.put(simple);
+        }
+
+
+        return Results.ok(Json.toJson(result));
     }
 }
