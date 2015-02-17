@@ -495,6 +495,7 @@ public class EpisodioController extends Controller {
         return Results.TODO;
     }
 
+    @Transactional
     public static Result fetch(Long idP, Long id) {
         Episodio e = JPA.em().getReference(Episodio.class, id);
         if(!e.getPacienteID().equals(idP))
