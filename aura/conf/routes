@@ -119,7 +119,7 @@ PUT           /api/doctor/:id                                        controllers
 
 ########################################################################################################################
 # Analisis
-GET           /api/paciente/:idP/analisis/:f1/:f2                    controllers.AnalisisController.createAnalisis(idP : Long ,  f1 : String,  f2 : String)
+GET           /api/paciente/:idP/analisis/:f1/:f2                    controllers.AnalisisController.createAnalisisIntensidadHoras(idP : Long ,  f1 : String,  f2 : String)
 
 ########################################################################################################################
 # Aux routes
