@@ -139,7 +139,7 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Collection<Episodio> getPerDatesAnalisis()
+    public static Collection<Episodio> getPerDatesAnalisis(Long idP, String f1, String f2)
     {
         Date d1 = parseDate(f1);
         Date d2 = parseDate(f2);
@@ -487,6 +487,7 @@ public class EpisodioController extends Controller {
         simple.put("inten",inten);
         simple.put("suenio",suenio);
         simple.put("est",est);
+
             not.put(simple);
         return simple;
     }
