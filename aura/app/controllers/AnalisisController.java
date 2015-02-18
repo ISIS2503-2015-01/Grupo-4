@@ -1,5 +1,7 @@
 package controllers;
 
+import models.ActividadFisica;
+import models.Alimento;
 import models.Episodio;
 import models.Medicamento;
 import org.json.simple.JSONObject;
@@ -60,6 +62,60 @@ public class AnalisisController extends Controller
             while(medi.hasNext()) {
                 Medicamento m=medi.next();
                 jsonPuntos.put(""+i +"."+ c, m.getNombre());
+
+                c++;
+            }
+        }
+        return Results.ok(Json.toJson(jsonPuntos));
+    }
+    @Transactional
+    public static Result createAnalisisIntensidadAlimentos(Long idP, String f1, String f2){
+        JSONObject jsonPuntos=new JSONObject();
+        System.out.println();
+        Collection<Episodio>episodios=EpisodioController.getPerDatesAnalisis(idP, f1, f2);
+        Iterator<Episodio> e= episodios.iterator();
+        int c=0;
+
+        while(e.hasNext())
+        {
+            Episodio ep=e.next();
+            Integer i=ep.getIntensidad();
+            Long id=ep.getId();
+            Query query = JPA.em().createQuery("SELECT a FROM Alimento a WHERE a.episodioId = :id");
+            query.setParameter("id", id);
+            Collection<Alimento> med = query.getResultList();
+            Iterator<Alimento> medi= med.iterator();
+            while(medi.hasNext()) {
+                Alimento m=medi.next();
+                jsonPuntos.put(""+i +"."+ c+"-"+m.getCantidad(), m.getNombre());
+
+                c++;
+            }
+        }
+        return Results.ok(Json.toJson(jsonPuntos));
+    }
+
+    @Transactional
+    public static Result createAnalisisIntensidadActividadFisica(Long idP, String f1, String f2){
+        JSONObject jsonPuntos=new JSONObject();
+        System.out.println();
+        Collection<Episodio>episodios=EpisodioController.getPerDatesAnalisis(idP, f1, f2);
+        Iterator<Episodio> e= episodios.iterator();
+        int c=0;
+
+        while(e.hasNext())
+        {
+            Episodio ep=e.next();
+            Integer i=ep.getIntensidad();
+            Long id=ep.getId();
+            Query query = JPA.em().createQuery("SELECT a FROM ActividadFisica a WHERE a.episodioId = :id");
+            query.setParameter("id", id);
+            Collection<ActividadFisica> med = query.getResultList();
+            Iterator<ActividadFisica> medi= med.iterator();
+            while(medi.hasNext()) {
+                ActividadFisica m=medi.next();
+                jsonPuntos.put(""+i +"."+ c+"-"+m.getIntensidad(), m.getDescripcion());
+
                 c++;
             }
         }
