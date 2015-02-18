@@ -179,6 +179,7 @@ public class PacienteController extends Controller {
             }
         }
 
+
         List<JsonNode> al = j.findValues("alimentos");
         if(al.size() > 0) {
             JsonNode values = al.get(0);

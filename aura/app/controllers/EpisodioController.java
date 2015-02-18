@@ -55,7 +55,7 @@ public class EpisodioController extends Controller {
             }
 
            //getNotification(idPaciente, intensidad, horasSuenio, regularidad, localizacion, estres);
-            return Results.created(Json.toJson(getNotification(idPaciente,intensidad, horasSuenio, regularidad, localizacion, estres)));
+            return Results.created(Json.toJson(getNotification(idPaciente, intensidad, horasSuenio, regularidad, localizacion, estres)));
         }
 
         return Results.badRequest("No existe el paciente");
@@ -136,6 +136,18 @@ public class EpisodioController extends Controller {
         }
 
         return Results.ok("El paciente no existe");
+    }
+
+    @Transactional
+    public static Collection<Episodio> getPerDatesAnalisis(Long idP, String f1, String f2)
+    {
+        Date d1 = parseDate(f1);
+        Date d2 = parseDate(f2);
+        Query query = JPA.em().createQuery("SELECT e FROM Episodio e WHERE e.fechaPublicacion >= :d1 AND e.fechaPublicacion <= :d2");
+        query.setParameter("d1", d1);
+        query.setParameter("d2", d2);
+        Collection<Episodio> episodios = query.getResultList();
+        return episodios;
     }
 
     @Transactional
@@ -475,6 +487,7 @@ public class EpisodioController extends Controller {
         simple.put("inten",inten);
         simple.put("suenio",suenio);
         simple.put("est",est);
+
             not.put(simple);
         return simple;
     }
@@ -523,7 +536,14 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result getAllMedicine(Long idp, Long id) {
-        return Results.TODO;
+        Query query = JPA.em().createQuery("SELECT a FROM Medicamento a WHERE a.episodioId = :id");
+        query.setParameter("id", id);
+        Collection<Medicamento> alimentos = query.getResultList();
+        for(Medicamento a : alimentos) {
+            if(!a.getEpisodioId().equals(idp))
+                return Results.ok("Error en los parametros");
+        }
+        return Results.ok(Json.toJson(alimentos));
     }
 
     @Transactional
