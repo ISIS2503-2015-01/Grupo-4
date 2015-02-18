@@ -9,6 +9,7 @@ import play.mvc.Result;
 import play.mvc.Results;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -17,7 +18,7 @@ import java.util.Iterator;
 public class AnalisisController extends Controller
 {
     @Transactional
-    public static Result createAnalisis(Long idP, String f1, String f2){
+    public static Result createAnalisisIntensidadHoras(Long idP, String f1, String f2){
         JSONObject jsonPuntos=new JSONObject();
         System.out.println();
         Collection<Episodio>episodios=EpisodioController.getPerDatesAnalisis(idP, f1, f2);
@@ -28,8 +29,10 @@ public class AnalisisController extends Controller
             Episodio ep=e.next();
             Integer i=ep.getIntensidad();
             Integer h=ep.getHorasSuenio();
+            Date f=ep.getFechaPublicacion();
             jsonPuntos.put("intensidad"+c,i);
             jsonPuntos.put("horas"+c,h);
+            jsonPuntos.put("fecha"+c,f.toString());
             c++;
         }
         return Results.ok(Json.toJson(jsonPuntos));
