@@ -536,7 +536,14 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result getAllMedicine(Long idp, Long id) {
-        return Results.TODO;
+        Query query = JPA.em().createQuery("SELECT a FROM Medicamento a WHERE a.episodioId = :id");
+        query.setParameter("id", id);
+        Collection<Medicamento> alimentos = query.getResultList();
+        for(Medicamento a : alimentos) {
+            if(!a.getEpisodioId().equals(idp))
+                return Results.ok("Error en los parametros");
+        }
+        return Results.ok(Json.toJson(alimentos));
     }
 
     @Transactional
