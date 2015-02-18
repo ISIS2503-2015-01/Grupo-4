@@ -119,8 +119,8 @@ PUT           /api/doctor/:id                                        controllers
 
 ########################################################################################################################
 # Analisis
-GET           /api/paciente/:idP/analisis/:f1/:f2                    controllers.AnalisisController.createAnalisisIntensidadHoras(idP : Long ,  f1 : String,  f2 : String)
-
+GET           /api/paciente/:idP/analisis1/:f1/:f2                    controllers.AnalisisController.createAnalisisIntensidadHoras(idP : Long ,  f1 : String,  f2 : String)
+GET           /api/paciente/:idP/analisis2/:f1/:f2                    controllers.AnalisisController.createAnalisisIntensidadMedicamentos(idP : Long ,  f1 : String,  f2 : String)
 ########################################################################################################################
 # Aux routes
 # Map static resources from the /public folder to the /assets URL path
