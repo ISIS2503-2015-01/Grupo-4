@@ -55,7 +55,7 @@ public class EpisodioController extends Controller {
                 return Results.badRequest("Error al crear el episodio");
             }
 
-           //getNotification(idPaciente, intensidad, horasSuenio, regularidad, localizacion, estres);
+            //getNotification(idPaciente, intensidad, horasSuenio, regularidad, localizacion, estres);
             return Results.created(Json.toJson(getNotification(idPaciente, intensidad, horasSuenio, regularidad, localizacion, estres)));
         }
 
@@ -501,10 +501,10 @@ public class EpisodioController extends Controller {
             suenio="Sus horas de sueño son muy bajas y causan que tenga migraña.";
         }
         if(episodioEstreCercano) {
-             est="El estres produce dolores de cabeza muy fuertes, y es posible que esto le cause migrañas";
+            est="El estres produce dolores de cabeza muy fuertes, y es posible que esto le cause migrañas";
         }
         else {
-             est="";
+            est="";
         }
 
         JSONObject simple = new JSONObject();
