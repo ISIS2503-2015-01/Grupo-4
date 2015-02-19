@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Random;
 
 public class DoctorController extends Controller {
+    
+    //public static Long prueba = 0L;
 
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
@@ -29,9 +31,13 @@ public class DoctorController extends Controller {
     {
 
         JsonNode j = Controller.request().body().asJson();
-
+        //Para prueba crear
         //Random random = new Random();
         //long docIdentidad = Math.abs(random.nextLong()*1000000000);
+        
+        //Para prueba eliminar
+        //Long docIdentidad = prueba;
+        //prueba++;
         Long docIdentidad = Long.parseLong(j.findPath("docIdentidad").asText());
 
         String nombre = j.findPath("nombre").asText();
