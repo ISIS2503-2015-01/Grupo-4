@@ -29,8 +29,6 @@ GET           /api/paciente/:idP/episodios                           controllers
 # Ver info completa de un episodio de un paciente
 GET           /api/paciente/:idP/episodios/:id                       controllers.EpisodioController.fetchEpisode(idP : Long, id : Long)
 
-
-
 ########################################################################################################################
 # Episodio
 

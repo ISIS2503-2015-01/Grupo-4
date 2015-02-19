@@ -662,6 +662,42 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
+    public static Result fetchEpisodes(Long idP) {
+        Episodio e = JPA.em().getReference(Episodio.class, id);
+        if(!e.getPacienteID().equals(idP))
+            return null;
+        JSONObject result = new JSONObject();
+        result.put("id", id);
+
+        result.put("idUrl", e.getIdUrl());
+        result.put("fechaPublicacion", e.getFechaPublicacion().toString());
+        result.put("intensidad", e.getIntensidad());
+        result.put("horasSuenio", e.getHorasSuenio());
+        result.put("regular", e.isSuenioRegular());
+        result.put("localizacion", e.getLugar());
+        result.put("estres", e.isEpisodioEstreCercano());
+        result.put("paciente", e.getPacienteID());
+
+        Query query = JPA.em().createQuery("SELECT s FROM Sintoma s WHERE s.episodioId = :id");
+        query.setParameter("id", id);
+        Collection<Sintoma> sintomas = query.getResultList();
+        JSONArray sintomasJson = new JSONArray();
+        for(Sintoma s : sintomas) {
+            Long sId = s.getId();
+            int ss = s.getSintoma();
+            Long ep = s.getEpisodioId();
+            JSONObject simple = new JSONObject();
+            simple.put("id", sId);
+            simple.put("sintoma", ss);
+            simple.put("episodioId", ep);
+            sintomasJson.put(simple);
+        }
+
+
+        return Results.ok(Json.toJson(result));
+    }
+
+    @Transactional
     public static Result fetchEpisode(Long idP, Long id) {
         Episodio e = JPA.em().getReference(Episodio.class, id);
         if(!e.getPacienteID().equals(idP))
