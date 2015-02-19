@@ -23,7 +23,7 @@ import java.util.Random;
 
 public class DoctorController extends Controller {
 
-    public static Long prueba = 0L;
+    //public static Long prueba = 0L;
 
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
@@ -31,12 +31,14 @@ public class DoctorController extends Controller {
     {
 
         JsonNode j = Controller.request().body().asJson();
-
+        //Para prueba crear
         //Random random = new Random();
-        //long docIdentidad = Math.abs(random.nextLong())/1000000000;
-        Long docIdentidad = Long.parseLong(j.findPath("docIdentidad").asText());
+        //long docIdentidad = Math.abs(random.nextLong()*1000000000);
+
+        //Para prueba eliminar
         //Long docIdentidad = prueba;
         //prueba++;
+        Long docIdentidad = Long.parseLong(j.findPath("docIdentidad").asText());
 
         String nombre = j.findPath("nombre").asText();
         String email=j.findPath("Email").asText();
@@ -44,7 +46,7 @@ public class DoctorController extends Controller {
         Integer genero = Integer.parseInt(j.findPath("genero").asText());
         Integer especialidad = Integer.parseInt(j.findPath("especialidad").asText());
         SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-    
+
         String fechaNacimientoString = j.findPath("fechaNacimiento").asText();
         Date fechaNacimiento =  null;
 
@@ -58,7 +60,7 @@ public class DoctorController extends Controller {
         }
         try
         {
-    
+
             Doctor d = Doctor.create(email, password, docIdentidad, nombre, fechaNacimiento, genero, especialidad);
             JPA.em().persist(d);
 
@@ -68,7 +70,7 @@ public class DoctorController extends Controller {
         }
         return Results.created();
     }
-    
+
     @Transactional
     public static Result delete(Long id){
         //Long docIdentidad = prueba;
@@ -78,14 +80,13 @@ public class DoctorController extends Controller {
         JPA.em().remove(d);
         return Results.ok();
     }
-    
+
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result update(Long id) {
-
         JsonNode j = Controller.request().body().asJson();
 
-        Long docIdentidad = 3L;
+        Long docIdentidad = Long.parseLong(j.findPath("docIdentidad").asText());
         String nombre = j.findPath("nombre").asText();
         String email=j.findPath("Email").asText();
         String password = j.findPath("contrasenia").asText();
@@ -105,6 +106,7 @@ public class DoctorController extends Controller {
         }
 
         Doctor d = JPA.em().getReference(Doctor.class, docIdentidad);
+        d.setdocIdentidad(docIdentidad);
         d.setNombre(nombre);
         d.setEmail(email);
         d.setPassword(password);
@@ -137,11 +139,12 @@ public class DoctorController extends Controller {
 
     @Transactional
     public static Result getOne(Long id) {
+
         Doctor p = JPA.em().getReference(Doctor.class, id);
         Hibernate.initialize(Doctor.class);
         return Results.ok(Json.toJson(p));
     }
-    
+
     @Transactional
 
     public static Result getAll() {

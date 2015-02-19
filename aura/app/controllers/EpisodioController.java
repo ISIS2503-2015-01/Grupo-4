@@ -6,7 +6,6 @@ import org.hibernate.Hibernate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.simple.JSONObject;
-import org.springframework.core.env.SystemEnvironmentPropertySource;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.Json;
@@ -26,8 +25,6 @@ import java.util.List;
  * Created by Clau on 10/02/2015.
  */
 public class EpisodioController extends Controller {
-
-    public static Long prueba = 0L;
 
     // CRUD
     @Transactional
@@ -95,20 +92,15 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result delete(Long id1, Long id2){
-        Long idprueba = prueba;
-        prueba++;
-        System.out.println(prueba);
         Paciente pac = JPA.em().find(Paciente.class, id1);
         System.out.println(pac);
         if(pac == null)
             return Results.ok("El paciente no existe");
-        //Episodio p = JPA.em().find(Episodio.class, id2);
-        Episodio p = JPA.em().find(Episodio.class, idprueba);
+        Episodio p = JPA.em().find(Episodio.class, id2);
         if(p == null)
             return Results.ok("El episodio no existe");
         if(p.getPacienteID().equals(id1)) {
-            //p = JPA.em().getReference(Episodio.class, id2);
-            p = JPA.em().getReference(Episodio.class, prueba);
+            p = JPA.em().getReference(Episodio.class, id2);
             JPA.em().remove(p);
             return Results.ok();
 
@@ -670,7 +662,43 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result fetch(Long idP, Long id) {
+    public static Result fetchEpisodes(Long id) {
+        Episodio e = JPA.em().getReference(Episodio.class, id);
+        if(!e.getPacienteID().equals(id))
+            return null;
+        JSONObject result = new JSONObject();
+        result.put("id", id);
+
+        result.put("idUrl", e.getIdUrl());
+        result.put("fechaPublicacion", e.getFechaPublicacion().toString());
+        result.put("intensidad", e.getIntensidad());
+        result.put("horasSuenio", e.getHorasSuenio());
+        result.put("regular", e.isSuenioRegular());
+        result.put("localizacion", e.getLugar());
+        result.put("estres", e.isEpisodioEstreCercano());
+        result.put("paciente", e.getPacienteID());
+
+        Query query = JPA.em().createQuery("SELECT s FROM Sintoma s WHERE s.episodioId = :id");
+        query.setParameter("id", id);
+        Collection<Sintoma> sintomas = query.getResultList();
+        JSONArray sintomasJson = new JSONArray();
+        for(Sintoma s : sintomas) {
+            Long sId = s.getId();
+            int ss = s.getSintoma();
+            Long ep = s.getEpisodioId();
+            JSONObject simple = new JSONObject();
+            simple.put("id", sId);
+            simple.put("sintoma", ss);
+            simple.put("episodioId", ep);
+            sintomasJson.put(simple);
+        }
+
+
+        return Results.ok(Json.toJson(result));
+    }
+
+    @Transactional
+    public static Result fetchEpisode(Long idP, Long id) {
         Episodio e = JPA.em().getReference(Episodio.class, id);
         if(!e.getPacienteID().equals(idP))
             return null;

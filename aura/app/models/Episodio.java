@@ -18,6 +18,7 @@ public class Episodio {
 
     private Long idUrl;
 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaPublicacion;
 
     private int intensidad;

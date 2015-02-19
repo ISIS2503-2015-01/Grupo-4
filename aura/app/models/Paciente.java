@@ -9,6 +9,8 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Entity
@@ -26,6 +28,7 @@ public class Paciente {
 
     private String password;
 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaNacimiento;
 
     private String email;

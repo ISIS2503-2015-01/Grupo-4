@@ -6,41 +6,45 @@
 GET           /                                                      controllers.Application.index()
 
 ########################################################################################################################
-
 # Paciente
 
-# Crea un nuevo paciente
+# Crea un nuevo paciente DONE AND TESTED
 POST          /api/paciente                                          controllers.PacienteController.create()
-# Ver información de un paciente
+# Ver información de un paciente DONE AND TESTED
 GET           /api/paciente/:id                                      controllers.PacienteController.getOne(id : Long)
-# Eliminar un paciente dado el id
+# Eliminar un paciente dado el id DONE AND TESTED
 DELETE        /api/paciente/:id                                      controllers.PacienteController.delete(id : Long)
-# Ver todos los pacientes
+# Ver todos los pacientes DONE AND TESTED
 GET           /api/paciente                                          controllers.PacienteController.getAll()
-# Actualizar información de un sólo paciente
+# Actualizar información de un sólo paciente DONE AND TESTED
 PUT           /api/paciente/:id                                      controllers.PacienteController.update(id : Long)
-# Ver info completa de un episodio
-POST          /api/paciente/episodio                                 controllers.PacienteController.createEpisode()
 
 ########################################################################################################################
+# EPISODIOS
 
+# Postear info completa de un episodio
+POST          /api/paciente/:id/episodios                            controllers.EpisodioController.createEpisode(id : Long)
+# Ver info comleta de los episodios de un paciente
+GET           /api/paciente/:idP/episodios                           controllers.EpisodioController.fetchEpisodes(idP : Long)
+# Ver info completa de un episodio de un paciente
+GET           /api/paciente/:idP/episodios/:id                       controllers.EpisodioController.fetchEpisode(idP : Long, id : Long)
+
+########################################################################################################################
 # Episodio
 
-# Ver información de un episodio en fomra completa dado el id
-GET           /api/paciente/:idp/episodios/:id                       controllers.EpisodioController.fetch(idp : Long, id : Long)
-# Crear un nuevo episodio para ése paciente
+# Crear un nuevo episodio para ése paciente DONE AND TESTED
 POST          /api/paciente/:id/episodio                             controllers.EpisodioController.create(id : Long)
-# Ver un episodio de un paciente
+# Ver un episodio de un paciente DONE AND TESTED
 GET           /api/paciente/:id1/episodio/:id2                       controllers.EpisodioController.getOne(id1 : Long, id2 : Long)
-# Ver un episodio específico
+# Ver un episodio específico DONE AND TESTED
 GET           /api/episodio/:id                                      controllers.EpisodioController.get(id : Long)
-# Eliminar episodio
+# Eliminar episodio DONE AND TESTED
 DELETE        /api/paciente/:id1/episodio/:id2                       controllers.EpisodioController.delete(id1 : Long, id2 : Long)
-# Ver episodios de un paciente
+# Ver episodios de un paciente DONE AND TESTED
 GET           /api/paciente/:id/episodio                             controllers.EpisodioController.getAll(id : Long)
-# Actualizar un episodio
+# Actualizar un episodio DONE AND TESTED
 PUT           /api/paciente/:id1/episodio/:id2                       controllers.EpisodioController.update(id1 : Long, id2 : Long)
-# Dar episodios de un paciente entre dos fechas, el formato de las fechas es YYYY-MM-dd
+# Dar episodios de un paciente entre dos fechas, el formato de las fechas es YYYY-MM-dd DONE AND TESTED
 GET           /api/paciente/:id/episodio/:f1/:f2                     controllers.EpisodioController.getPerDates(id : Long, f1 : String, f2 : String)
 
 ########################################################################################################################
@@ -115,6 +119,18 @@ DELETE        /api/doctor/:id                                        controllers
 GET           /api/doctor                                            controllers.DoctorController.getAll()
 # Actualizar información de un sólo doctor
 PUT           /api/doctor/:id                                        controllers.DoctorController.update(id : Long)
+
+########################################################################################################################
+# Analisis
+
+# Crea un análisis sobre la intensidad de horas de sueño
+GET           /api/paciente/:idP/analisis1/:f1/:f2                   controllers.AnalisisController.createAnalisisIntensidadHoras(idP : Long ,  f1 : String,  f2 : String)
+# Crea un análisis sobre loas medicamentos tomados
+GET           /api/paciente/:idP/analisis2/:f1/:f2                   controllers.AnalisisController.createAnalisisIntensidadMedicamentos(idP : Long ,  f1 : String,  f2 : String)
+# Crea un análisis sobre los alimentos tomados para el episodio
+GET           /api/paciente/:idP/analisis3/:f1/:f2                   controllers.AnalisisController.createAnalisisIntensidadAlimentos(idP : Long ,  f1 : String,  f2 : String)
+# Crea un análisis sobre la actividad física relacionada con el episodio
+GET           /api/paciente/:idP/analisis4/:f1/:f2                   controllers.AnalisisController.createAnalisisIntensidadActividadFisica(idP : Long ,  f1 : String,  f2 : String)
 
 ########################################################################################################################
 # Aux routes
