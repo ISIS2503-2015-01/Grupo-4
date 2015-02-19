@@ -19,20 +19,11 @@ Sebastián:
 
 
 Dar Análisis
-	Dar análisis de paciente
+	Dar análisis de paciente DONE
 		GET: paciente/{idP}/analisis
 
 ALARMA
-	Se realiza en tiempo real
+	Se realiza en tiempo real DONE
 
-CRUD Doctor
-	Agregar doctor:
-		POST: doctor
-	Eliminar doctor:
-		DELETE: doctor/{idD}
-	Modificar doctor:
-		PUT: doctor/{idD}
-	Dar doctor:
-		GET: doctor/{idD}
 
 
