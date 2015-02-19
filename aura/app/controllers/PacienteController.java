@@ -19,9 +19,11 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-
+import java.util.Random;
 
 public class PacienteController extends Controller {
+
+    public static Long prueba = 0L;
 
     // CRUD
     @Transactional
@@ -29,6 +31,12 @@ public class PacienteController extends Controller {
     public static Result create() {
 
         JsonNode j = Controller.request().body().asJson();
+
+        //Random random = new Random();
+        //long docIdentidad = Math.abs(random.nextLong())/1000000000;
+        //Long docIdentidad = prueba;
+        //prueba++;
+        //System.out.println(prueba);
 
         String email=j.findPath("email").asText();
         String password = j.findPath("password").asText();
@@ -64,7 +72,10 @@ public class PacienteController extends Controller {
 
     @Transactional
     public static Result delete(Long id){
-        Paciente p = JPA.em().find(Paciente.class, id);
+        Long docIdentidad = prueba;
+        //System.out.println("---------------------"+prueba);
+        prueba--;
+        Paciente p = JPA.em().find(Paciente.class, docIdentidad);
         JPA.em().remove(p);
         return Results.ok();
     }

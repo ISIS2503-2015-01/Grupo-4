@@ -23,6 +23,8 @@ import java.util.Random;
 
 public class DoctorController extends Controller {
 
+    public static Long prueba = 0L;
+
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result create()
@@ -31,8 +33,10 @@ public class DoctorController extends Controller {
         JsonNode j = Controller.request().body().asJson();
 
         //Random random = new Random();
-        //long docIdentidad = Math.abs(random.nextLong()*1000000000);
+        //long docIdentidad = Math.abs(random.nextLong())/1000000000;
         Long docIdentidad = Long.parseLong(j.findPath("docIdentidad").asText());
+        //Long docIdentidad = prueba;
+        //prueba++;
 
         String nombre = j.findPath("nombre").asText();
         String email=j.findPath("Email").asText();
@@ -67,7 +71,10 @@ public class DoctorController extends Controller {
     
     @Transactional
     public static Result delete(Long id){
-        Doctor d = JPA.em().find(Doctor.class, id);
+        //Long docIdentidad = prueba;
+        //prueba--;
+        //Doctor d = JPA.em().find(Doctor.class, docIdentidad);
+        Doctor d = JPA.em().getReference(Doctor.class, id);
         JPA.em().remove(d);
         return Results.ok();
     }
@@ -75,9 +82,10 @@ public class DoctorController extends Controller {
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result update(Long id) {
+
         JsonNode j = Controller.request().body().asJson();
 
-        Long docIdentidad = Long.parseLong(j.findPath("docIdentidad").asText());
+        Long docIdentidad = 3L;
         String nombre = j.findPath("nombre").asText();
         String email=j.findPath("Email").asText();
         String password = j.findPath("contrasenia").asText();
@@ -97,7 +105,6 @@ public class DoctorController extends Controller {
         }
 
         Doctor d = JPA.em().getReference(Doctor.class, docIdentidad);
-        d.setdocIdentidad(docIdentidad);
         d.setNombre(nombre);
         d.setEmail(email);
         d.setPassword(password);
@@ -130,7 +137,6 @@ public class DoctorController extends Controller {
 
     @Transactional
     public static Result getOne(Long id) {
-
         Doctor p = JPA.em().getReference(Doctor.class, id);
         Hibernate.initialize(Doctor.class);
         return Results.ok(Json.toJson(p));
