@@ -20,7 +20,7 @@ GET           /api/paciente                                          controllers
 PUT           /api/paciente/:id                                      controllers.PacienteController.update(id : Long)
 
 ########################################################################################################################
-# EPISODIOS
+# EPISODIOS: INFO COMPLETA
 
 # Postear info completa de un episodio
 POST          /api/paciente/:id/episodios                            controllers.EpisodioController.createEpisode(id : Long)
@@ -53,7 +53,7 @@ GET           /api/paciente/:id/episodio/:f1/:f2                     controllers
 ########################################################################################################################
 # Sintoma
 
-# Crear un sintoma asociado a un episodio
+# Crear un sintoma asociado a un episodio DONE AND TESTED
 POST          /api/paciente/:idp/episodio/:id1/sintoma               controllers.EpisodioController.addSymptom(idp : Long, id1 : Long)
 # Borrar un sintoma asociado a un episodio
 DELETE        /api/paciente/:idp/episodio/:id1/sintoma/:id2          controllers.EpisodioController.deleteSymptom(idp : Long, id1 : Long, id2 : Long)
