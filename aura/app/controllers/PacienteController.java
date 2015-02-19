@@ -21,6 +21,8 @@ import java.util.List;
 
 
 public class PacienteController extends Controller {
+    
+    //public static Long prueba = 0L;
 
     // CRUD
     @Transactional
@@ -28,6 +30,11 @@ public class PacienteController extends Controller {
     public static Result create() {
 
         JsonNode j = Controller.request().body().asJson();
+        
+        //Random random = new Random();
+        //long docIdentidad = Math.abs(random.nextLong())/1000000000;
+        //Long docIdentidad = prueba;
+        //prueba++;
 
         String email=j.findPath("email").asText();
         String password = j.findPath("password").asText();
@@ -67,6 +74,10 @@ public class PacienteController extends Controller {
 
     @Transactional
     public static Result delete(Long id){
+        //Long docIdentidad = prueba;
+        //prueba--;
+        //Paciente p = JPA.em().find(Paciente.class, docIdentidad);
+        
         Paciente p = JPA.em().find(Paciente.class, id);
         if(p != null) {
             p = JPA.em().getReference(Paciente.class, id);
