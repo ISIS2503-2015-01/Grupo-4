@@ -658,7 +658,6 @@ public class EpisodioController extends Controller {
         }
 
         return Results.ok(Json.toJson(EpisodioController.getNotification(paciente, intensidad, horasSuenio, regular, localizacion, estres)));
-        //return Results.ok();
     }
 
     @Transactional
