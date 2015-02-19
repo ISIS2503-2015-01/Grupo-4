@@ -662,9 +662,9 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
-    public static Result fetchEpisodes(Long idP) {
+    public static Result fetchEpisodes(Long id) {
         Episodio e = JPA.em().getReference(Episodio.class, id);
-        if(!e.getPacienteID().equals(idP))
+        if(!e.getPacienteID().equals(id))
             return null;
         JSONObject result = new JSONObject();
         result.put("id", id);
