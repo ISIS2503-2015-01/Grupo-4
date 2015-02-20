@@ -204,7 +204,12 @@ public class EpisodioController extends Controller {
     @BodyParser.Of(BodyParser.Json.class)
     public static Result addSymptom(Long idp, Long id1) {
 
-        Episodio e = JPA.em().getReference(Episodio.class, id1);
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
+        Episodio e = JPA.em().find(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
             JsonNode j = Controller.request().body().asJson();
@@ -288,7 +293,12 @@ public class EpisodioController extends Controller {
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result addFood(Long idp, Long id1) {
-        Episodio e = JPA.em().getReference(Episodio.class, id1);
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
+        Episodio e = JPA.em().find(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
             JsonNode j = Controller.request().body().asJson();
@@ -377,7 +387,12 @@ public class EpisodioController extends Controller {
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result addActivity(Long idp, Long id1) {
-        Episodio e = JPA.em().getReference(Episodio.class, id1);
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
+        Episodio e = JPA.em().find(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
             JsonNode j = Controller.request().body().asJson();
@@ -524,7 +539,12 @@ public class EpisodioController extends Controller {
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result addMedicine(Long idp, Long id1) {
-        Episodio e = JPA.em().getReference(Episodio.class, id1);
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
+        Episodio e = JPA.em().find(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
             JsonNode j = Controller.request().body().asJson();
@@ -658,43 +678,73 @@ public class EpisodioController extends Controller {
         }
 
         return Results.ok(Json.toJson(EpisodioController.getNotification(paciente, intensidad, horasSuenio, regular, localizacion, estres)));
-        //return Results.ok();
     }
 
     @Transactional
     public static Result fetchEpisodes(Long id) {
-        Episodio e = JPA.em().getReference(Episodio.class, id);
-        if(!e.getPacienteID().equals(id))
-            return null;
-        JSONObject result = new JSONObject();
-        result.put("id", id);
-
-        result.put("idUrl", e.getIdUrl());
-        result.put("fechaPublicacion", e.getFechaPublicacion().toString());
-        result.put("intensidad", e.getIntensidad());
-        result.put("horasSuenio", e.getHorasSuenio());
-        result.put("regular", e.isSuenioRegular());
-        result.put("localizacion", e.getLugar());
-        result.put("estres", e.isEpisodioEstreCercano());
-        result.put("paciente", e.getPacienteID());
-
-        Query query = JPA.em().createQuery("SELECT s FROM Sintoma s WHERE s.episodioId = :id");
+        Paciente p = JPA.em().find(Paciente.class, id);
+        if(p == null)
+            return Results.ok("El paciente no existe");
+        p = JPA.em().getReference(Paciente.class, id);
+        Query query = JPA.em().createQuery("SELECT e FROM Episodio e WHERE e.pacienteID = :id");
         query.setParameter("id", id);
-        Collection<Sintoma> sintomas = query.getResultList();
-        JSONArray sintomasJson = new JSONArray();
-        for(Sintoma s : sintomas) {
-            Long sId = s.getId();
-            int ss = s.getSintoma();
-            Long ep = s.getEpisodioId();
+        List<Episodio> episodios = query.getResultList();
+
+        JSONObject result = new JSONObject();
+        JSONArray episodiosJson = new JSONArray();
+
+        for(Episodio e : episodios) {
             JSONObject simple = new JSONObject();
-            simple.put("id", sId);
-            simple.put("sintoma", ss);
-            simple.put("episodioId", ep);
-            sintomasJson.put(simple);
+            Long eId = e.getId();
+            Long url = e.getIdUrl();
+            String fecha = e.getFechaPublicacion().toString();
+            int intensidad = e.getIntensidad();
+            int horas = e.getHorasSuenio();
+            boolean regular = e.isSuenioRegular();
+            int spot = e.getLugar();
+            boolean estres = e.isEpisodioEstreCercano();
+
+            simple.put("id", eId);
+            simple.put("idUrl", url);
+            simple.put("fechaPublicacion", fecha);
+            simple.put("intensidad", intensidad);
+            simple.put("horasSuenio", horas);
+            simple.put("suenioRegular", regular);
+            simple.put("lugar", spot);
+            simple.put("episodioEstreCercano", estres);
+            simple.put("pacienteID", id);
+
+            query = JPA.em().createQuery("SELECT s FROM Sintoma s WHERE s.episodioId = :id");
+            query.setParameter("id", eId);
+            List<Sintoma> sintomas = query.getResultList();
+            JSONArray sintomasJson = new JSONArray();
+
+            for(Sintoma sin : sintomas) {
+                JSONObject simpleSintoma = new JSONObject();
+                Long sId = sin.getId();
+                int descripcion = sin.getSintoma();
+
+                simpleSintoma.put("id", sId);
+                simpleSintoma.put("sintoma", descripcion);
+                simpleSintoma.put("episodioId", id);
+
+                sintomasJson.put(simpleSintoma);
+
+            }
+
+            simple.put("sintomas", sintomasJson);
+
+
+
+            episodiosJson.put(simple);
+
         }
 
+        result.put("episodios", episodiosJson);
 
-        return Results.ok(Json.toJson(result));
+
+
+        return Results.ok(result.toJSONString());
     }
 
     @Transactional
@@ -728,6 +778,8 @@ public class EpisodioController extends Controller {
             simple.put("episodioId", ep);
             sintomasJson.put(simple);
         }
+
+        result.put("sintomas", sintomasJson);
 
 
         return Results.ok(Json.toJson(result));
