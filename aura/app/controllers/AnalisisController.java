@@ -1,9 +1,6 @@
 package controllers;
 
-import models.ActividadFisica;
-import models.Alimento;
-import models.Episodio;
-import models.Medicamento;
+import models.*;
 import org.json.simple.JSONObject;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
@@ -13,9 +10,7 @@ import play.mvc.Result;
 import play.mvc.Results;
 
 import javax.persistence.Query;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * Created by Clau on 17/02/2015.
@@ -28,19 +23,20 @@ public class AnalisisController extends Controller
         System.out.println();
         Collection<Episodio>episodios=EpisodioController.getPerDatesAnalisis(idP, f1, f2);
        Iterator<Episodio> e= episodios.iterator();
-        int c=0;
+        List<AnalisisIntensidadHoras> lista=new ArrayList<AnalisisIntensidadHoras>();
         while(e.hasNext())
         {
             Episodio ep=e.next();
             Integer i=ep.getIntensidad();
             Integer h=ep.getHorasSuenio();
             Date f=ep.getFechaPublicacion();
-            jsonPuntos.put("intensidad"+c,i);
-            jsonPuntos.put("horas"+c,h);
-            jsonPuntos.put("fecha"+c,f.toString());
-            c++;
+            AnalisisIntensidadHoras analisis=new AnalisisIntensidadHoras(i,f.toString(),h);
+            lista.add(analisis);
         }
-        return Results.ok(Json.toJson(jsonPuntos));
+
+        System.out.println("-------------------------------------------------------- ");
+        return ok(Json.toJson(lista)).as("application/json");
+
     }
     @Transactional
     public static Result createAnalisisIntensidadMedicamentos(Long idP, String f1, String f2){
@@ -119,6 +115,10 @@ public class AnalisisController extends Controller
                 c++;
             }
         }
-        return Results.ok(Json.toJson(jsonPuntos));
+        return ok();
+
     }
+
+
+
 }
