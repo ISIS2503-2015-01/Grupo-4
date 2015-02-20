@@ -211,7 +211,12 @@ public class EpisodioController extends Controller {
 
         Episodio e = JPA.em().find(Episodio.class, id1);
 
+        if(e == null)
+            return Results.ok("El episodio no existe");
+
+        e = JPA.em().getReference(Episodio.class, id1);
         if(e != null && e.getPacienteID().equals(idp)) {
+
             JsonNode j = Controller.request().body().asJson();
 
             int sintoma = j.findPath("sintoma").asInt();
@@ -233,12 +238,26 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result deleteSymptom(Long idp, Long id1, Long id2) {
-        Episodio e = JPA.em().getReference(Episodio.class, id1);
+
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
+        Episodio e = JPA.em().find(Episodio.class, id1);
+
+        if(e == null)
+            return Results.ok("El episodio no existe");
+
+        e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
-            Sintoma s = JPA.em().getReference(Sintoma.class, id2);
+            Sintoma s = JPA.em().find(Sintoma.class, id2);
+            if(s == null)
+                return Results.ok("El sintoma no existe");
+            s = JPA.em().getReference(Sintoma.class, id2);
             JPA.em().remove(s);
-            Results.ok();
+            return Results.ok();
         }
 
         return Results.ok("El Episodio no existe");
@@ -246,10 +265,23 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result getOneSymptom(Long idp, Long id1, Long id2) {
-        Episodio e = JPA.em().getReference(Episodio.class, id1);
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
+        Episodio e = JPA.em().find(Episodio.class, id1);
+
+        if(e == null)
+            return Results.ok("El episodio no existe");
+
+        e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
-            Sintoma s = JPA.em().getReference(Sintoma.class, id2);
+            Sintoma s = JPA.em().find(Sintoma.class, id2);
+            if(s == null)
+                return Results.ok("El sintoma no existe");
+            s = JPA.em().getReference(Sintoma.class, id2);
             return Results.ok(Json.toJson(s));
         }
 
@@ -258,6 +290,11 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result getAllSymptom(Long idp, Long id) {
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
         Query query = JPA.em().createQuery("SELECT s FROM Sintoma s WHERE s.episodioId = :id");
         query.setParameter("id", id);
         Collection<Sintoma> sintomas = query.getResultList();
@@ -271,7 +308,17 @@ public class EpisodioController extends Controller {
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result updateSymptom(Long idp, Long id1, Long id2) {
-        Episodio e = JPA.em().getReference(Episodio.class, id1);
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
+        Episodio e = JPA.em().find(Episodio.class, id1);
+
+        if(e == null)
+            return Results.ok("El episodio no existe");
+
+        e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
             JsonNode j = Controller.request().body().asJson();
@@ -279,7 +326,10 @@ public class EpisodioController extends Controller {
             int sintoma = j.findPath("sintoma").asInt();
 
             try {
-                Sintoma s = JPA.em().getReference(Sintoma.class, id2);
+                Sintoma s = JPA.em().find(Sintoma.class, id2);
+                if(s == null)
+                    return Results.ok("El sintoma no existe");
+                s = JPA.em().getReference(Sintoma.class, id2);
                 s.setSintoma(sintoma);
             } catch (Exception x) {
                 x.printStackTrace();
@@ -293,12 +343,18 @@ public class EpisodioController extends Controller {
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result addFood(Long idp, Long id1) {
+
         Paciente p = JPA.em().find(Paciente.class, idp);
 
         if(p == null)
             return Results.ok("El paciente no existe");
 
         Episodio e = JPA.em().find(Episodio.class, id1);
+
+        if(e == null)
+            return Results.ok("El episodio no existe");
+
+        e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
             JsonNode j = Controller.request().body().asJson();
@@ -324,12 +380,25 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result deleteFood(Long idp, Long id1, Long id2) {
-        Episodio e = JPA.em().getReference(Episodio.class, id1);
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
+        Episodio e = JPA.em().find(Episodio.class, id1);
+
+        if(e == null)
+            return Results.ok("El episodio no existe");
+
+        e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
-            Alimento a = JPA.em().getReference(Alimento.class, id2);
+            Alimento a = JPA.em().find(Alimento.class, id2);
+            if(a == null)
+                return Results.ok("El alimento no existe");
+            a = JPA.em().getReference(Alimento.class, id2);
             JPA.em().remove(a);
-            Results.ok();
+            return Results.ok();
         }
 
         return Results.ok("El Episodio no existe");
@@ -337,10 +406,23 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result getOneFood(Long idp, Long id1, Long id2) {
-        Episodio e = JPA.em().getReference(Episodio.class, id1);
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
+        Episodio e = JPA.em().find(Episodio.class, id1);
+
+        if(e == null)
+            return Results.ok("El episodio no existe");
+
+        e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
-            Alimento a = JPA.em().getReference(Alimento.class, id2);
+            Alimento a = JPA.em().find(Alimento.class, id2);
+            if(a == null)
+                return Results.ok("El alimento no existe");
+            a = JPA.em().getReference(Alimento.class, id2);
             return Results.ok(Json.toJson(a));
         }
 
@@ -349,6 +431,11 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result getAllFood(Long idp, Long id) {
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
         Query query = JPA.em().createQuery("SELECT a FROM Alimento a WHERE a.episodioId = :id");
         query.setParameter("id", id);
         Collection<Alimento> alimentos = query.getResultList();
@@ -362,7 +449,17 @@ public class EpisodioController extends Controller {
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result updateFood(Long idp, Long id1, Long id2) {
-        Episodio e = JPA.em().getReference(Episodio.class, id1);
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
+        Episodio e = JPA.em().find(Episodio.class, id1);
+
+        if(e == null)
+            return Results.ok("El episodio no existe");
+
+        e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
             JsonNode j = Controller.request().body().asJson();
@@ -371,7 +468,10 @@ public class EpisodioController extends Controller {
             int cantidad = j.findPath("cantidad").asInt();
 
             try {
-                Alimento a = JPA.em().getReference(Alimento.class, id2);
+                Alimento a = JPA.em().find(Alimento.class, id2);
+                if(a == null)
+                    return Results.ok("El alimento no existe");
+                a = JPA.em().getReference(Alimento.class, id2);
                 a.setCantidad(cantidad);
                 a.setNombre(nombre);
 
@@ -387,12 +487,18 @@ public class EpisodioController extends Controller {
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result addActivity(Long idp, Long id1) {
+
         Paciente p = JPA.em().find(Paciente.class, idp);
 
         if(p == null)
             return Results.ok("El paciente no existe");
 
         Episodio e = JPA.em().find(Episodio.class, id1);
+
+        if(e == null)
+            return Results.ok("El episodio no existe");
+
+        e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
             JsonNode j = Controller.request().body().asJson();
@@ -425,12 +531,25 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result deleteActivity(Long idp, Long id1, Long id2) {
-        Episodio e = JPA.em().getReference(Episodio.class, id1);
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
+        Episodio e = JPA.em().find(Episodio.class, id1);
+
+        if(e == null)
+            return Results.ok("El episodio no existe");
+
+        e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
-            ActividadFisica a = JPA.em().getReference(ActividadFisica.class, id2);
+            ActividadFisica a = JPA.em().find(ActividadFisica.class, id2);
+            if(a == null)
+                return Results.ok("La actividad no existe");
+            a = JPA.em().getReference(ActividadFisica.class, id2);
             JPA.em().remove(a);
-            Results.ok();
+            return Results.ok();
         }
 
         return Results.ok("El Episodio no existe");
@@ -438,10 +557,23 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result getOneActivity(Long idp, Long id1, Long id2) {
-        Episodio e = JPA.em().getReference(Episodio.class, id1);
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
+        Episodio e = JPA.em().find(Episodio.class, id1);
+
+        if(e == null)
+            return Results.ok("El episodio no existe");
+
+        e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
-            ActividadFisica a = JPA.em().getReference(ActividadFisica.class, id2);
+            ActividadFisica a = JPA.em().find(ActividadFisica.class, id2);
+            if(a == null)
+                return Results.ok("La actividad no existe");
+            a = JPA.em().getReference(ActividadFisica.class, id2);
             return Results.ok(Json.toJson(a));
         }
 
@@ -450,6 +582,11 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result getAllActivity(Long idp, Long id) {
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
         Query query = JPA.em().createQuery("SELECT a FROM ActividadFisica a WHERE a.episodioId = :id");
         query.setParameter("id", id);
         Collection<ActividadFisica> actividades = query.getResultList();
@@ -463,7 +600,17 @@ public class EpisodioController extends Controller {
     @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result updateActivity(Long idp, Long id1, Long id2) {
-        Episodio e = JPA.em().getReference(Episodio.class, id1);
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
+        Episodio e = JPA.em().find(Episodio.class, id1);
+
+        if(e == null)
+            return Results.ok("El episodio no existe");
+
+        e = JPA.em().getReference(Episodio.class, id1);
 
         if(e != null && e.getPacienteID().equals(idp)) {
             JsonNode j = Controller.request().body().asJson();
@@ -475,7 +622,10 @@ public class EpisodioController extends Controller {
             boolean hidratacion = j.findPath("hidratacion").asBoolean();
 
             try {
-                ActividadFisica a = JPA.em().getReference(ActividadFisica.class, id2);
+                ActividadFisica a = JPA.em().find(ActividadFisica.class, id2);
+                if(a == null)
+                    return Results.ok("La actividad no existe");
+                a = JPA.em().getReference(ActividadFisica.class, id2);
                 a.setDescripcion(descripcion);
                 a.setIntensidad(intensidad);
                 a.setLugar(lugar);
@@ -546,6 +696,11 @@ public class EpisodioController extends Controller {
 
         Episodio e = JPA.em().find(Episodio.class, id1);
 
+        if(e == null)
+            return Results.ok("El episodio no existe");
+
+        e = JPA.em().getReference(Episodio.class, id1);
+
         if(e != null && e.getPacienteID().equals(idp)) {
             JsonNode j = Controller.request().body().asJson();
 
@@ -553,7 +708,10 @@ public class EpisodioController extends Controller {
             int horasTomadoAntes = j.findPath("horas").asInt();
 
             try {
-                Medicamento m = new Medicamento();
+                Medicamento m = JPA.em().find(Medicamento.class, id1);
+                if(m == null)
+                    return Results.ok("El medicamento no existe");
+                m = JPA.em().getReference(Medicamento.class, id1);
                 m.setNombre(nombre);
                 m.setHorasTomadoAntes(horasTomadoAntes);
 
@@ -579,6 +737,11 @@ public class EpisodioController extends Controller {
 
     @Transactional
     public static Result getAllMedicine(Long idp, Long id) {
+        Paciente p = JPA.em().find(Paciente.class, idp);
+
+        if(p == null)
+            return Results.ok("El paciente no existe");
+
         Query query = JPA.em().createQuery("SELECT a FROM Medicamento a WHERE a.episodioId = :id");
         query.setParameter("id", id);
         Collection<Medicamento> alimentos = query.getResultList();
