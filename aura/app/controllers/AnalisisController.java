@@ -64,6 +64,7 @@ public class AnalisisController extends Controller
         }
         return Results.ok(Json.toJson(jsonPuntos));
     }
+
     @Transactional
     public static Result createAnalisisIntensidadAlimentos(Long idP, String f1, String f2){
         JSONObject jsonPuntos=new JSONObject();
