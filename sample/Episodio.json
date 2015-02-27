@@ -1,0 +1,83 @@
+{
+    "id": 1,
+    "idUrl": -1,
+    "fechaPublicacion": 1424117714781,
+    "intensidad": 5,
+    "horasSuenio": -1,
+    "suenioRegular": false,
+    "lugar": -1,
+    "episodioEstreCercano": false,
+    "pacienteID": 55550668587,
+    "sintomas" : [
+        {
+            "id" : 1,
+            "sintoma" : 1,
+            "episodioId" : 1
+
+        },
+        {
+            "id" : 34,
+            "sintoma" : 5,
+            "episodioId" : 1
+
+        },
+        {
+            "id" : 12,
+            "sintoma" : 6,
+            "episodioId" : 1
+
+        },
+    ],
+    "medicamentos" : [
+        {
+            "id" : 12,
+            "nombre" : "Aspirina",
+            "horas" : 5,
+            "episodioId" : 1
+        },
+        {
+            "id" : 56,
+            "nombre" : "Naproxeno",
+            "horas" : 13,
+            "episodioId" : 1
+        }
+
+    ],
+    "actividades" : [
+        {
+            "id" : 67,
+            "descripcion" : 5,
+            "intensidad" : 5,
+            "lugar" : 0,
+            "clima" :12,
+            "hidratacion" : true,
+            "episodioId" : 1
+        },
+        {
+            "id" : 90,
+            "descripcion" : 5,
+            "intensidad" : 5,
+            "lugar" : 0,
+            "clima" :12,
+            "hidratacion" : true,
+            "episodioId" : 1
+        },
+        {
+            "id" : 12,
+            "descripcion" : 5,
+            "intensidad" : 5,
+            "lugar" : 0,
+            "clima" :12,
+            "hidratacion" : true,
+            "episodioId" : 1
+        }
+    ],
+    "alimentos" : [
+        {
+            "id" : 23,
+            "nombre" : "Frijol",
+            "cantidad" : 3,
+            "episodioId" : 1
+        }
+    ]
+}

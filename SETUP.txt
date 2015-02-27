@@ -1,0 +1,42 @@
+Para iniciar el repositorio:
+
+git init
+git add .
+git commit -m 'First commit'
+git remote add origin https://github.com/ISIS2503-2015-01/Grupo-4
+git remote -v
+git push origin master
+
+Para traer el repositorio:
+
+git clone https://github.com/ISIS2503-2015-01/Grupo-4
+git commit -m "I'm comitting stuff"
+git add .
+git push origin master
+
+Para iniciar el proyecto en IntelliJ:
+
+Instalar Plugin Scala/Play
+Importar el proyecto:
+	* Seleccionar opción de importar proyecto
+	* Seleccionar proyeco en el sistema de archivos local
+	* Seleccionar opción "Import project from external model", y SBT project
+	* Dejar opciones por default, y terminar
+
+Para correr el proyecto:
+
+Asegurarse de tener git al path, igual que activator
+Seleccionar view > tool buttons en el menú del IDE
+Seleccionar en la parte de abajo a la izquierda la opción terminal
+Asegurarse de esár en la carpeta del proyecto (aura)
+correr el comando activator con el flag run
+
+Para subir cambios al repo:
+
+uno:
+git add .
+git commit -m “Hola”
+git pull // BAJAR la versión actual
+Si no hay conflictos
+git push
+De otra manera arreglarlos e ir a uno.

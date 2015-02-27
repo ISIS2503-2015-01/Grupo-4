@@ -1,0 +1,1 @@
+{id:long,docidentidad:Long, nombre:string,contrasenia:string,fechaNacimiento:date,Email:string,genero:int,especialidad:Integer}
