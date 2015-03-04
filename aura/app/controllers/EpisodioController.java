@@ -332,6 +332,14 @@ public class EpisodioController extends Controller {
     }
 
     @Transactional
+    public static Result getAllMedicines() {
+
+        Query query = JPA.em().createQuery("SELECT m FROM Medicamento m");
+        Collection<Medicamento> medicinas = query.getResultList();
+        return Results.ok(Json.toJson(medicinas));
+    }
+
+    @Transactional
     @BodyParser.Of(BodyParser.Json.class)
     public static Result updateSymptom(Long idp, Long id1, Long id2) {
         Paciente p = JPA.em().find(Paciente.class, idp);
@@ -742,12 +750,11 @@ public class EpisodioController extends Controller {
             int horasTomadoAntes = j.findPath("horas").asInt();
 
             try {
-                Medicamento m = JPA.em().find(Medicamento.class, id1);
-                if(m == null)
-                    return Results.ok("El medicamento no existe");
-                m = JPA.em().getReference(Medicamento.class, id1);
+                Medicamento m = new Medicamento();
                 m.setNombre(nombre);
                 m.setHorasTomadoAntes(horasTomadoAntes);
+                m.setEpisodioId(e.getId());
+                JPA.em().persist(m);
 
 
             } catch (Exception x) {
@@ -977,6 +984,26 @@ public class EpisodioController extends Controller {
 
             simple.put("actividadesFisicas", actividadesJson);
 
+            query = JPA.em().createQuery("SELECT m FROM Medicamento m WHERE m.episodioId = :id");
+            query.setParameter("id", eId);
+            List<Medicamento> medicinas = query.getResultList();
+            JSONArray medicinasJson = new JSONArray();
+
+            for(Medicamento m : medicinas) {
+                JSONObject simpleMedicina = new JSONObject();
+                Long mId = m.getId();
+                String nombre = m.getNombre();
+                int mHorasTomadoAntes = m.getHorasTomadoAntes();
+
+                simpleMedicina.put("id", mId);
+                simpleMedicina.put("nombre", nombre);
+                simpleMedicina.put("horastomadoantes:", mHorasTomadoAntes);
+
+                sintomasJson.put(simpleMedicina);
+
+            }
+
+            simple.put("medicinas", medicinasJson);
 
             episodiosJson.put(simple);
 
