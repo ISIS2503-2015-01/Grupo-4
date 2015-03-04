@@ -82,6 +82,7 @@ public class PacienteController extends Controller {
         if(p != null) {
             p = JPA.em().getReference(Paciente.class, id);
             JPA.em().remove(p);
+            //Query query = JPA.em().createQuery("SELECT p FROM Paciente p");
             return Results.ok();
         }
         return Results.ok("El paciente no existe");

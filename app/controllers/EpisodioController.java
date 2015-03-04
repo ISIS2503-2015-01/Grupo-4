@@ -214,6 +214,8 @@ public class EpisodioController extends Controller {
         if(e == null)
             return Results.ok("El episodio no existe");
 
+        System.out.print("***********************"+p.getDocIdentidad()+"+"+e.getId());
+
         e = JPA.em().getReference(Episodio.class, id1);
         if(e != null && e.getPacienteID().equals(idp)) {
 
@@ -303,6 +305,30 @@ public class EpisodioController extends Controller {
                 return Results.ok("Error en los parametros");
         }
         return Results.ok(Json.toJson(sintomas));
+    }
+
+//    @Transactional
+//    public static Result getAllSymptoms() {
+//
+//        Query query = JPA.em().createQuery("SELECT s FROM Sintoma s");
+//        Collection<Sintoma> sintomas = query.getResultList();
+//        return Results.ok(Json.toJson(sintomas));
+//    }
+
+    @Transactional
+     public static Result getAllFoods() {
+
+        Query query = JPA.em().createQuery("SELECT a FROM Alimento a");
+        Collection<Sintoma> sintomas = query.getResultList();
+        return Results.ok(Json.toJson(sintomas));
+    }
+
+    @Transactional
+    public static Result getAllActivities() {
+
+        Query query = JPA.em().createQuery("SELECT f FROM ActividadFisica f");
+        Collection<ActividadFisica> actividadesFisicas = query.getResultList();
+        return Results.ok(Json.toJson(actividadesFisicas));
     }
 
     @Transactional
@@ -436,11 +462,16 @@ public class EpisodioController extends Controller {
         if(p == null)
             return Results.ok("El paciente no existe");
 
+        Episodio e = JPA.em().find(Episodio.class, id);
+
+        if (e == null)
+            return Results.ok("El episodio no existe");
+
         Query query = JPA.em().createQuery("SELECT a FROM Alimento a WHERE a.episodioId = :id");
-        query.setParameter("id", id);
-        Collection<Alimento> alimentos = query.getResultList();
+        query.setParameter("id", e.getId());
+        List<Alimento> alimentos = query.getResultList();
         for(Alimento a : alimentos) {
-            if(!a.getEpisodioId().equals(idp))
+            if(!a.getEpisodioId().equals(id))
                 return Results.ok("Error en los parametros");
         }
         return Results.ok(Json.toJson(alimentos));
@@ -508,6 +539,7 @@ public class EpisodioController extends Controller {
             int lugar = j.findPath("lugar").asInt();
             int clima = j.findPath("clima").asInt();
             boolean hidratacion = j.findPath("hidratacion").asBoolean();
+            //boolean hidratacion = false;
 
             try {
 
@@ -518,12 +550,14 @@ public class EpisodioController extends Controller {
                 a.setLugar(lugar);
                 a.setHidratacion(hidratacion);
                 a.setEpisodioId(id1);
+                JPA.em().persist(a);
 
 
             } catch (Exception x) {
                 x.printStackTrace();
                 return Results.ok("Error al crear la actividad");
             }
+
             return Results.created();
         }
         return Results.ok("El Episodio no existe");
@@ -897,6 +931,51 @@ public class EpisodioController extends Controller {
 
             simple.put("sintomas", sintomasJson);
 
+            query = JPA.em().createQuery("SELECT a FROM Alimento a WHERE a.episodioId = :id");
+            query.setParameter("id", eId);
+            List<Alimento> alimentos = query.getResultList();
+            JSONArray alimentosJson = new JSONArray();
+
+            for(Alimento ali : alimentos) {
+                JSONObject simpleAlimento = new JSONObject();
+                Long aId = ali.getId();
+                String nombre = ali.getNombre();
+                int cantidad = ali.getCantidad();
+
+                simpleAlimento.put("id", aId);
+                simpleAlimento.put("nombre", nombre);
+                simpleAlimento.put("cantidad", cantidad);
+
+                sintomasJson.put(simpleAlimento);
+
+            }
+
+            query = JPA.em().createQuery("SELECT a FROM ActividadFisica a WHERE a.episodioId = :id");
+            query.setParameter("id", eId);
+            List<ActividadFisica> actividades = query.getResultList();
+            JSONArray actividadesJson = new JSONArray();
+
+            for(ActividadFisica ac : actividades) {
+                JSONObject simpleActividad = new JSONObject();
+                Long aId = ac.getId();
+                int descripcion = ac.getDescripcion();
+                int intesidad = ac.getIntensidad();
+                int lugar = ac.getLugar();
+                int clima = ac.getClima();
+                boolean hidratacion = ac.getHidratacion();
+
+                simpleActividad.put("id", aId);
+                simpleActividad.put("descripcion", descripcion);
+                simpleActividad.put("intensidad", intensidad);
+                simpleActividad.put("lugar", lugar);
+                simpleActividad.put("clima", clima);
+                simpleActividad.put("hidratacion", hidratacion);
+
+                sintomasJson.put(simpleActividad);
+
+            }
+
+            simple.put("actividadesFisicas", actividadesJson);
 
 
             episodiosJson.put(simple);

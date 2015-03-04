@@ -3,7 +3,9 @@ package models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by scvalencia on 2/16/15.
@@ -33,6 +35,17 @@ public class Episodio {
 
     private Long pacienteID;
 
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="episodioId")
+    private List<Sintoma> sintomas;
+
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="episodioId")
+    private List<Alimento> alimentos;
+
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="episodioId")
+    private List<ActividadFisica> actividades;
+
+//    private List<Medicamento> medicamentos;
+
     //@ManyToOne
     //@JoinColumn(name="idPerson", referencedColumnName="id")
     //public Paciente paciente;
@@ -52,6 +65,8 @@ public class Episodio {
         e.lugar = lugar;
         e.episodioEstreCercano = episodioEstreCercano;
         e.pacienteID = pacienteID;
+        e.sintomas = new ArrayList<Sintoma>();
+        e.alimentos = new ArrayList<Alimento>();
         return e;
     }
 
@@ -122,4 +137,16 @@ public class Episodio {
     public void setPacienteID(Long pacienteID) {
         this.pacienteID = pacienteID;
     }
+
+    public void addSintoma(Sintoma s) {sintomas.add(s);}
+
+    public List<Sintoma> getSintomas() {return sintomas;}
+
+    public void addAlimento(Alimento a) {alimentos.add(a);}
+
+    public List<Alimento> getAlimentos() {return alimentos;}
+
+    public void addActividad(ActividadFisica a) {actividades.add(a);}
+
+    public List<ActividadFisica> getActividadesFisicas() {return actividades;}
 }

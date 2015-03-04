@@ -55,11 +55,11 @@ GET           /api/paciente/:id/episodio/:f1/:f2                     controllers
 
 # Crear un sintoma asociado a un episodio DONE AND TESTED
 POST          /api/paciente/:idp/episodio/:id1/sintoma               controllers.EpisodioController.addSymptom(idp : Long, id1 : Long)
-# Borrar un sintoma asociado a un episodio
+# Borrar un sintoma asociado a un episodio DONE AND TESTED
 DELETE        /api/paciente/:idp/episodio/:id1/sintoma/:id2          controllers.EpisodioController.deleteSymptom(idp : Long, id1 : Long, id2 : Long)
-# Ver un sintoma de un episodio
+# Ver un sintoma de un episodio DONE AND TESTED
 GET           /api/paciente/:idp/episodio/:id1/sintoma/:id2          controllers.EpisodioController.getOneSymptom(idp : Long, id1 : Long, id2 : Long)
-# Ver todos los sintomas asociados a un episodio
+# Ver todos los sintomas asociados a un episodio DONE AND TETED
 GET           /api/paciente/:idp/episodio/:id/sintoma                controllers.EpisodioController.getAllSymptom(idp : Long, id : Long)
 # Actualizar la información de un sintoma asociado a un episodio
 PUT           /api/paciente/:idp/episodio/:id1/sintoma/:id2          controllers.EpisodioController.updateSymptom(idp : Long, id1 : Long, id2 : Long)
@@ -67,21 +67,23 @@ PUT           /api/paciente/:idp/episodio/:id1/sintoma/:id2          controllers
 ########################################################################################################################
 # Alimento
 
-# Crear un alimento asociado a un episodio
+# Crear un alimento asociado a un episodio DONE AND TESTED
 POST          /api/paciente/:idp/episodio/:id1/alimento              controllers.EpisodioController.addFood(idp : Long, id1 : Long)
-# Borrar un alimento asociado a un episodio
+# Borrar un alimento asociado a un episodio DONE AND TESTED
 DELETE        /api/paciente/:idp/episodio/:id1/alimento/:id2         controllers.EpisodioController.deleteFood(idp : Long, id1 : Long, id2 : Long)
-# Ver un alimento de un episodio
+# Ver un alimento de un episodio DONE AND TESTED
 GET           /api/paciente/:idp/episodio/:id1/alimento/:id2         controllers.EpisodioController.getOneFood(idp : Long, id1 : Long, id2 : Long)
 # Ver todos los alimento asociados a un episodio
 GET           /api/paciente/:idp/episodio/:id/alimento               controllers.EpisodioController.getAllFood(idp : Long, id : Long)
+# Ver todos los alimentos
+GET           /api/alimento               controllers.EpisodioController.getAllFoods()
 # Actualizar la información de un alimento asociado a un episodio
 PUT           /api/paciente/:idp/episodio/:id1/alimento/:id2         controllers.EpisodioController.updateFood(idp : Long, id1 : Long, id2 : Long)
 
 ########################################################################################################################
 # Actividad
 
-# Crear una actividad asociada a un episodio
+# Crear una actividad asociada a un episodio DONE AND TESTED
 POST          /api/paciente/:idp/episodio/:id1/actividad             controllers.EpisodioController.addActivity(idp : Long, id1 : Long)
 # Borrar una actividad asociada a un episodio
 DELETE        /api/paciente/:idp/episodio/:id1/actividad/:id2        controllers.EpisodioController.deleteActivity(idp : Long, id1 : Long, id2 : Long)
