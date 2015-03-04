@@ -307,10 +307,18 @@ public class EpisodioController extends Controller {
         return Results.ok(Json.toJson(sintomas));
     }
 
-    @Transactional
-    public static Result getAllSymptoms() {
+//    @Transactional
+//    public static Result getAllSymptoms() {
+//
+//        Query query = JPA.em().createQuery("SELECT s FROM Sintoma s");
+//        Collection<Sintoma> sintomas = query.getResultList();
+//        return Results.ok(Json.toJson(sintomas));
+//    }
 
-        Query query = JPA.em().createQuery("SELECT s FROM Sintoma s");
+    @Transactional
+    public static Result getAllFoods() {
+
+        Query query = JPA.em().createQuery("SELECT a FROM Alimento a");
         Collection<Sintoma> sintomas = query.getResultList();
         return Results.ok(Json.toJson(sintomas));
     }
@@ -907,6 +915,26 @@ public class EpisodioController extends Controller {
 
             simple.put("sintomas", sintomasJson);
 
+            query = JPA.em().createQuery("SELECT a FROM Alimento a WHERE a.episodioId = :id");
+            query.setParameter("id", eId);
+            List<Alimento> alimentos = query.getResultList();
+            JSONArray alimentosJson = new JSONArray();
+
+            for(Alimento ali : alimentos) {
+                JSONObject simpleAlimento = new JSONObject();
+                Long aId = ali.getId();
+                String nombre = ali.getNombre();
+                int cantidad = ali.getCantidad();
+
+                simpleAlimento.put("id", aId);
+                simpleAlimento.put("nombre", nombre);
+                simpleAlimento.put("cantidad", cantidad);
+
+                sintomasJson.put(simpleAlimento);
+
+            }
+
+            simple.put("sintomas", sintomasJson);
 
 
             episodiosJson.put(simple);
