@@ -62,6 +62,8 @@ GET           /api/paciente/:idp/episodio/:id1/sintoma/:id2          controllers
 # Ver todos los sintomas asociados a un episodio
 GET           /api/paciente/:idp/episodio/:id/sintoma                controllers.EpisodioController.getAllSymptom(idp : Long, id : Long)
 # Actualizar la información de un sintoma asociado a un episodio
+GET           /api/sintoma         controllers.EpisodioController.getAllSymptoms()
+# Ver todos los sintomas
 PUT           /api/paciente/:idp/episodio/:id1/sintoma/:id2          controllers.EpisodioController.updateSymptom(idp : Long, id1 : Long, id2 : Long)
 
 ########################################################################################################################

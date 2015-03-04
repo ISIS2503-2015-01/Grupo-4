@@ -214,6 +214,8 @@ public class EpisodioController extends Controller {
         if(e == null)
             return Results.ok("El episodio no existe");
 
+        System.out.print("***********************"+p.getDocIdentidad()+"+"+e.getId());
+
         e = JPA.em().getReference(Episodio.class, id1);
         if(e != null && e.getPacienteID().equals(idp)) {
 
@@ -302,6 +304,14 @@ public class EpisodioController extends Controller {
             if(!s.getEpisodioId().equals(idp))
                 return Results.ok("Error en los parametros");
         }
+        return Results.ok(Json.toJson(sintomas));
+    }
+
+    @Transactional
+    public static Result getAllSymptoms() {
+
+        Query query = JPA.em().createQuery("SELECT s FROM Sintoma s");
+        Collection<Sintoma> sintomas = query.getResultList();
         return Results.ok(Json.toJson(sintomas));
     }
 

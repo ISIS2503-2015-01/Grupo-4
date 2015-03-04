@@ -77,6 +77,13 @@ public class DoctorController extends Controller {
         //prueba--;
         //Doctor d = JPA.em().find(Doctor.class, docIdentidad);
         Doctor d = JPA.em().getReference(Doctor.class, id);
+        Query query = JPA.em().createQuery("SELECT e FROM Episodio e WHERE e.pacienteID = :id");
+        query.setParameter("id", id);
+//        List<Episodio> episodios = query.getResultList();
+//        for (int i=0; i<=episodios.size();i++)
+//        {
+//            JPA.em().remove(episodios.get(i));
+//        }
         JPA.em().remove(d);
         return Results.ok();
     }
