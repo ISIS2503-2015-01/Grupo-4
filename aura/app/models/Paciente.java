@@ -7,11 +7,11 @@ package models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.mindrot.jbcrypt.BCrypt;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -35,6 +35,9 @@ public class Paciente {
 
     private int genero;
 
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="pacienteID")
+    private List<Episodio> episodios;
+
     public Paciente() {
 
     }
@@ -47,6 +50,7 @@ public class Paciente {
         p.password = BCrypt.hashpw(password, BCrypt.gensalt());
         p.fechaNacimiento = fechaNacimiento;
         p.email = email;
+        p.episodios = new ArrayList<Episodio>();
         return p;
     }
 
@@ -97,5 +101,9 @@ public class Paciente {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void addEpisodio(Episodio e) {episodios.add(e);}
+
+    public List<Episodio> getEpisodios() {return episodios;}
 
 }
