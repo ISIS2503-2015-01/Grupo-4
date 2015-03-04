@@ -600,7 +600,7 @@
     <object type="LMREQUEST" id="z146">
         <attribute name="body" type="string">[{"data":{"json":"{\\"name\\":\\"Mauricio\\",\\"surname\\":\\"Gomez\\",\\"address\\":\\"Calle 42 #18\\",\\"age\\":20,\\"telephone\\":\\"7659675\\",\\"cellphone\\":\\"3002345436\\",\\"city\\":\\"Bogota\\",\\"country\\":\\"Colombia\\"}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">0CF3E294-77BF-4FDB-B82A-ED0EBF0229E8</attribute>
-        <attribute name="url" type="string">http://localhost:8080/competitors</attribute>
+        <attribute name="url" type="string">http://lab-cloud.herokuapp.com/competitors</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -622,83 +622,5 @@
         <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z146"></relationship>
-    </object>
-    <object type="LMREQUEST" id="z148">
-        <attribute name="body" type="string">["{\\n  \\"name\\": \\"Mauricio\\",\\n  \\"surname\\": \\"Gomez\\",\\n  \\"address\\": \\"Calle 42 #18\\",\\n  \\"age\\": 20,\\n  \\"telephone\\": \\"7659675\\",\\n  \\"cellphone\\": \\"3002345436\\",\\n  \\"city\\": \\"Bogota\\",\\n  \\"country\\": \\"Colombia\\",\\n  \\"vehicle\\": {\\n    \\"plate\\": \\"TRE-465\\",\\n    \\"brand\\": \\"BMW\\",\\n    \\"modelYear\\": 345\\n  }\\n}"]</attribute>
-        <attribute name="uuid" type="string">300D2715-69F5-4D86-BC20-65F4947F691B</attribute>
-        <attribute name="url" type="string">http://localhost:8080/competitors/vehicle</attribute>
-        <attribute name="storecookies" type="bool">1</attribute>
-        <attribute name="sendcookies" type="bool">1</attribute>
-        <attribute name="redirectmethod" type="bool">0</attribute>
-        <attribute name="redirectauthorization" type="bool">0</attribute>
-        <attribute name="method" type="string">POST</attribute>
-        <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="order" type="int64">1</attribute>
-        <attribute name="name" type="string">My API (2)</attribute>
-        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z149"></relationship>
-    </object>
-    <object type="LMKEYVALUE" id="z149">
-        <attribute name="value" type="string"></attribute>
-        <attribute name="order" type="int64">0</attribute>
-        <attribute name="name" type="string"></attribute>
-        <attribute name="enabled" type="bool">1</attribute>
-        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
-        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
-        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
-        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z148"></relationship>
-    </object>
-    <object type="LMREQUEST" id="z150">
-        <attribute name="uuid" type="string">853938B4-6095-4A26-94F3-571406E35BAB</attribute>
-        <attribute name="url" type="string">http://localhost:8080/competitors/product</attribute>
-        <attribute name="storecookies" type="bool">1</attribute>
-        <attribute name="sendcookies" type="bool">1</attribute>
-        <attribute name="redirectmethod" type="bool">0</attribute>
-        <attribute name="redirectauthorization" type="bool">0</attribute>
-        <attribute name="method" type="string">POST</attribute>
-        <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"json":"{\\"name\\":\\"Mauricio\\",\\"surname\\":\\"Gomez\\",\\"address\\":\\"Calle 42 #18\\",\\"age\\":20,\\"telephone\\":\\"7659675\\",\\"cellphone\\":\\"3002345436\\",\\"city\\":\\"Bogota\\",\\"country\\":\\"Colombia\\",\\"product\\":{\\"name\\":\\"America\\",\\"brand\\":\\"Mexica\\"}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">2</attribute>
-        <attribute name="name" type="string">My API (3)</attribute>
-        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z151"></relationship>
-    </object>
-    <object type="LMKEYVALUE" id="z151">
-        <attribute name="value" type="string"></attribute>
-        <attribute name="order" type="int64">0</attribute>
-        <attribute name="name" type="string"></attribute>
-        <attribute name="enabled" type="bool">1</attribute>
-        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
-        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
-        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
-        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z150"></relationship>
-    </object>
-    <object type="LMREQUEST" id="z152">
-        <attribute name="body" type="string"></attribute>
-        <attribute name="uuid" type="string">BC49A967-E6C6-4F54-AF87-E34AED41CA84</attribute>
-        <attribute name="url" type="string">http://localhost:8080/competitors/products</attribute>
-        <attribute name="storecookies" type="bool">1</attribute>
-        <attribute name="sendcookies" type="bool">1</attribute>
-        <attribute name="redirectmethod" type="bool">0</attribute>
-        <attribute name="redirectauthorization" type="bool">0</attribute>
-        <attribute name="method" type="string">GET</attribute>
-        <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="order" type="int64">3</attribute>
-        <attribute name="name" type="string">My API (4)</attribute>
-        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z153"></relationship>
-    </object>
-    <object type="LMKEYVALUE" id="z153">
-        <attribute name="value" type="string"></attribute>
-        <attribute name="order" type="int64">0</attribute>
-        <attribute name="name" type="string"></attribute>
-        <attribute name="enabled" type="bool">1</attribute>
-        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
-        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
-        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
-        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z152"></relationship>
     </object>
 </database>
