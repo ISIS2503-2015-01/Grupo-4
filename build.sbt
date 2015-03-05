@@ -14,3 +14,6 @@ libraryDependencies ++= Seq(
   "org.hibernate" % "hibernate-entitymanager" % "4.3.6.Final",
   "org.mindrot" % "jbcrypt" % "0.3m"
 )
+
+libraryDependencies += "postgresql" % "postgresql" % "9.1-901-1.jdbc4"
+
