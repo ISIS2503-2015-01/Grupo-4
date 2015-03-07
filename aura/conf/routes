@@ -76,7 +76,7 @@ GET           /api/paciente/:idp/episodio/:id1/alimento/:id2         controllers
 # Ver todos los alimento asociados a un episodio
 GET           /api/paciente/:idp/episodio/:id/alimento               controllers.EpisodioController.getAllFood(idp : Long, id : Long)
 # Ver todos los alimentos
-GET           /api/alimento               controllers.EpisodioController.getAllFoods()
+GET           /api/alimento                                          controllers.EpisodioController.getAllFoods()
 # Actualizar la información de un alimento asociado a un episodio
 PUT           /api/paciente/:idp/episodio/:id1/alimento/:id2         controllers.EpisodioController.updateFood(idp : Long, id1 : Long, id2 : Long)
 
