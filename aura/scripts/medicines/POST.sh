@@ -1,0 +1,2 @@
+#!/bin/sh
+curl -v -H "Content-type: application/json" -X POST -d '{"idp": "50832631970", "id1": "3", "nombre": "Penicilina", "horas": "4"}' http://localhost:9000/api/paciente/50832631970/episodio/3/medicina

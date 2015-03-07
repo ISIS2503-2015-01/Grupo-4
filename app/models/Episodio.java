@@ -44,8 +44,7 @@ public class Episodio {
     @OneToMany(cascade=CascadeType.ALL, mappedBy="episodioId")
     private List<ActividadFisica> actividades;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="episodioId")
-    private List<Medicamento> medicamentos;
+//    private List<Medicamento> medicamentos;
 
     //@ManyToOne
     //@JoinColumn(name="idPerson", referencedColumnName="id")
@@ -150,15 +149,4 @@ public class Episodio {
     public void addActividad(ActividadFisica a) {actividades.add(a);}
 
     public List<ActividadFisica> getActividadesFisicas() {return actividades;}
-
-    public void addMedicamentoAsociado (Medicamento m)
-    {
-        medicamentos.add(m);
-    }
-
-    public List<Medicamento> getMedicamentos()
-    {
-        return medicamentos;
-    }
-
 }

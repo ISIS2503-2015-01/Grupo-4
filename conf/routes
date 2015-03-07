@@ -76,7 +76,7 @@ GET           /api/paciente/:idp/episodio/:id1/alimento/:id2         controllers
 # Ver todos los alimento asociados a un episodio
 GET           /api/paciente/:idp/episodio/:id/alimento               controllers.EpisodioController.getAllFood(idp : Long, id : Long)
 # Ver todos los alimentos
-GET           /api/alimento                                          controllers.EpisodioController.getAllFoods()
+GET           /api/alimento               controllers.EpisodioController.getAllFoods()
 # Actualizar la información de un alimento asociado a un episodio
 PUT           /api/paciente/:idp/episodio/:id1/alimento/:id2         controllers.EpisodioController.updateFood(idp : Long, id1 : Long, id2 : Long)
 
@@ -97,7 +97,7 @@ PUT           /api/paciente/:idp/episodio/:id1/actividad/:id2        controllers
 ########################################################################################################################
 # Medicamento
 
-# Crear una medicina asociada a un episodio DONE AND TESTED
+# Crear una medicina asociada a un episodio
 POST          /api/paciente/:idp/episodio/:id1/medicina              controllers.EpisodioController.addMedicine(idp : Long, id1 : Long)
 # Borrar una medicina asociado a un episodio
 DELETE        /api/paciente/:idp/episodio/:id1/medicina/:id2         controllers.EpisodioController.deleteMedicine(idp : Long, id1 : Long, id2 : Long)
@@ -105,8 +105,6 @@ DELETE        /api/paciente/:idp/episodio/:id1/medicina/:id2         controllers
 GET           /api/paciente/:idp/episodio/:id1/medicina/:id2         controllers.EpisodioController.getOneMedicine(idp : Long, id1 : Long, id2 : Long)
 # Ver todos las medicinas asociadas a un episodio
 GET           /api/paciente/:idp/episodio/:id/medicina               controllers.EpisodioController.getAllMedicine(idp : Long, id : Long)
-# Ver todas las medicinas
-GET           /api/medicina                                          controllers.EpisodioController.getAllMedicines()
 # Actualizar la información de una medicina asociada a un episodio
 PUT           /api/paciente/:idp/episodio/:id1/medicina/:id2         controllers.EpisodioController.updateMedicine(idp : Long, id1 : Long, id2 : Long)
 
