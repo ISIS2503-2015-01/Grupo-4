@@ -1,1 +1,1 @@
-web: target/start -Dhhttps://github.com/ISIS2503-2015-01/Grupo-4.gitttp.port=${PORT} ${JAVA_OPTS}
+web: target/start -Dhttp.port=${PORT} ${JAVA_OPTS}

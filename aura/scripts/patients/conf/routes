@@ -1,0 +1,140 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET           /                                                      controllers.Application.index()
+
+########################################################################################################################
+# Paciente
+
+# Crea un nuevo paciente DONE AND TESTED
+POST          /api/paciente                                          controllers.PacienteController.create()
+# Ver información de un paciente DONE AND TESTED
+GET           /api/paciente/:id                                      controllers.PacienteController.getOne(id : Long)
+# Eliminar un paciente dado el id DONE AND TESTED
+DELETE        /api/paciente/:id                                      controllers.PacienteController.delete(id : Long)
+# Ver todos los pacientes DONE AND TESTED
+GET           /api/paciente                                          controllers.PacienteController.getAll()
+# Actualizar información de un sólo paciente DONE AND TESTED
+PUT           /api/paciente/:id                                      controllers.PacienteController.update(id : Long)
+
+########################################################################################################################
+# EPISODIOS: INFO COMPLETA
+
+# Postear info completa de un episodio
+POST          /api/paciente/:id/episodios                            controllers.EpisodioController.createEpisode(id : Long)
+# Ver info comleta de los episodios de un paciente
+GET           /api/paciente/:idP/episodios                           controllers.EpisodioController.fetchEpisodes(idP : Long)
+# Ver info completa de un episodio de un paciente
+GET           /api/paciente/:idP/episodios/:id                       controllers.EpisodioController.fetchEpisode(idP : Long, id : Long)
+
+########################################################################################################################
+# Episodio
+
+# Crear un nuevo episodio para ése paciente DONE AND TESTED
+POST          /api/paciente/:id/episodio                             controllers.EpisodioController.create(id : Long)
+# Ver un episodio de un paciente DONE AND TESTED
+GET           /api/paciente/:id1/episodio/:id2                       controllers.EpisodioController.getOne(id1 : Long, id2 : Long)
+# Ver un episodio específico DONE AND TESTED
+GET           /api/episodio/:id                                      controllers.EpisodioController.get(id : Long)
+# Eliminar episodio DONE AND TESTED
+DELETE        /api/paciente/:id1/episodio/:id2                       controllers.EpisodioController.delete(id1 : Long, id2 : Long)
+# Ver episodios de un paciente DONE AND TESTED
+GET           /api/paciente/:id/episodio                             controllers.EpisodioController.getAll(id : Long)
+# Actualizar un episodio DONE AND TESTED
+PUT           /api/paciente/:id1/episodio/:id2                       controllers.EpisodioController.update(id1 : Long, id2 : Long)
+# Dar episodios de un paciente entre dos fechas, el formato de las fechas es YYYY-MM-dd DONE AND TESTED
+GET           /api/paciente/:id/episodio/:f1/:f2                     controllers.EpisodioController.getPerDates(id : Long, f1 : String, f2 : String)
+
+########################################################################################################################
+# Aux episodio (Sintoma, Alimento, Actividad, Medicamento)
+
+########################################################################################################################
+# Sintoma
+
+# Crear un sintoma asociado a un episodio DONE AND TESTED
+POST          /api/paciente/:idp/episodio/:id1/sintoma               controllers.EpisodioController.addSymptom(idp : Long, id1 : Long)
+# Borrar un sintoma asociado a un episodio DONE AND TESTED
+DELETE        /api/paciente/:idp/episodio/:id1/sintoma/:id2          controllers.EpisodioController.deleteSymptom(idp : Long, id1 : Long, id2 : Long)
+# Ver un sintoma de un episodio DONE AND TESTED
+GET           /api/paciente/:idp/episodio/:id1/sintoma/:id2          controllers.EpisodioController.getOneSymptom(idp : Long, id1 : Long, id2 : Long)
+# Ver todos los sintomas asociados a un episodio DONE AND TETED
+GET           /api/paciente/:idp/episodio/:id/sintoma                controllers.EpisodioController.getAllSymptom(idp : Long, id : Long)
+# Actualizar la información de un sintoma asociado a un episodio
+PUT           /api/paciente/:idp/episodio/:id1/sintoma/:id2          controllers.EpisodioController.updateSymptom(idp : Long, id1 : Long, id2 : Long)
+
+########################################################################################################################
+# Alimento
+
+# Crear un alimento asociado a un episodio DONE AND TESTED
+POST          /api/paciente/:idp/episodio/:id1/alimento              controllers.EpisodioController.addFood(idp : Long, id1 : Long)
+# Borrar un alimento asociado a un episodio DONE AND TESTED
+DELETE        /api/paciente/:idp/episodio/:id1/alimento/:id2         controllers.EpisodioController.deleteFood(idp : Long, id1 : Long, id2 : Long)
+# Ver un alimento de un episodio DONE AND TESTED
+GET           /api/paciente/:idp/episodio/:id1/alimento/:id2         controllers.EpisodioController.getOneFood(idp : Long, id1 : Long, id2 : Long)
+# Ver todos los alimento asociados a un episodio
+GET           /api/paciente/:idp/episodio/:id/alimento               controllers.EpisodioController.getAllFood(idp : Long, id : Long)
+# Ver todos los alimentos
+GET           /api/alimento               controllers.EpisodioController.getAllFoods()
+# Actualizar la información de un alimento asociado a un episodio
+PUT           /api/paciente/:idp/episodio/:id1/alimento/:id2         controllers.EpisodioController.updateFood(idp : Long, id1 : Long, id2 : Long)
+
+########################################################################################################################
+# Actividad
+
+# Crear una actividad asociada a un episodio DONE AND TESTED
+POST          /api/paciente/:idp/episodio/:id1/actividad             controllers.EpisodioController.addActivity(idp : Long, id1 : Long)
+# Borrar una actividad asociada a un episodio
+DELETE        /api/paciente/:idp/episodio/:id1/actividad/:id2        controllers.EpisodioController.deleteActivity(idp : Long, id1 : Long, id2 : Long)
+# Ver una actividad de un episodio
+GET           /api/paciente/:idp/episodio/:id1/actividad/:id2        controllers.EpisodioController.getOneActivity(idp : Long, id1 : Long, id2 : Long)
+# Ver todos las actividades asociadas a un episodio
+GET           /api/paciente/:idp/episodio/:id/actividad              controllers.EpisodioController.getAllActivity(idp : Long, id : Long)
+# Actualizar la información de una actividad asociada a un episodio
+PUT           /api/paciente/:idp/episodio/:id1/actividad/:id2        controllers.EpisodioController.updateActivity(idp : Long, id1 : Long, id2 : Long)
+
+########################################################################################################################
+# Medicamento
+
+# Crear una medicina asociada a un episodio
+POST          /api/paciente/:idp/episodio/:id1/medicina              controllers.EpisodioController.addMedicine(idp : Long, id1 : Long)
+# Borrar una medicina asociado a un episodio
+DELETE        /api/paciente/:idp/episodio/:id1/medicina/:id2         controllers.EpisodioController.deleteMedicine(idp : Long, id1 : Long, id2 : Long)
+# Ver una medicina de un episodio
+GET           /api/paciente/:idp/episodio/:id1/medicina/:id2         controllers.EpisodioController.getOneMedicine(idp : Long, id1 : Long, id2 : Long)
+# Ver todos las medicinas asociadas a un episodio
+GET           /api/paciente/:idp/episodio/:id/medicina               controllers.EpisodioController.getAllMedicine(idp : Long, id : Long)
+# Actualizar la información de una medicina asociada a un episodio
+PUT           /api/paciente/:idp/episodio/:id1/medicina/:id2         controllers.EpisodioController.updateMedicine(idp : Long, id1 : Long, id2 : Long)
+
+########################################################################################################################
+# Doctor
+
+# Crea un nuevo doctor
+POST          /api/doctor                                            controllers.DoctorController.create()
+# Ver información de un doctor
+GET           /api/doctor/:id                                        controllers.DoctorController.getOne(id : Long)
+# Eliminar un doctor dado el id
+DELETE        /api/doctor/:id                                        controllers.DoctorController.delete(id : Long)
+# Ver todos los doctores
+GET           /api/doctor                                            controllers.DoctorController.getAll()
+# Actualizar información de un sólo doctor
+PUT           /api/doctor/:id                                        controllers.DoctorController.update(id : Long)
+
+########################################################################################################################
+# Analisis
+
+# Crea un análisis sobre la intensidad de horas de sueño
+GET           /api/paciente/:idP/analisis1/:f1/:f2                   controllers.AnalisisController.createAnalisisIntensidadHoras(idP : Long ,  f1 : String,  f2 : String)
+# Crea un análisis sobre loas medicamentos tomados
+GET           /api/paciente/:idP/analisis2/:f1/:f2                   controllers.AnalisisController.createAnalisisIntensidadMedicamentos(idP : Long ,  f1 : String,  f2 : String)
+# Crea un análisis sobre los alimentos tomados para el episodio
+GET           /api/paciente/:idP/analisis3/:f1/:f2                   controllers.AnalisisController.createAnalisisIntensidadAlimentos(idP : Long ,  f1 : String,  f2 : String)
+# Crea un análisis sobre la actividad física relacionada con el episodio
+GET           /api/paciente/:idP/analisis4/:f1/:f2                   controllers.AnalisisController.createAnalisisIntensidadActividadFisica(idP : Long ,  f1 : String,  f2 : String)
+
+########################################################################################################################
+# Aux routes
+# Map static resources from the /public folder to the /assets URL path
+GET           /assets/*file                                          controllers.Assets.at(path="/public", file)
