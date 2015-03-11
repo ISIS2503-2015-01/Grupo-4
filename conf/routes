@@ -138,3 +138,7 @@ GET           /api/paciente/:idP/analisis4/:f1/:f2                   controllers
 # Aux routes
 # Map static resources from the /public folder to the /assets URL path
 GET           /assets/*file                                          controllers.Assets.at(path="/public", file)
+
+
+# Home page
+GET           /test                                                  controllers.Application.test()
