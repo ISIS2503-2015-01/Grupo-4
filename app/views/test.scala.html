@@ -1,4 +1,3 @@
-@(form: Form[Application.Login])
 @(title: String)
 <!DOCTYPE html>
 
@@ -23,8 +22,6 @@
                 </p>
             </div>
         </div>
-
-        @helper.form(routes.Application.authenticate) {
         <div class="row clearfix">
             <!--Log in div-->
             <div class="col-md-6 column">
@@ -59,7 +56,6 @@
                     </div>
                 </div>
             </div>
-            }
             <!--Sign up div-->
             <div class="col-md-6 column">
                 <!--Sign up text div-->

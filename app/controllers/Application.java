@@ -25,13 +25,7 @@ public class Application extends Controller {
 
     public static Result test() {
         return ok(
-                test.render(form(Login.class))
-        );
-    }
-
-    public static Result authenticate() {
-        Form<Login> loginForm = form(Login.class).bindFromRequest();
-        return ok();
+                test.render(""));
     }
 
 }

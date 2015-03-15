@@ -142,4 +142,3 @@ GET           /assets/*file                                          controllers
 
 # Home page
 GET           /test                                                  controllers.Application.test()
-POST          /test                                                  controllers.Application.authenticate()
